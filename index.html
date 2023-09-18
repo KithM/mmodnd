@@ -6,66 +6,100 @@
     body {
       font-family: Arial, sans-serif;
     }
-    #players {
-      margin-bottom: 20px;
-    }
-    .player {
-      margin-bottom: 10px;
+    #combat-log {
+      border: 1px solid #ccc;
+      padding: 10px;
+      height: 300px;
+      overflow-y: auto;
     }
   </style>
 </head>
 <body>
   <h1>D&D Helper</h1>
 
-  <div id="players"></div>
+  <label for="character-name">Name:</label>
+  <input type="text" id="character-name">
 
-  <button onclick="addPlayer()">Add Player</button>
+  <label for="character-level">Level:</label>
+  <input type="number" id="character-level" value="1">
+  
+  <label for="character-class">Class:</label>
+  <select id="character-class" onchange="setClassInfo()">
+    <option value="">Select a class</option>
+  </select>
 
-  <h2>Dice Roller</h2>
-  <button onclick="rollDice(4)">Roll d4</button>
-  <button onclick="rollDice(6)">Roll d6</button>
-  <button onclick="rollDice(8)">Roll d8</button>
-  <button onclick="rollDice(10)">Roll d10</button>
-  <button onclick="rollDice(12)">Roll d12</button>
-  <button onclick="rollDice(20)">Roll d20</button>
+  <label for="character-hp">Max HP:</label>
+  <input type="number" id="character-hp" readonly>
+
+  <label for="character-current-hp">Current HP:</label>
+  <input type="number" id="character-current-hp">
+
+  <div id="abilities"></div>
+  
+  <h2>Combat Log</h2>
+  <div id="combat-log"></div>
 
   <script>
-    let playerCount = 0;
+    const classData = {
+      "Warrior": { "maxHP": 30, "abilities": { "Slash": "1d6", "Block": "1d4" } },
+      "Mage": { "maxHP": 20, "abilities": { "Fireball": "1d8", "Teleport": "n/a" } },
+      "Rogue": { "maxHP": 25, "abilities": { "Stealth": "n/a", "Backstab": "1d6" } },
+      // Add more classes here
+    };
 
-    function addPlayer() {
-      playerCount++;
-      const playerDiv = document.createElement('div');
-      playerDiv.className = 'player';
-      playerDiv.innerHTML = `
-        <label for="player-${playerCount}-name">Name:</label>
-        <input type="text" id="player-${playerCount}-name">
-        <label for="player-${playerCount}-max-hp">Max HP:</label>
-        <input type="number" id="player-${playerCount}-max-hp">
-        <label for="player-${playerCount}-current-hp">Current HP:</label>
-        <input type="number" id="player-${playerCount}-current-hp">
-        <button onclick="adjustHP(${playerCount}, -1)">-1 HP</button>
-        <button onclick="adjustHP(${playerCount}, 1)">+1 HP</button>
-      `;
-      document.getElementById('players').appendChild(playerDiv);
+    const classSelect = document.getElementById("character-class");
+    Object.keys(classData).forEach(className => {
+      const option = document.createElement("option");
+      option.value = className;
+      option.text = className;
+      classSelect.add(option);
+    });
+
+    function setClassInfo() {
+      const selectedClass = classSelect.value;
+      const hpInput = document.getElementById("character-hp");
+      const abilitiesDiv = document.getElementById("abilities");
+      const characterLevel = parseInt(document.getElementById("character-level").value);
+
+      if (classData[selectedClass]) {
+        hpInput.value = classData[selectedClass].maxHP;
+        abilitiesDiv.innerHTML = "";
+
+        Object.keys(classData[selectedClass].abilities).forEach(abilityName => {
+          const button = document.createElement("button");
+          button.textContent = abilityName;
+          const rollInfo = classData[selectedClass].abilities[abilityName];
+          button.onclick = () => useAbility(rollInfo, abilityName, characterLevel);
+          abilitiesDiv.appendChild(button);
+        });
+      } else {
+        hpInput.value = "";
+        abilitiesDiv.innerHTML = "";
+      }
     }
 
-    function adjustHP(playerNum, amount) {
-      const currentHpInput = document.getElementById(`player-${playerNum}-current-hp`);
-      const maxHpInput = document.getElementById(`player-${playerNum}-max-hp`);
-      
-      let currentHp = parseInt(currentHpInput.value || 0);
-      let maxHp = parseInt(maxHpInput.value || 0);
+    function useAbility(rollInfo, abilityName, characterLevel) {
+      const currentTime = new Date().toLocaleTimeString();
+      const combatLog = document.getElementById("combat-log");
+      let message;
 
-      currentHp += amount;
+      if (rollInfo === "n/a") {
+        message = `[${currentTime}] Used ${abilityName}, but it doesn't require a roll.`;
+      } else {
+        const [numberOfDice, sides] = rollInfo.split("d").map(Number);
+        let total = 0;
 
-      if (currentHp < 0) currentHp = 0;
-      if (currentHp > maxHp) currentHp = maxHp;
+        for (let i = 0; i < numberOfDice; i++) {
+          total += Math.floor(Math.random() * sides) + 1;
+        }
 
-      currentHpInput.value = currentHp;
-    }
+        total *= characterLevel;
+        message = `[${currentTime}] Used ${abilityName} for ${total} damage!`;
+      }
 
-    function rollDice(sides) {
-      alert('You rolled a ' + (Math.floor(Math.random() * sides) + 1));
+      const logEntry = document.createElement("div");
+      logEntry.textContent = message;
+      combatLog.appendChild(logEntry);
     }
   </script>
 </body>
