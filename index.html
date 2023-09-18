@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>D&D Helper</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #players {
+      margin-bottom: 20px;
+    }
+    .player {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>D&D Helper</h1>
+
+  <div id="players"></div>
+
+  <button onclick="addPlayer()">Add Player</button>
+
+  <h2>Dice Roller</h2>
+  <button onclick="rollDice(4)">Roll d4</button>
+  <button onclick="rollDice(6)">Roll d6</button>
+  <button onclick="rollDice(8)">Roll d8</button>
+  <button onclick="rollDice(10)">Roll d10</button>
+  <button onclick="rollDice(12)">Roll d12</button>
+  <button onclick="rollDice(20)">Roll d20</button>
+
+  <script>
+    let playerCount = 0;
+
+    function addPlayer() {
+      playerCount++;
+      const playerDiv = document.createElement('div');
+      playerDiv.className = 'player';
+      playerDiv.innerHTML = `
+        <label for="player-${playerCount}-name">Name:</label>
+        <input type="text" id="player-${playerCount}-name">
+        <label for="player-${playerCount}-hp">HP:</label>
+        <input type="number" id="player-${playerCount}-hp">
+        <button onclick="adjustHP(${playerCount}, -1)">-1 HP</button>
+        <button onclick="adjustHP(${playerCount}, 1)">+1 HP</button>
+      `;
+      document.getElementById('players').appendChild(playerDiv);
+    }
+
+    function adjustHP(playerNum, amount) {
+      const hpInput = document.getElementById(`player-${playerNum}-hp`);
+      hpInput.value = parseInt(hpInput.value || 0) + amount;
+    }
+
+    function rollDice(sides) {
+      alert('You rolled a ' + (Math.floor(Math.random() * sides) + 1));
+    }
+  </script>
+</body>
+</html>
