@@ -33,7 +33,7 @@
     <select id="character-class" onchange="setClassInfo()">
       <option value="">Select a class</option>
     </select>
-  
+    <br></br>
     <label for="character-hp">Max HP:</label>
     <input type="number" id="character-hp" readonly>
   
@@ -72,7 +72,7 @@
       const characterLevel = parseInt(document.getElementById("character-level").value);
 
       if (classData[selectedClass]) {
-        hpInput.value = classData[selectedClass].maxHP;
+        hpInput.value = classData[selectedClass].maxHP * characterLevel;
         abilitiesDiv.innerHTML = "";
 
         Object.keys(classData[selectedClass].abilities).forEach(abilityName => {
