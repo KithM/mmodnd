@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>D&D Helper</title>
-
   <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
@@ -32,6 +31,9 @@
       set(ref(db, 'game/enemies'), enemies);
     }
 
+    // Attach sendEnemies to the window object
+    window.sendEnemies = sendEnemies;
+
     // Player Side: Receiving Enemies
     const enemyRef = ref(db, 'game/enemies');
     onValue(enemyRef, (snapshot) => {
@@ -42,20 +44,20 @@
       }
     });
   </script>
-  </head>
-  <body>
-    <h1>D&D Helper</h1>
-  
-    <!-- DM Side -->
-    <h2>For Dungeon Master</h2>
-    <label for="enemy-type">Enemy Type:</label>
-    <input type="text" id="enemy-type">
-    <label for="enemy-count">Count:</label>
-    <input type="number" id="enemy-count">
-    <button onclick="sendEnemies()">Send Enemies</button>
-  
-    <!-- Player Side -->
-    <h2>For Players</h2>
-    <div id="alert-box"></div>
-  </body>
-  </html>
+</head>
+<body>
+  <h1>D&D Helper</h1>
+
+  <!-- DM Side -->
+  <h2>For Dungeon Master</h2>
+  <label for="enemy-type">Enemy Type:</label>
+  <input type="text" id="enemy-type">
+  <label for="enemy-count">Count:</label>
+  <input type="number" id="enemy-count">
+  <button onclick="sendEnemies()">Send Enemies</button>
+
+  <!-- Player Side -->
+  <h2>For Players</h2>
+  <div id="alert-box"></div>
+</body>
+</html>
