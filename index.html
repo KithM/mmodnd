@@ -2,151 +2,47 @@
 <html>
 <head>
   <title>D&D Helper</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-    input, select, button {
-      font-size: 1.2em;
-      padding: 10px;
-      margin: 5px;
-    }
-    #combat-log {
-      border: 1px solid #ccc;
-      padding: 10px;
-      height: 300px;
-      overflow-y: auto;
-      margin-top: 20px;
-    }
-  </style>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
 </head>
 <body>
-    <h1>D&D Helper</h1>
-  
-    <label for="character-name">Name:</label>
-    <input type="text" id="character-name">
-    
-    <label for="character-level">Level:</label>
-    <input type="number" id="character-level" value="1">
-    
-    <label for="character-class">Class:</label>
-    <select id="character-class" onchange="setClassInfo()">
-      <option value="">Select a class</option>
-    </select>
-    <br></br>
-    <label for="character-hp">Max HP:</label>
-    <input type="number" id="character-hp" readonly>
-  
-    <label for="character-current-hp">Current HP:</label>
-    <input type="number" id="character-current-hp">
-  
-    <div id="abilities"></div>
-  
-    <button id="save-button">Save Character</button>
-    <input type="file" id="load-button" style="display:none;">
-    <button onclick="document.getElementById('load-button').click()">Load Character</button>
-    
-    <h2>Combat Log</h2>
-    <div id="combat-log"></div>
+  <h1>D&D Helper</h1>
+
+  <!-- DM Side -->
+  <h2>For Dungeon Master</h2>
+  <label for="enemy-type">Enemy Type:</label>
+  <input type="text" id="enemy-type">
+  <label for="enemy-count">Count:</label>
+  <input type="number" id="enemy-count">
+  <button onclick="sendEnemies()">Send Enemies</button>
+
+  <!-- Player Side -->
+  <h2>For Players</h2>
+  <div id="alert-box"></div>
 
   <script>
-    const classData = {
-      "Warrior": { "maxHP": 30, "abilities": { "Slash": "1d6", "Block": "1d4" } },
-      "Mage": { "maxHP": 20, "abilities": { "Fireball": "1d8", "Teleport": "n/a" } },
-      "Rogue": { "maxHP": 25, "abilities": { "Stealth": "n/a", "Backstab": "1d6" } },
-      // Add more classes here
+    // Initialize Firebase
+    const firebaseConfig = {
+      // Your Firebase Config Here
     };
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
 
-    const classSelect = document.getElementById("character-class");
-    Object.keys(classData).forEach(className => {
-      const option = document.createElement("option");
-      option.value = className;
-      option.text = className;
-      classSelect.add(option);
-    });
-
-    function setClassInfo() {
-      const selectedClass = classSelect.value;
-      const hpInput = document.getElementById("character-hp");
-      const abilitiesDiv = document.getElementById("abilities");
-      const characterLevel = parseInt(document.getElementById("character-level").value);
-
-      if (classData[selectedClass]) {
-        hpInput.value = classData[selectedClass].maxHP * characterLevel;
-        abilitiesDiv.innerHTML = "";
-
-        Object.keys(classData[selectedClass].abilities).forEach(abilityName => {
-          const button = document.createElement("button");
-          button.textContent = abilityName;
-          const rollInfo = classData[selectedClass].abilities[abilityName];
-          button.onclick = () => useAbility(rollInfo, abilityName, characterLevel);
-          abilitiesDiv.appendChild(button);
-        });
-      } else {
-        hpInput.value = "";
-        abilitiesDiv.innerHTML = "";
-      }
+    // DM Side: Sending Enemies
+    function sendEnemies() {
+      const type = document.getElementById("enemy-type").value;
+      const count = document.getElementById("enemy-count").value;
+      const enemies = { type, count };
+      database.ref('game/enemies').set(enemies);
     }
 
-    function useAbility(rollInfo, abilityName, characterLevel) {
-      const currentTime = new Date().toLocaleTimeString();
-      const combatLog = document.getElementById("combat-log");
-      let message;
-
-      if (rollInfo === "n/a") {
-        message = `[${currentTime}] Used ${abilityName}, but it doesn't require a roll.`;
-      } else {
-        const [numberOfDice, sides] = rollInfo.split("d").map(Number);
-        let total = 0;
-
-        for (let i = 0; i < numberOfDice; i++) {
-          total += Math.floor(Math.random() * sides) + 1;
-        }
-
-        total *= characterLevel;
-        message = `[${currentTime}] Used ${abilityName} for ${total} damage!`;
+    // Player Side: Receiving Enemies
+    database.ref('game/enemies').on('value', (snapshot) => {
+      const enemies = snapshot.val();
+      const alertBox = document.getElementById("alert-box");
+      if (enemies) {
+        alertBox.innerHTML = `New enemies incoming: ${enemies.count} ${enemies.type}`;
       }
-
-      const logEntry = document.createElement("div");
-      logEntry.textContent = message;
-      combatLog.appendChild(logEntry);
-    }
-
-    document.getElementById("save-button").addEventListener("click", function() {
-      const character = {
-        name: document.getElementById("character-name").value,
-        level: document.getElementById("character-level").value,
-        class: document.getElementById("character-class").value,
-        maxHp: document.getElementById("character-hp").value,
-        currentHp: document.getElementById("character-current-hp").value
-      };
-
-      const characterJSON = JSON.stringify(character);
-      const blob = new Blob([characterJSON], {type: "application/json"});
-      const url = URL.createObjectURL(blob);
-
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "character.json";
-      a.click();
-      URL.revokeObjectURL(url);
-    });
-
-    document.getElementById("load-button").addEventListener("change", function(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-      
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const character = JSON.parse(e.target.result);
-        document.getElementById("character-name").value = character.name;
-        document.getElementById("character-level").value = character.level;
-        document.getElementById("character-class").value = character.class;
-        document.getElementById("character-hp").value = character.maxHp;
-        document.getElementById("character-current-hp").value = character.currentHp;
-        setClassInfo();
-      };
-      reader.readAsText(file);
     });
   </script>
 </body>
