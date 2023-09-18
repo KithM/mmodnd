@@ -21,29 +21,33 @@
   </style>
 </head>
 <body>
-  <h1>D&D Helper</h1>
-
-  <label for="character-name">Name:</label>
-  <input type="text" id="character-name">
-
-  <label for="character-level">Level:</label>
-  <input type="number" id="character-level" value="1">
+    <h1>D&D Helper</h1>
   
-  <label for="character-class">Class:</label>
-  <select id="character-class" onchange="setClassInfo()">
-    <option value="">Select a class</option>
-  </select>
-
-  <label for="character-hp">Max HP:</label>
-  <input type="number" id="character-hp" readonly>
-
-  <label for="character-current-hp">Current HP:</label>
-  <input type="number" id="character-current-hp">
-
-  <div id="abilities"></div>
+    <label for="character-name">Name:</label>
+    <input type="text" id="character-name">
+    
+    <label for="character-level">Level:</label>
+    <input type="number" id="character-level" value="1">
+    
+    <label for="character-class">Class:</label>
+    <select id="character-class" onchange="setClassInfo()">
+      <option value="">Select a class</option>
+    </select>
   
-  <h2>Combat Log</h2>
-  <div id="combat-log"></div>
+    <label for="character-hp">Max HP:</label>
+    <input type="number" id="character-hp" readonly>
+  
+    <label for="character-current-hp">Current HP:</label>
+    <input type="number" id="character-current-hp">
+  
+    <div id="abilities"></div>
+  
+    <button id="save-button">Save Character</button>
+    <input type="file" id="load-button" style="display:none;">
+    <button onclick="document.getElementById('load-button').click()">Load Character</button>
+    
+    <h2>Combat Log</h2>
+    <div id="combat-log"></div>
 
   <script>
     const classData = {
@@ -107,6 +111,43 @@
       logEntry.textContent = message;
       combatLog.appendChild(logEntry);
     }
+
+    document.getElementById("save-button").addEventListener("click", function() {
+      const character = {
+        name: document.getElementById("character-name").value,
+        level: document.getElementById("character-level").value,
+        class: document.getElementById("character-class").value,
+        maxHp: document.getElementById("character-hp").value,
+        currentHp: document.getElementById("character-current-hp").value
+      };
+
+      const characterJSON = JSON.stringify(character);
+      const blob = new Blob([characterJSON], {type: "application/json"});
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "character.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById("load-button").addEventListener("change", function(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const character = JSON.parse(e.target.result);
+        document.getElementById("character-name").value = character.name;
+        document.getElementById("character-level").value = character.level;
+        document.getElementById("character-class").value = character.class;
+        document.getElementById("character-hp").value = character.maxHp;
+        document.getElementById("character-current-hp").value = character.currentHp;
+        setClassInfo();
+      };
+      reader.readAsText(file);
+    });
   </script>
 </body>
 </html>
