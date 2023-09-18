@@ -39,8 +39,10 @@
       playerDiv.innerHTML = `
         <label for="player-${playerCount}-name">Name:</label>
         <input type="text" id="player-${playerCount}-name">
-        <label for="player-${playerCount}-hp">HP:</label>
-        <input type="number" id="player-${playerCount}-hp">
+        <label for="player-${playerCount}-max-hp">Max HP:</label>
+        <input type="number" id="player-${playerCount}-max-hp">
+        <label for="player-${playerCount}-current-hp">Current HP:</label>
+        <input type="number" id="player-${playerCount}-current-hp">
         <button onclick="adjustHP(${playerCount}, -1)">-1 HP</button>
         <button onclick="adjustHP(${playerCount}, 1)">+1 HP</button>
       `;
@@ -48,8 +50,18 @@
     }
 
     function adjustHP(playerNum, amount) {
-      const hpInput = document.getElementById(`player-${playerNum}-hp`);
-      hpInput.value = parseInt(hpInput.value || 0) + amount;
+      const currentHpInput = document.getElementById(`player-${playerNum}-current-hp`);
+      const maxHpInput = document.getElementById(`player-${playerNum}-max-hp`);
+      
+      let currentHp = parseInt(currentHpInput.value || 0);
+      let maxHp = parseInt(maxHpInput.value || 0);
+
+      currentHp += amount;
+
+      if (currentHp < 0) currentHp = 0;
+      if (currentHp > maxHp) currentHp = maxHp;
+
+      currentHpInput.value = currentHp;
     }
 
     function rollDice(sides) {
