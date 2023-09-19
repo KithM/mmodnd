@@ -6,12 +6,17 @@
     <script src="math.js"></script>
     <script src="arrays.js"></script>
     <script src="items.js"></script>
+    <script>
+      function generate() {
+        generateItem();
+      }
+    </script>
   </head>
   <body>
     <h1>Advanced Item Generator</h1>
     <form>
       Enter Item Level: <input type="text" id="itemLevel">
-      <input type="button" value="Generate Item" onclick="generateItem()">
+      <input type="button" value="Generate Item" onclick="generate()">
     </form>
     <div id="result"></div>
   </body>

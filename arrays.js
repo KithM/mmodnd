@@ -10,16 +10,16 @@ const items = [
 ];
 
 const leatherenchants = [
-
+    {p:1.00}
 ];
 const metalenchants = [
-
+    {p:1.00}
 ];
 const fiberenchants = [
-
+    {p:1.00}
 ];
 const platedenchants = [
-
+    {p:1.00}
 ];
 
 const lootTypes = [
