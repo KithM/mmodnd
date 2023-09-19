@@ -1,15 +1,19 @@
 function generateItem() {
     let itemLevel = parseInt(document.getElementById("itemLevel").value, 10);
-    //let requiredLevel = 1;//itemLevel >= 10 ? itemLevel - 5 : 1;
+    let requiredLevel = Math.max(Math.min(itemLevel + 2, 100), itemLevel - 2); // Assuming max level is 60
     let attributeTotal = Math.floor(itemLevel * 2.5);
-  
-    let chosenItem = rollForItem(items);
+
+    // Filter items based on level
+    let availableItems = items.filter(item => item.level <= requiredLevel);
+
+    let chosenItem = rollForItem(availableItems);
     
-    // Filter lootTypes based on the chosenItem's itemType
-    let compatibleLootTypes = lootTypes.filter(lootType => !lootType.validTypes || lootType.validTypes.includes(chosenItem.itemType));
+    // Filter lootTypes based on both the chosenItem's itemType and level
+    let compatibleLootTypes = lootTypes.filter(lootType => 
+        (!lootType.validTypes || lootType.validTypes.includes(chosenItem.itemType)) &&
+        (!lootType.level || lootType.level <= requiredLevel)
+    );
     let chosenType = rollForItem(compatibleLootTypes);
-    
-    let requiredLevel = chosenType.level;
   
     let resultString = `${chosenType.name} ${chosenItem.name}<br>Level ${requiredLevel}<br>`;
     
