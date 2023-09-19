@@ -12,14 +12,14 @@ function generateItem() {
     let resultString = `${chosenType.name} ${chosenItem.name}<br>Level ${requiredLevel}<br>`;
     
     // Calculate and display damage for weapons
-    if (chosenItem.itemType === 'Weapon') {
+    if (chosenItem.minDamage && chosenItem.maxDamage) {
       let minDamage = itemLevel * chosenItem.minDamage;
       let maxDamage = itemLevel * chosenItem.maxDamage;
       resultString += `${minDamage}-${maxDamage} Damage<br>`;
     }
   
     // Calculate and display armor for wearables
-    else if (chosenItem.itemType === 'Wearable') {
+    else if (chosenItem.armorRating) {
       let armorRating = itemLevel * chosenItem.armorRating;
       resultString += `Armor Rating: ${armorRating}<br>`;
     }
