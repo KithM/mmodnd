@@ -1,8 +1,12 @@
 // Sample items array with base min and max damage and item slots
 const items = [
-    { name: 'Sword', itemType: 'Weapon', minDamage: 2, maxDamage: 5, slots: ['Main Hand'], p: 0.5 },
-    { name: 'Shield', itemType: 'Wearable', armorRating: 5, slots: ['Off Hand'], p: 0.5 }
-    // More items
+    { name: 'Shortsword', itemType: 'Weapon', minDamage: 2, maxDamage: 4, slots: ['Main Hand'], primaryStats: ['Strength'], p: 0.5 },
+    { name: 'Sword', itemType: 'Weapon', minDamage: 3, maxDamage: 6, slots: ['Main Hand'], primaryStats: ['Strength'], p: 0.5 },
+    { name: 'Longsword', itemType: 'Weapon', minDamage: 2, maxDamage: 6, slots: ['Main Hand'], primaryStats: ['Strength'], p: 0.5 },
+    { name: 'Greatsword', itemType: 'Weapon', minDamage: 2, maxDamage: 8, slots: ['Main Hand'], primaryStats: ['Strength'], p: 0.5 },
+    
+    { name: 'Staff', itemType: 'Weapon', minDamage: 1, maxDamage: 4, slots: ['Main Hand'], primaryStats: ['Intellect'], p: 0.25 },
+    { name: 'Wand', itemType: 'Weapon', minDamage: 1, maxDamage: 3, slots: ['Main Hand'], primaryStats: ['Intellect'], p: 0.25 }
 ];
 
 var lootTypes = [
