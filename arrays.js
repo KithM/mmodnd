@@ -5,8 +5,8 @@ const items = [
     { name: 'Dagger',           itemType: 'Melee', minDamage: 1, maxDamage: 3, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.2 },
 
     { name: 'Shortsword',       itemType: 'Melee', minDamage: 2, maxDamage: 4, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.3 },
-    { name: 'Sword',            itemType: 'Melee', minDamage: 3, maxDamage: 6, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.4 },
-    { name: 'Longsword',        itemType: 'Melee', minDamage: 2, maxDamage: 6, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.3 },
+    { name: 'Sword',            itemType: 'Melee', minDamage: 3, maxDamage: 5, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.4 },
+    { name: 'Longsword',        itemType: 'Melee', minDamage: 4, maxDamage: 6, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.3 },
     { name: 'Greatsword',       itemType: 'Melee', minDamage: 2, maxDamage: 8, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.1 },
     
     // Magic
@@ -14,10 +14,17 @@ const items = [
     { name: 'Grandstaff',       itemType: 'Magic', minDamage: 1, maxDamage: 3, slot: 'Two-Handed', primaryStats: ['Intellect'], p: 0.1 },
     { name: 'Wand',             itemType: 'Magic', minDamage: 1, maxDamage: 1, slot: 'Main Hand', primaryStats: ['Intellect'], p: 0.2 },
     { name: 'Orb',              itemType: 'Magic', slot: 'Off Hand', primaryStats: ['Intellect'], p: 0.1 },
+
+    // Ranged
+    // Ranged Weapons
+    { name: 'Shortbow',         itemType: 'Ranged', minDamage: 2, maxDamage: 4, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.2 },
+    { name: 'Longbow',          itemType: 'Ranged', minDamage: 3, maxDamage: 5, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.2 },
+    { name: 'Greatbow',         itemType: 'Ranged', minDamage: 4, maxDamage: 6, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.1 },
+    { name: 'Crossbow',         itemType: 'Ranged', minDamage: 4, maxDamage: 8, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.1 },
   
     // Shields    
-    { name: 'Shield',           itemType: 'Shield', armorRating: 4, slot: 'Off Hand', p: 0.3 },
-    { name: 'Bulwark',          itemType: 'Shield', armorRating: 8, slot: 'Off Hand', p: 0.1 },
+    { name: 'Shield',           itemType: 'Shield', armorRating: 4, slot: 'Off Hand', secondaryStats: ['Armor'], p: 0.3 },
+    { name: 'Bulwark',          itemType: 'Shield', armorRating: 8, slot: 'Off Hand', secondaryStats: ['Armor'], p: 0.1 },
 
     //// Equipment
     // Chest

@@ -52,11 +52,16 @@ function generateItem() {
         remainingAttributes -= primaryValue;
     }
     
-    // Roll for seocndary attributes
+    /// Roll for secondary attributes
+    let availableSecondaryAttributes = secondaryAttributes;
+    if (chosenItem.secondaryStats) {
+        availableSecondaryAttributes = availableSecondaryAttributes.filter(attr => chosenItem.secondaryStats.includes(attr));
+    }
+
     let rolledAttributes = {};
   
     while (remainingAttributes > 0) {
-        let attribute = secondaryAttributes[Math.floor(Math.random() * secondaryAttributes.length)];
+        let attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
         let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes);
         remainingAttributes -= value;
         rolledAttributes[attribute] = (rolledAttributes[attribute] || 0) + value;
