@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Advanced Item Generator</title>
+    <title>Icycold's TTRPG Item Generator</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.4.2.min.js"></script>
-    <script src="main_items.js"></script>
-    <script src="main_math.js"></script>
-    <script src="main_arrays.js"></script>
+    <script src="items.js"></script>
+    <script src="math.js"></script>
+    <script src="arrays.js"></script>
   </head>
   <script>
-    function generateItem(){
-      Level = parseInt(document.getElementById("itemLevel").value, 10);
-      var generatedItem = getLevelLoot();
-
-      console.log(generatedItem);
-    }
+    
   </script>
 </head>
 <body>
 
 <h1>Advanced Item Generator</h1>
-<p>Enter the item level:</p>
-<input type="text" id="itemLevel">
-<button onclick="generateItem()">Generate Item</button>
+<form>
+  Enter Item Level: <input type="text" id="itemLevel">
+  <input type="button" value="Generate Item" onclick="generateItem()">
+</form>
 <div id="result"></div>
 
 </body>
