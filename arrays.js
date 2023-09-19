@@ -39,6 +39,19 @@ const lootTypes = [
     { name: `Diamond Plate`,       enchants: platedenchants,   p: 0.01, m: 75.00,  level: 90 }
 ];
 
+const leatherenchants = [
+
+];
+const metalenchants = [
+
+];
+const fiberenchants = [
+
+];
+const platedenchants = [
+
+];
+
 // Attributes
 const primaryAttributes = ['Strength', 'Intellect', 'Agility'];
 const secondaryAttributes = ['Stamina', 'Armor', 'Haste', 'Critical Strike', 'Energy', 'Regen'];
