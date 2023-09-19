@@ -16,7 +16,7 @@ function generateItem() {
     // Calculate and display damage for weapons
     if (chosenItem.minDamage && chosenItem.maxDamage) {
       let minDamage = Math.floor(itemLevel * chosenItem.minDamage * chosenType.m);
-      let maxDamage = itemLevel * chosenItem.maxDamage * chosenType.m;
+      let maxDamage = Math.floor(itemLevel * chosenItem.maxDamage * chosenType.m);
       resultString += `${minDamage}-${maxDamage} Damage<br>`;
     }
   
