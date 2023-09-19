@@ -13,20 +13,20 @@ function generateItem() {
     
     // Calculate and display damage for weapons
     if (chosenItem.minDamage && chosenItem.maxDamage) {
-      let minDamage = itemLevel * chosenItem.minDamage;
-      let maxDamage = itemLevel * chosenItem.maxDamage;
+      let minDamage = Math.floor(itemLevel * chosenItem.minDamage * chosenType.m);
+      let maxDamage = itemLevel * chosenItem.maxDamage * chosenType.m;
       resultString += `${minDamage}-${maxDamage} Damage<br>`;
     }
   
     // Calculate and display armor for wearables
     else if (chosenItem.armorRating) {
-      let armorRating = itemLevel * chosenItem.armorRating;
+      let armorRating = Math.floor(itemLevel * chosenItem.armorRating * chosenType.m);
       resultString += `Armor Rating: ${armorRating}<br>`;
     }
   
     // Roll for equipment slot if the item is an equipment
-    if (chosenItem.slots) {
-      let slot = chosenItem.slots[Math.floor(Math.random() * chosenItem.slots.length)];
+    if (chosenItem.slot) {
+      let slot = chosenItem.slot[Math.floor(Math.random() * chosenItem.slot.length)];
       resultString += `Slot: ${slot}<br>`;
     }
   

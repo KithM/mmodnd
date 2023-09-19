@@ -1,15 +1,15 @@
-// Sample items array with base min and max damage and item slots
+// Sample items array with base min and max damage and item slot
 const items = [
-    { name: 'Shortsword', itemType: 'Melee', minDamage: 2, maxDamage: 4, slots: ['Main Hand'], primaryStats: ['Strength'], p: 0.5 },
-    { name: 'Sword', itemType: 'Melee', minDamage: 3, maxDamage: 6, slots: ['Main Hand'], primaryStats: ['Strength'], p: 0.5 },
-    { name: 'Longsword', itemType: 'Melee', minDamage: 2, maxDamage: 6, slots: ['Two-Handed'], primaryStats: ['Strength'], p: 0.25 },
-    { name: 'Greatsword', itemType: 'Melee', minDamage: 2, maxDamage: 8, slots: ['Two-Handed'], primaryStats: ['Strength'], p: 0.10 },
+    { name: 'Shortsword', itemType: 'Melee', minDamage: 2, maxDamage: 4, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.5 },
+    { name: 'Sword', itemType: 'Melee', minDamage: 3, maxDamage: 6, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.5 },
+    { name: 'Longsword', itemType: 'Melee', minDamage: 2, maxDamage: 6, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.25 },
+    { name: 'Greatsword', itemType: 'Melee', minDamage: 2, maxDamage: 8, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.10 },
     
-    { name: 'Staff', itemType: 'Magic', minDamage: 1, maxDamage: 4, slots: ['Two-Handed'], primaryStats: ['Intellect'], p: 0.25 },
-    { name: 'Wand', itemType: 'Magic', minDamage: 1, maxDamage: 3, slots: ['Main Hand'], primaryStats: ['Intellect'], p: 0.5 },
+    { name: 'Staff', itemType: 'Magic', minDamage: 1, maxDamage: 4, slot: 'Two-Handed', primaryStats: ['Intellect'], p: 0.25 },
+    { name: 'Wand', itemType: 'Magic', minDamage: 1, maxDamage: 3, slot: 'Main Hand', primaryStats: ['Intellect'], p: 0.5 },
     
-    { name: 'Shield', itemType: 'Shield', armorRating: 4, slots: ['Off Hand'], p: 0.25 },
-    { name: 'Bulwark', itemType: 'Shield', armorRating: 8, slots: ['Off Hand'], p: 0.10 }
+    { name: 'Shield', itemType: 'Shield', armorRating: 4, slot: 'Off Hand', p: 0.25 },
+    { name: 'Bulwark', itemType: 'Shield', armorRating: 8, slot: 'Off Hand', p: 0.10 }
 ];
 
 const leatherenchants = [
