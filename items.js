@@ -46,6 +46,11 @@ function generateItem() {
 }
 
 function rollForItem(itemArray) {
+    if (!itemArray) {
+        console.error("Undefined itemArray passed to rollForItem");
+        return null;
+    }
+
     let totalProbability = 0;
     itemArray.forEach((item) => {
         totalProbability += item["p"];
@@ -55,7 +60,7 @@ function rollForItem(itemArray) {
     for (let i = 0; i < itemArray.length; i++) {
         randomValue -= itemArray[i]["p"];
         if (randomValue <= 0) {
-        return itemArray[i];
+            return itemArray[i];
         }
     }
     return itemArray[0];  // Fallback

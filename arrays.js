@@ -9,7 +9,7 @@ const items = [
     { name: 'Wand', itemType: 'Weapon', minDamage: 1, maxDamage: 3, slots: ['Main Hand'], primaryStats: ['Intellect'], p: 0.25 }
 ];
 
-var lootTypes = [
+const lootTypes = [
     { name: `Cloth`,               enchants: [{p:1.00}],       p: 0.30, m: 0.250,  level: 1 },
     { name: `Hide`,                enchants: [{p:1.00}],       p: 0.32, m: 0.500,  level: 1 },
     { name: `Basic Leather`,       enchants: [{p:1.00}],       p: 0.35, m: 0.650,  level: 1 },
