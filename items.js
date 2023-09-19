@@ -115,4 +115,21 @@ function rollForItem(itemArray) {
     return itemArray[0];  // Fallback
 }
 
+function rollForAttribute(attributeProbabilities) {
+    let totalProbability = 0;
+    for (let prob of Object.values(attributeProbabilities)) {
+        totalProbability += prob;
+    }
+
+    let randomValue = Math.random() * totalProbability;
+    for (let [attribute, prob] of Object.entries(attributeProbabilities)) {
+        randomValue -= prob;
+        if (randomValue <= 0) {
+            return attribute;
+        }
+    }
+
+    return null; // Fallback, should never happen if probabilities sum to 1
+}
+
 //document.getElementById("result").innerHTML = resultString;
