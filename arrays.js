@@ -40,4 +40,5 @@ var lootTypes = [
 ];
 
 // Attributes
-const attributes = ['Strength', 'Agility', 'Intellect', 'Stamina', 'Haste', 'Armor', 'Energy', 'Regen', 'Critical Strike'];
+const primaryAttributes = ['Strength', 'Intellect', 'Agility'];
+const secondaryAttributes = ['Stamina', 'Armor', 'Haste', 'Critical Strike', 'Energy', 'Regen'];
