@@ -1,21 +1,23 @@
 function generateItem() {
-    let itemLevel = parseInt(document.getElementById("itemLevel").value, 10);
-    let requiredLevel = Math.max(Math.min(itemLevel + 2, 100), itemLevel - 2); // Assuming max level is 60
+    //let itemLevel = parseInt(document.getElementById("itemLevel").value, 10);
+    //let requiredLevel = getRandomNumberBetween(); //Math.max(Math.min(itemLevel + 2, 100), itemLevel - 2);
+    let inputLevel = parseInt(document.getElementById("itemLevel").value, 10);
+    let itemLevel = getRandomNumberBetween( Math.max(inputLevel-2, 1), Math.min(inputLevel+2, 100) ); //
     let attributeTotal = Math.floor(itemLevel * 2.5);
 
     // Filter items based on level
-    let availableItems = items.filter(item => item.level <= requiredLevel);
+    let availableItems = items;//items.filter(item => item.level <= requiredLevel);
 
     let chosenItem = rollForItem(availableItems);
     
     // Filter lootTypes based on both the chosenItem's itemType and level
     let compatibleLootTypes = lootTypes.filter(lootType => 
         (!lootType.validTypes || lootType.validTypes.includes(chosenItem.itemType)) &&
-        (!lootType.level || lootType.level <= requiredLevel)
+        (!lootType.level || lootType.level <= itemLevel)
     );
     let chosenType = rollForItem(compatibleLootTypes);
   
-    let resultString = `${chosenType.name} ${chosenItem.name}<br>Level ${requiredLevel}<br>`;
+    let resultString = `${chosenType.name} ${chosenItem.name}<br>Level ${itemLevel}<br>`;
     
     // Calculate and display damage for weapons
     if (chosenItem.minDamage && chosenItem.maxDamage) {
