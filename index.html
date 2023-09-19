@@ -10,7 +10,9 @@
   <script>
     function generateItem(){
       Level = parseInt(document.getElementById("itemLevel").value, 10);
-      getLevelLoot();
+      var generatedItem = getLevelLoot();
+
+      console.log(generatedItem);
     }
   </script>
 </head>
