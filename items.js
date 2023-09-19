@@ -4,7 +4,10 @@ function generateItem() {
     let attributeTotal = Math.floor(itemLevel * 2.5);
   
     let chosenItem = rollForItem(items);
-    let chosenType = rollForItem(lootTypes);
+    
+    // Filter lootTypes based on the chosenItem's itemType
+    let compatibleLootTypes = lootTypes.filter(lootType => !lootType.validTypes || lootType.validTypes.includes(chosenItem.itemType));
+    let chosenType = rollForItem(compatibleLootTypes);
   
     let resultString = `${chosenType.name} ${chosenItem.name}<br>Level ${requiredLevel}<br>`;
     
@@ -34,11 +37,17 @@ function generateItem() {
     
     let remainingAttributes = attributeTotal - primaryValue;
 
+    let secondaryAttributes = {};
+  
     // Roll for secondary attributes
     while (remainingAttributes > 0) {
         let attribute = secondaryAttributes[Math.floor(Math.random() * secondaryAttributes.length)];
         let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes);
         remainingAttributes -= value;
+        secondaryAttributes[attribute] = (secondaryAttributes[attribute] || 0) + value;
+    }
+  
+    for (let [attribute, value] of Object.entries(secondaryAttributes)) {
         resultString += `+${value} ${attribute}<br>`;
     }
 
