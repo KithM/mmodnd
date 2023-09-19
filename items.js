@@ -41,7 +41,7 @@ function generateItem() {
     // Roll for primary attributes
     let remainingAttributes = attributeTotal;
 
-    if(chosenItem.primaryAttribute){
+    if(chosenItem.primaryStats){
         let primaryAttribute = chosenItem.primaryStats[Math.floor(Math.random() * chosenItem.primaryStats.length)];
         let primaryValue = Math.floor(attributeTotal * 0.5); // You can change the 0.5 to adjust how much goes into primary stat
         resultString += `+${primaryValue} ${primaryAttribute}<br>`;

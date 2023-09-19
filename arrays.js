@@ -32,7 +32,7 @@ const lootTypes = [
     { name: `Basic Leather`,       enchants: [{p:1.00}],       p: 0.35, m: 0.650,  level: 1, validTypes: ['Head','Chest','Legs','Feet','Belt'] },
     { name: `Wood`,                enchants: [{p:1.00}],       p: 0.35, m: 0.750,  level: 1, validTypes: ['Melee','Magic'] },
     { name: `Leather`,             enchants: leatherenchants,  p: 0.35, m: 1.000,  level: 1, validTypes: ['Head','Chest','Legs','Feet','Belt'] },
-    { name: `Iron`,                enchants: metalenchants,    p: 0.35, m: 1.125,  level: 2, validTypes: ['Melee','Magic', 'Head','Chest','Legs','Feet','Belt'] },
+    { name: `Iron`,                enchants: metalenchants,    p: 0.35, m: 1.125,  level: 2, validTypes: ['Melee', 'Head','Chest','Legs','Feet','Belt'] },
     { name: `Steel`,               enchants: metalenchants,    p: 0.34, m: 1.220,  level: 3, validTypes: ['Melee', 'Head','Chest','Legs','Feet','Belt'] },
     { name: `Steel Plate`,         enchants: metalenchants,    p: 0.34, m: 1.500,  level: 4, validTypes: ['Head','Chest','Legs','Feet','Belt'] },
     { name: `Caxium`,              enchants: metalenchants,    p: 0.34, m: 1.750,  level: 5, validTypes: ['Melee','Magic', 'Head','Chest','Legs','Feet','Belt'] },
