@@ -1,41 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Advanced Item Generator</title>
+  <head>
+    <title>Advanced Item Generator</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script src="main_items.js"></script>
+    <script src="main_math.js"></script>
+    <script src="main_arrays.js"></script>
+  </head>
   <script>
-    function generateItem() {
-      let itemTypes = ['Weapon', 'Armor', 'Item'];
-      let weaponTypes = ['Dagger', 'Shortsword', 'Longsword', 'Greatsword', 'Shortbow', 'Longbow', 'Greatbow'];
-      let armorTypes = ['Head', 'Neck', 'Chest', 'Legs', 'Hands', 'Feet', 'Ring', 'Trinket'];
-      let itemSubTypes = ['Consumable', 'Crafting', 'Junk'];
-
-      let randomType = itemTypes[Math.floor(Math.random() * itemTypes.length)];
-
-      let randomSubType;
-      let minDamage;
-      let maxDamage;
-      let requiredLevel;
-
-      let itemLevel = parseInt(document.getElementById("itemLevel").value, 10);
-      requiredLevel = itemLevel >= 10 ? itemLevel - 5 : 1; // Optional requiredLevel calculation
-      
-      if (randomType === 'Weapon') {
-        randomSubType = weaponTypes[Math.floor(Math.random() * weaponTypes.length)];
-        minDamage = itemLevel * 2;  // Customize this formula as needed
-        maxDamage = itemLevel * 4;  // Customize this formula as needed
-      } else if (randomType === 'Armor') {
-        randomSubType = armorTypes[Math.floor(Math.random() * armorTypes.length)];
-      } else {
-        randomSubType = itemSubTypes[Math.floor(Math.random() * itemSubTypes.length)];
-      }
-      
-      let resultString = `Generated Item: <br>Type: ${randomType}<br>Subtype: ${randomSubType}<br>Required Level: ${requiredLevel}`;
-      if (randomType === 'Weapon') {
-        resultString += `<br>Damage Range: ${minDamage}-${maxDamage}`;
-      }
-      
-      document.getElementById("result").innerHTML = resultString;
-    }
+    
   </script>
 </head>
 <body>
@@ -43,7 +16,7 @@
 <h1>Advanced Item Generator</h1>
 <p>Enter the item level:</p>
 <input type="text" id="itemLevel">
-<button onclick="generateItem()">Generate Item</button>
+<button onclick="getLevelLoot()">Generate Item</button>
 <div id="result"></div>
 
 </body>
