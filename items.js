@@ -57,11 +57,8 @@ function generateItem() {
     /// Roll for secondary attributes
     let attributeProbabilities = {
         'Stamina': 0.5,
-        'Haste': 0.3,
         'Critical Strike': 0.3,
-        'Energy': 0.1,
-        'Regen': 0.1,
-        'Armor': 0
+        'Leech': 0.2
     };
 
     let availableSecondaryAttributes = secondaryAttributes;

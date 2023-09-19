@@ -23,8 +23,8 @@ const items = [
     { name: 'Crossbow',         itemType: 'Ranged', minDamage: 4, maxDamage: 8, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.1 },
   
     // Shields    
-    { name: 'Shield',           itemType: 'Shield', armorRating: 4, slot: 'Off Hand', secondaryStats: ['Armor'], p: 0.3 },
-    { name: 'Bulwark',          itemType: 'Shield', armorRating: 8, slot: 'Off Hand', secondaryStats: ['Armor'], p: 0.1 },
+    { name: 'Shield',           itemType: 'Shield', armorRating: 4, slot: 'Off Hand', secondaryStats: ['Stamina'], p: 0.3 },
+    { name: 'Bulwark',          itemType: 'Shield', armorRating: 8, slot: 'Off Hand', secondaryStats: ['Stamina'], p: 0.1 },
 
     //// Equipment
     // Chest
@@ -84,4 +84,4 @@ const lootTypes = [
 
 // Attributes
 const primaryAttributes = ['Strength', 'Intellect', 'Agility'];
-const secondaryAttributes = ['Stamina', 'Armor', 'Haste', 'Critical Strike', 'Energy', 'Regen'];
+const secondaryAttributes = ['Stamina', 'Critical Strike', 'Leech'];
