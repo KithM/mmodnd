@@ -8,7 +8,10 @@
     <script src="main_arrays.js"></script>
   </head>
   <script>
-    
+    function generateItem(){
+      let itemLevel = parseInt(document.getElementById("itemLevel").value, 10);
+      getLevelLoot(itemLevel);
+    }
   </script>
 </head>
 <body>
@@ -16,7 +19,7 @@
 <h1>Advanced Item Generator</h1>
 <p>Enter the item level:</p>
 <input type="text" id="itemLevel">
-<button onclick="getLevelLoot()">Generate Item</button>
+<button onclick="generateItem()">Generate Item</button>
 <div id="result"></div>
 
 </body>
