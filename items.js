@@ -1,6 +1,4 @@
 function generateItem() {
-    //let itemLevel = parseInt(document.getElementById("itemLevel").value, 10);
-    //let requiredLevel = getRandomNumberBetween(); //Math.max(Math.min(itemLevel + 2, 100), itemLevel - 2);
     let inputLevel = parseInt(document.getElementById("itemLevel").value, 10);
     let itemLevel = getRandomNumberBetween( Math.max(inputLevel-2, 1), Math.min(inputLevel+2, 100) ); //
     let attributeTotal = Math.floor(itemLevel * 2.5);
@@ -16,6 +14,11 @@ function generateItem() {
         (!lootType.level || lootType.level <= itemLevel)
     );
     let chosenType = rollForItem(compatibleLootTypes);
+
+    if (!chosenType || !chosenItem) {
+        console.error("chosenType or chosenItem is undefined");
+        return; // Stop execution of the function
+    }
   
     let resultString = `${chosenType.name} ${chosenItem.name}<br>Level ${itemLevel}<br>`;
     
@@ -67,8 +70,8 @@ function generateItem() {
 }
 
 function rollForItem(itemArray) {
-    if (!itemArray) {
-        console.error("Undefined itemArray passed to rollForItem");
+    if (!itemArray || !itemArray.length) {
+        console.error("Empty or undefined itemArray passed to rollForItem");
         return null;
     }
 
