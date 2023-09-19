@@ -43,6 +43,8 @@ function generateItem() {
   
     // Roll for primary attributes
     let remainingAttributes = attributeTotal;
+    let maxAttributes = 4; // Limit the total number of attributes to 4
+    let numberOfAttributes = 1; // 1 for the primary attribute
 
     if(chosenItem.primaryStats){
         let primaryAttribute = chosenItem.primaryStats[Math.floor(Math.random() * chosenItem.primaryStats.length)];
@@ -53,20 +55,38 @@ function generateItem() {
     }
     
     /// Roll for secondary attributes
+    let attributeProbabilities = {
+        'Stamina': 0.5,
+        'Haste': 0.3,
+        'Critical Strike': 0.3,
+        'Energy': 0.1,
+        'Regen': 0.1,
+        'Armor': 0
+    };
+
     let availableSecondaryAttributes = secondaryAttributes;
     if (chosenItem.secondaryStats) {
         availableSecondaryAttributes = availableSecondaryAttributes.filter(attr => chosenItem.secondaryStats.includes(attr));
     }
 
     let rolledAttributes = {};
+    let chanceForAdditionalAttribute = 0.75;
   
-    while (remainingAttributes > 0) {
-        let attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
-        let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes);
-        remainingAttributes -= value;
-        rolledAttributes[attribute] = (rolledAttributes[attribute] || 0) + value;
+    while (remainingAttributes > 0 && numberOfAttributes < maxAttributes) {
+        if (Math.random() < chanceForAdditionalAttribute) {
+            let attribute = rollForAttribute(attributeProbabilities);
+            let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes);
+            
+            remainingAttributes -= value;
+            rolledAttributes[attribute] = (rolledAttributes[attribute] || 0) + value;
+
+            numberOfAttributes++;
+            chanceForAdditionalAttribute *= 0.5; // Reduce the chance for another additional attribute
+        } else {
+            break; // Stop if we didn't roll successfully for an additional attribute
+        }
     }
-  
+
     for (let [attribute, value] of Object.entries(rolledAttributes)) {
         resultString += `+${value} ${attribute}<br>`;
     }
