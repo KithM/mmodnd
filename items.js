@@ -1,6 +1,6 @@
 function generateItem() {
     let itemLevel = parseInt(document.getElementById("itemLevel").value, 10);
-    let requiredLevel = itemLevel >= 10 ? itemLevel - 5 : 1;
+    //let requiredLevel = 1;//itemLevel >= 10 ? itemLevel - 5 : 1;
     let attributeTotal = Math.floor(itemLevel * 2.5);
   
     let chosenItem = rollForItem(items);
@@ -8,6 +8,8 @@ function generateItem() {
     // Filter lootTypes based on the chosenItem's itemType
     let compatibleLootTypes = lootTypes.filter(lootType => !lootType.validTypes || lootType.validTypes.includes(chosenItem.itemType));
     let chosenType = rollForItem(compatibleLootTypes);
+    
+    let requiredLevel = chosenType.level;
   
     let resultString = `${chosenType.name} ${chosenItem.name}<br>Level ${requiredLevel}<br>`;
     
@@ -26,28 +28,32 @@ function generateItem() {
   
     // Roll for equipment slot if the item is an equipment
     if (chosenItem.slot) {
-      let slot = chosenItem.slot[Math.floor(Math.random() * chosenItem.slot.length)];
+      let slot = chosenItem.slot;//chosenItem.slot[Math.floor(Math.random() * chosenItem.slot.length)];
       resultString += `Slot: ${slot}<br>`;
     }
   
     // Roll for primary attributes
-    let primaryAttribute = chosenItem.primaryStats[Math.floor(Math.random() * chosenItem.primaryStats.length)];
-    let primaryValue = Math.floor(attributeTotal * 0.5); // You can change the 0.5 to adjust how much goes into primary stat
-    resultString += `+${primaryValue} ${primaryAttribute}<br>`;
-    
-    let remainingAttributes = attributeTotal - primaryValue;
+    let remainingAttributes = attributeTotal;
 
-    let secondaryAttributes = {};
+    if(chosenItem.primaryAttribute){
+        let primaryAttribute = chosenItem.primaryStats[Math.floor(Math.random() * chosenItem.primaryStats.length)];
+        let primaryValue = Math.floor(attributeTotal * 0.5); // You can change the 0.5 to adjust how much goes into primary stat
+        resultString += `+${primaryValue} ${primaryAttribute}<br>`;
+        
+        remainingAttributes -= primaryValue;
+    }
+    
+    // Roll for seocndary attributes
+    let rolledAttributes = {};
   
-    // Roll for secondary attributes
     while (remainingAttributes > 0) {
         let attribute = secondaryAttributes[Math.floor(Math.random() * secondaryAttributes.length)];
         let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes);
         remainingAttributes -= value;
-        secondaryAttributes[attribute] = (secondaryAttributes[attribute] || 0) + value;
+        rolledAttributes[attribute] = (rolledAttributes[attribute] || 0) + value;
     }
   
-    for (let [attribute, value] of Object.entries(secondaryAttributes)) {
+    for (let [attribute, value] of Object.entries(rolledAttributes)) {
         resultString += `+${value} ${attribute}<br>`;
     }
 
