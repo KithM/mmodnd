@@ -27,13 +27,19 @@ function generateItem() {
       resultString += `Slot: ${slot}<br>`;
     }
   
-    // Roll for attributes
-    let remainingAttributes = attributeTotal;
+    // Roll for primary attributes
+    let primaryAttribute = chosenItem.primaryStats[Math.floor(Math.random() * chosenItem.primaryStats.length)];
+    let primaryValue = Math.floor(attributeTotal * 0.5); // You can change the 0.5 to adjust how much goes into primary stat
+    resultString += `+${primaryValue} ${primaryAttribute}<br>`;
+    
+    let remainingAttributes = attributeTotal - primaryValue;
+
+    // Roll for secondary attributes
     while (remainingAttributes > 0) {
-      let attribute = attributes[Math.floor(Math.random() * attributes.length)];
-      let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes);
-      remainingAttributes -= value;
-      resultString += `+${value} ${attribute}<br>`;
+        let attribute = secondaryAttributes[Math.floor(Math.random() * secondaryAttributes.length)];
+        let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes);
+        remainingAttributes -= value;
+        resultString += `+${value} ${attribute}<br>`;
     }
 
     document.getElementById("result").innerHTML = resultString;
