@@ -1,63 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>D&D Helper</title>
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
-    import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
+  <title>Advanced Item Generator</title>
+  <script>
+    function generateItem() {
+      let itemTypes = ['Weapon', 'Armor', 'Item'];
+      let weaponTypes = ['Dagger', 'Shortsword', 'Longsword', 'Greatsword', 'Shortbow', 'Longbow', 'Greatbow'];
+      let armorTypes = ['Head', 'Neck', 'Chest', 'Legs', 'Hands', 'Feet', 'Ring', 'Trinket'];
+      let itemSubTypes = ['Consumable', 'Crafting', 'Junk'];
 
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyAJU-G5AsPKWO6_VsdB0LPmTww1YoII9Uo",
-        authDomain: "mmo-ttrpg.firebaseapp.com",
-        projectId: "mmo-ttrpg",
-        storageBucket: "mmo-ttrpg.appspot.com",
-        messagingSenderId: "232247749266",
-        appId: "1:232247749266:web:87492bf9831f6c90d4d44b"
-    };
+      let randomType = itemTypes[Math.floor(Math.random() * itemTypes.length)];
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
+      let randomSubType;
+      let minDamage;
+      let maxDamage;
+      let requiredLevel;
 
-    // DM Side: Sending Enemies
-    function sendEnemies() {
-      const type = document.getElementById("enemy-type").value;
-      const count = document.getElementById("enemy-count").value;
-      const enemies = { type, count };
-      set(ref(db, 'game/enemies'), enemies);
-    }
-
-    // Attach sendEnemies to the window object
-    window.sendEnemies = sendEnemies;
-
-    // Player Side: Receiving Enemies
-    const enemyRef = ref(db, 'game/enemies');
-    onValue(enemyRef, (snapshot) => {
-      const enemies = snapshot.val();
-      const alertBox = document.getElementById("alert-box");
-      if (enemies) {
-        alertBox.innerHTML = `New enemies incoming: ${enemies.count} ${enemies.type}`;
+      let itemLevel = parseInt(document.getElementById("itemLevel").value, 10);
+      requiredLevel = itemLevel >= 10 ? itemLevel - 5 : 1; // Optional requiredLevel calculation
+      
+      if (randomType === 'Weapon') {
+        randomSubType = weaponTypes[Math.floor(Math.random() * weaponTypes.length)];
+        minDamage = itemLevel * 2;  // Customize this formula as needed
+        maxDamage = itemLevel * 4;  // Customize this formula as needed
+      } else if (randomType === 'Armor') {
+        randomSubType = armorTypes[Math.floor(Math.random() * armorTypes.length)];
+      } else {
+        randomSubType = itemSubTypes[Math.floor(Math.random() * itemSubTypes.length)];
       }
-    });
+      
+      let resultString = `Generated Item: <br>Type: ${randomType}<br>Subtype: ${randomSubType}<br>Required Level: ${requiredLevel}`;
+      if (randomType === 'Weapon') {
+        resultString += `<br>Damage Range: ${minDamage}-${maxDamage}`;
+      }
+      
+      document.getElementById("result").innerHTML = resultString;
+    }
   </script>
 </head>
 <body>
-  <h1>D&D Helper</h1>
 
-  <!-- DM Side -->
-  <h2>For Dungeon Master</h2>
-  <label for="enemy-type">Enemy Type:</label>
-  <input type="text" id="enemy-type">
-  <label for="enemy-count">Count:</label>
-  <input type="number" id="enemy-count">
-  <button onclick="sendEnemies()">Send Enemies</button>
+<h1>Advanced Item Generator</h1>
+<p>Enter the item level:</p>
+<input type="text" id="itemLevel">
+<button onclick="generateItem()">Generate Item</button>
+<div id="result"></div>
 
-  <!-- Player Side -->
-  <h2>For Players</h2>
-  <div id="alert-box"></div>
 </body>
 </html>
