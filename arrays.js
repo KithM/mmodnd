@@ -9,6 +9,19 @@ const items = [
     { name: 'Wand', itemType: 'Weapon', minDamage: 1, maxDamage: 3, slots: ['Main Hand'], primaryStats: ['Intellect'], p: 0.25 }
 ];
 
+const leatherenchants = [
+
+];
+const metalenchants = [
+
+];
+const fiberenchants = [
+
+];
+const platedenchants = [
+
+];
+
 const lootTypes = [
     { name: `Cloth`,               enchants: [{p:1.00}],       p: 0.30, m: 0.250,  level: 1 },
     { name: `Hide`,                enchants: [{p:1.00}],       p: 0.32, m: 0.500,  level: 1 },
@@ -37,19 +50,6 @@ const lootTypes = [
     { name: `Celestial`,           enchants: platedenchants,   p: 0.05, m: 55.00,  level: 65 },
     { name: `Ascension`,           enchants: platedenchants,   p: 0.03, m: 65.75,  level: 75 },
     { name: `Diamond Plate`,       enchants: platedenchants,   p: 0.01, m: 75.00,  level: 90 }
-];
-
-const leatherenchants = [
-
-];
-const metalenchants = [
-
-];
-const fiberenchants = [
-
-];
-const platedenchants = [
-
 ];
 
 // Attributes
