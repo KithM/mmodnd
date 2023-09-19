@@ -2,13 +2,14 @@
 const items = [
     { name: 'Shortsword', itemType: 'Melee', minDamage: 2, maxDamage: 4, slots: ['Main Hand'], primaryStats: ['Strength'], p: 0.5 },
     { name: 'Sword', itemType: 'Melee', minDamage: 3, maxDamage: 6, slots: ['Main Hand'], primaryStats: ['Strength'], p: 0.5 },
-    { name: 'Longsword', itemType: 'Melee', minDamage: 2, maxDamage: 6, slots: ['Main Hand'], primaryStats: ['Strength'], p: 0.5 },
-    { name: 'Greatsword', itemType: 'Melee', minDamage: 2, maxDamage: 8, slots: ['Main Hand'], primaryStats: ['Strength'], p: 0.25 },
+    { name: 'Longsword', itemType: 'Melee', minDamage: 2, maxDamage: 6, slots: ['Two-Handed'], primaryStats: ['Strength'], p: 0.25 },
+    { name: 'Greatsword', itemType: 'Melee', minDamage: 2, maxDamage: 8, slots: ['Two-Handed'], primaryStats: ['Strength'], p: 0.10 },
     
-    { name: 'Staff', itemType: 'Magic', minDamage: 1, maxDamage: 4, slots: ['Main Hand'], primaryStats: ['Intellect'], p: 0.5 },
+    { name: 'Staff', itemType: 'Magic', minDamage: 1, maxDamage: 4, slots: ['Two-Handed'], primaryStats: ['Intellect'], p: 0.25 },
     { name: 'Wand', itemType: 'Magic', minDamage: 1, maxDamage: 3, slots: ['Main Hand'], primaryStats: ['Intellect'], p: 0.5 },
-
-    { name: 'Small Shield', itemType: 'Shield', armorRating: 4, slots: ['Main Hand'], p: 0.25 }
+    
+    { name: 'Shield', itemType: 'Shield', armorRating: 4, slots: ['Off Hand'], p: 0.25 },
+    { name: 'Bulwark', itemType: 'Shield', armorRating: 8, slots: ['Off Hand'], p: 0.10 }
 ];
 
 const leatherenchants = [
