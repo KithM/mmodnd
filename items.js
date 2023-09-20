@@ -61,8 +61,16 @@ function generateItem(tries = 0) {
         availableSecondaryAttributes = availableSecondaryAttributes.filter(attr => chosenItem.secondaryStats.includes(attr));
     }
 
-    let rolledAttributes = {};
+    // Determine if this item should always have Stamina
+    let rolledAttributes = { };
     let chanceForAdditionalAttribute = 0.75;
+    
+    const itemsWithStamina = ['Equipment','Shield'];
+    if (itemsWithStamina.includes(chosenItem.name)) {
+        let staminaValue = Math.floor(itemLevel * 1.5);  // You can adjust this formula as needed
+        remainingAttributes -= staminaValue;
+        rolledAttributes['Stamina'] = staminaValue;
+    }
   
     while (remainingAttributes > 0 && numberOfAttributes < maxAttributes) {
         if (Math.random() < chanceForAdditionalAttribute) {

@@ -26,23 +26,23 @@ const items = [
 
     //// Equipment
     // Chest
-    { name: 'Robe',             itemType: 'Chest', slot: 'Chest', primaryStats: ['Intellect'], p: 0.30, onlyMaterials: ['Cloth','Silk'] },
-    { name: 'Tunic',            itemType: 'Chest', slot: 'Chest', primaryStats: ['Agility'], p: 0.30, onlyMaterials: ['Hide','Basic Leather','Leather'] },
-    { name: 'Chestpiece',       itemType: 'Chest', slot: 'Chest', primaryStats: ['Strength'], p: 0.30, onlyMaterials: ['Iron','Steel','Steel Plate'] },
+    { name: 'Robe',             itemType: 'Equipment', slot: 'Chest', primaryStats: ['Intellect'], p: 0.30, onlyMaterials: ['Cloth','Silk'] },
+    { name: 'Tunic',            itemType: 'Equipment', slot: 'Chest', primaryStats: ['Agility'], p: 0.30, onlyMaterials: ['Hide','Basic Leather','Leather'] },
+    { name: 'Chestpiece',       itemType: 'Equipment', slot: 'Chest', primaryStats: ['Strength'], p: 0.30, onlyMaterials: ['Iron','Steel','Steel Plate'] },
 
     // Legs
-    { name: 'Pants',            itemType: 'Legs', slot: 'Legs', primaryStats: ['Intellect'], p: 0.30, onlyMaterials: ['Hide','Basic Leather','Leather'] },
-    { name: 'Leggings',         itemType: 'Legs', slot: 'Legs', primaryStats: ['Agility'], p: 0.30, onlyMaterials: ['Cloth','Hide','Silk'] },
-    { name: 'Greaves',          itemType: 'Legs', slot: 'Legs', primaryStats: ['Strength'], p: 0.30, onlyMaterials: ['Iron','Steel','Steel Plate'] },
+    { name: 'Pants',            itemType: 'Equipment', slot: 'Legs', primaryStats: ['Intellect'], p: 0.30, onlyMaterials: ['Hide','Basic Leather','Leather'] },
+    { name: 'Leggings',         itemType: 'Equipment', slot: 'Legs', primaryStats: ['Agility'], p: 0.30, onlyMaterials: ['Cloth','Hide','Silk'] },
+    { name: 'Greaves',          itemType: 'Equipment', slot: 'Legs', primaryStats: ['Strength'], p: 0.30, onlyMaterials: ['Iron','Steel','Steel Plate'] },
     
     // Belt
-    { name: 'Worn Belt',        itemType: 'Belt', slot: 'Belt', p: 0.15, onlyMaterials: ['Hide','Basic Leather','Leather','Cloth'] },
-    { name: 'Belt',             itemType: 'Belt', slot: 'Belt', p: 0.15, onlyMaterials: ['Hide','Basic Leather','Leather','Cloth'] },
-    { name: 'Harness',          itemType: 'Belt', slot: 'Belt', p: 0.1, onlyMaterials: ['Hide','Basic Leather','Leather','Cloth'] },
+    { name: 'Worn Belt',        itemType: 'Equipment', slot: 'Belt', p: 0.15, onlyMaterials: ['Hide','Basic Leather','Leather','Cloth'] },
+    { name: 'Belt',             itemType: 'Equipment', slot: 'Belt', p: 0.15, onlyMaterials: ['Hide','Basic Leather','Leather','Cloth'] },
+    { name: 'Harness',          itemType: 'Equipment', slot: 'Belt', p: 0.1, onlyMaterials: ['Hide','Basic Leather','Leather','Cloth'] },
 
     // Feet
-    { name: 'Shoes',            itemType: 'Feet', slot: 'Feet', p: 0.15, onlyMaterials: ['Hide','Basic Leather','Leather','Cloth'] },
-    { name: 'Boots',            itemType: 'Feet', slot: 'Feet', p: 0.15, onlyMaterials: ['Leather','Iron','Steel','Steel Plate'] },
+    { name: 'Shoes',            itemType: 'Equipment', slot: 'Feet', p: 0.15, onlyMaterials: ['Hide','Basic Leather','Leather','Cloth'] },
+    { name: 'Boots',            itemType: 'Equipment', slot: 'Feet', p: 0.15, onlyMaterials: ['Leather','Iron','Steel','Steel Plate'] },
 
     // Miscellaneous
     { name: 'Amulet',           itemType: 'Neck', slot: 'Neck', primaryStats: ['Intellect', 'Strength', 'Agility'], p: 0.08, onlyMaterials: ['Copper','Brass','Bronze','Silver','Amethyst','Aquamarine','Quartz','Gold','Jade','Platinum','Obsidian','Diamond'] },
