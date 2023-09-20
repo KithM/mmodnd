@@ -26,11 +26,20 @@ function generateItem(tries = 0) {
         return generateItem(tries + 1);
     }
 
+    // Filter item qualities based on chosenItem's itemType and get a random quality
+    let applicableQualities = itemQualities.filter(q => q.applicableTo.includes(chosenItem.itemType));
+    let chosenQuality = rollForItem(applicableQualities); // Assuming rollForItem can handle weighted choices
+
     let minDamage, maxDamage, slot;
 
     if (chosenItem.minDamage && chosenItem.maxDamage) {
       minDamage = Math.floor(itemLevel * chosenItem.minDamage);
       maxDamage = Math.floor(itemLevel * chosenItem.maxDamage);
+
+      if(chosenQuality.name === 'Sharpened'){
+        minDamage = Math.floor(minDamage * chosenQuality.multiplier);
+        maxDamage = Math.floor(maxDamage * chosenQuality.multiplier);
+      }
     }
   
     if (chosenItem.slot) {
@@ -45,7 +54,12 @@ function generateItem(tries = 0) {
         secondaryAttributes: {},
         minDamage: minDamage || null,
         maxDamage: maxDamage || null,
+        itemQuality: chosenQuality.name
     };
+
+    // Apply quality multiplier to all attributes
+    attributeTotal = Math.floor(attributeTotal * chosenQuality.multiplier);
+    remainingAttributes = attributeTotal;
 
     if(chosenItem.primaryStats){
         let primaryAttribute = chosenItem.primaryStats[Math.floor(Math.random() * chosenItem.primaryStats.length)];
