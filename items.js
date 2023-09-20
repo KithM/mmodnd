@@ -140,8 +140,8 @@ function rollForAttribute(attributeProbabilities) {
 }
 
 function generateItemName(baseName, itemType, stats) {
-    let prefix = '';
-    let suffix = '';
+    let matchingPrefixes = [];
+    let matchingSuffixes = [];
     let totalStats = 0;
 
     // Calculate the total stats for this item
@@ -164,13 +164,16 @@ function generateItemName(baseName, itemType, stats) {
 
         if (statSum / totalStats >= threshold) {
             if (isSuffix) {
-                suffix = name;
+                matchingSuffixes.push(name);
             } else {
-                prefix = name;
+                matchingPrefixes.push(name);
             }
-            break;  // Stop at the first match, or you can continue to find the best match
         }
     }
+
+    // Pick random prefix and suffix from matching ones
+    let prefix = matchingPrefixes.length > 0 ? matchingPrefixes[Math.floor(Math.random() * matchingPrefixes.length)] : '';
+    let suffix = matchingSuffixes.length > 0 ? matchingSuffixes[Math.floor(Math.random() * matchingSuffixes.length)] : '';
 
     return `${prefix ? prefix + ' ' : ''}${baseName} ${suffix}`.trim();
 }
