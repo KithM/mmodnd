@@ -9,10 +9,10 @@ const items = [
     { name: 'Greatsword',       itemType: 'Melee', minDamage: 2, maxDamage: 8, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.05, invalidMaterials: ['Cloth','Hide','Basic Leather','Leather','Steel Plate'] },
 
     // Magic
-    { name: 'Staff',            itemType: 'Magic', minDamage: 1, maxDamage: 2, slot: 'Two-Handed', primaryStats: ['Intellect'], p: 0.30, invalidMaterials: ['Cloth','Hide','Basic Leather','Leather','Steel Plate'] },
-    { name: 'Grandstaff',       itemType: 'Magic', minDamage: 1, maxDamage: 3, slot: 'Two-Handed', primaryStats: ['Intellect'], p: 0.08, invalidMaterials: ['Cloth','Hide','Basic Leather','Leather','Steel Plate',] },
-    { name: 'Wand',             itemType: 'Magic', minDamage: 1, maxDamage: 1, slot: 'Main Hand', primaryStats: ['Intellect'], p: 0.27, invalidMaterials: ['Cloth','Hide','Basic Leather','Leather','Steel Plate'] },
-    { name: 'Scepter',          itemType: 'Magic', slot: 'Off Hand', primaryStats: ['Intellect'], p: 0.10, invalidMaterials: ['Cloth','Hide','Basic Leather','Leather','Steel Plate'] },
+    { name: 'Staff',            itemType: 'Magic', minDamage: 1, maxDamage: 2, slot: 'Two-Handed', primaryStats: ['Intellect'], p: 0.30, invalidMaterials: ['Cloth','Hide','Basic Leather','Leather','Iron','Steel','Steel Plate'] },
+    { name: 'Grandstaff',       itemType: 'Magic', minDamage: 1, maxDamage: 3, slot: 'Two-Handed', primaryStats: ['Intellect'], p: 0.08, invalidMaterials: ['Cloth','Hide','Basic Leather','Leather','Iron','Steel','Steel Plate'] },
+    { name: 'Wand',             itemType: 'Magic', minDamage: 1, maxDamage: 1, slot: 'Main Hand', primaryStats: ['Intellect'], p: 0.27, invalidMaterials: ['Cloth','Hide','Basic Leather','Leather','Iron','Steel','Steel Plate'] },
+    { name: 'Scepter',          itemType: 'Magic', slot: 'Off Hand', primaryStats: ['Intellect'], p: 0.10, invalidMaterials: ['Cloth','Hide','Basic Leather','Leather','Iron','Steel','Steel Plate'] },
 
     // Ranged
     { name: 'Shortbow',         itemType: 'Ranged', minDamage: 2, maxDamage: 4, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.28, invalidMaterials: ['Cloth','Hide','Basic Leather','Leather','Steel Plate'] },
