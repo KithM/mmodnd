@@ -28,7 +28,11 @@ function generateItem(tries = 0) {
 
     // Filter item qualities based on chosenItem's itemType and get a random quality
     let applicableQualities = itemQualities.filter(q => q.applicableTo.includes(chosenItem.itemType));
-    let chosenQuality = rollForItem(applicableQualities); // Assuming rollForItem can handle weighted choices
+    let chosenQuality = itemQualities[0];
+
+    if(applicableQualities != null && applicableQualities.length > 0){
+        chosenQuality = rollForItem(applicableQualities);
+    }
 
     let minDamage, maxDamage, slot;
 
@@ -54,7 +58,7 @@ function generateItem(tries = 0) {
         secondaryAttributes: {},
         minDamage: minDamage || null,
         maxDamage: maxDamage || null,
-        itemQuality: chosenQuality.name
+        itemQuality: chosenQuality
     };
 
     // Apply quality multiplier to all attributes

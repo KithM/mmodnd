@@ -161,8 +161,8 @@ const itemNames = {
 };
 
 const itemQualities = [
-    { name: 'Old / Worn', multiplier: 0.5, chance: 0.1, applicableTo: ['Weapon', 'Equipment'] },
     { name: 'Normal', multiplier: 1, chance: 0.6, applicableTo: ['Weapon', 'Equipment'] },
+    { name: 'Old / Worn', multiplier: 0.5, chance: 0.1, applicableTo: ['Weapon', 'Equipment'] },
     { name: 'Sharpened', multiplier: 1.5, chance: 0.1, applicableTo: ['Weapon'] },
     { name: 'Masterwork', multiplier: 1.5, chance: 0.15, applicableTo: ['Equipment'] },
     { name: 'Legendary', multiplier: 2, chance: 0.05, applicableTo: ['Equipment'] },
