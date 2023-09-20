@@ -72,10 +72,8 @@ const platedenchants = [
 const lootTypes = [
     { name: `Cloth`,               enchants: [{p:1.00}],       p: 0.35, level: 1 },//m: 0.250,  level: 1 },
     { name: `Hide`,                enchants: [{p:1.00}],       p: 0.35, level: 1 },
-    { name: `Basic Leather`,       enchants: [{p:1.00}],       p: 0.35, level: 1 },
     { name: `Wood`,                enchants: [{p:1.00}],       p: 0.35, level: 1 },
-
-    { name: `Mail`,                enchants: metalenchants,    p: 0.35, level: 3 },
+    { name: `Mail`,                enchants: metalenchants,    p: 0.35, level: 1 },
     
     { name: `Silk`,                enchants: clothenchants,    p: 0.35, level: 5 },
     { name: `Leather`,             enchants: leatherenchants,  p: 0.35, level: 5 },
@@ -117,12 +115,17 @@ const itemNames = {
     'Swift': [false, 'Agility', 0.9],
     'Tenacious': [false, ['Strength', 'Stamina'], 0.9],
     'Vigorous': [false, ['Agility', 'Stamina'], 0.9],
-    'Arcane': [false, ['Intellect', 'Regen'], 0.9],
-    
+    'Arcane': [false, ['Intellect', 'Regen'], 0.9],    
     'Unyielding': [false, ['Strength', 'Critical Strike'], 0.9],
     'Eloquent': [false, ['Intellect', 'Critical Strike'], 0.9],
     'Nimble': [false, ['Agility', 'Critical Strike'], 0.9],
     'Restorative': [false, ['Stamina', 'Regen'], 0.9],
+
+    'Chromatic': [false, ['Strength','Agility','Intellect'], 0.9],
+    'Unstable': [false, ['Regen','Stamina','Critical Strike'], 0.9],
+
+    'Gladiator\'s': [false, ['Strength'], 0.9],
+    'Hero\'s': [false, ['Strength'], 0.9],
     
     // Suffixes
     'of the Hero': [true, ['Strength'], 0.8],
