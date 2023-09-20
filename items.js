@@ -46,10 +46,16 @@ function generateItem(tries = 0) {
     let remainingAttributes = attributeTotal;
     let maxAttributes = 4; // Limit the total number of attributes to 4
     let numberOfAttributes = 1; // 1 for the primary attribute
+    let statMultiplier = 1; // Initialize stat multiplier
+
+    // Check if the item is two-handed and apply a multiplier
+    if (chosenItem.slot == 'Two-Handed') {
+        statMultiplier = 2;
+    }
 
     if(chosenItem.primaryStats){
         let primaryAttribute = chosenItem.primaryStats[Math.floor(Math.random() * chosenItem.primaryStats.length)];
-        let primaryValue = Math.floor(attributeTotal * 0.5); // You can change the 0.5 to adjust how much goes into primary stat
+        let primaryValue = Math.floor(attributeTotal * 0.5) * statMultiplier; // You can change the 0.5 to adjust how much goes into primary stat
         resultString += `+${primaryValue} ${primaryAttribute}<br>`;
         
         remainingAttributes -= primaryValue;
@@ -64,10 +70,10 @@ function generateItem(tries = 0) {
     // Determine if this item should always have Stamina
     let rolledAttributes = { };
     let chanceForAdditionalAttribute = 0.75;
-    
+
     const itemsWithStamina = ['Equipment','Shield'];
     if (itemsWithStamina.includes(chosenItem.name)) {
-        let staminaValue = Math.floor(itemLevel * 1.5);  // You can adjust this formula as needed
+        let staminaValue = Math.floor(itemLevel * 1.5) * statMultiplier;  // You can adjust this formula as needed
         remainingAttributes -= staminaValue;
         rolledAttributes['Stamina'] = staminaValue;
     }
@@ -75,7 +81,7 @@ function generateItem(tries = 0) {
     while (remainingAttributes > 0 && numberOfAttributes < maxAttributes) {
         if (Math.random() < chanceForAdditionalAttribute) {
             let attribute = rollForAttribute(attributeProbabilities);
-            let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes);
+            let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes) * statMultiplier;
             
             remainingAttributes -= value;
             rolledAttributes[attribute] = (rolledAttributes[attribute] || 0) + value;
