@@ -53,6 +53,16 @@ function generateItem(tries = 0) {
         generatedItem.primaryAttribute = primaryAttribute;
         generatedItem.primaryValue = primaryValue;
         remainingAttributes -= primaryValue;
+
+        // If itemType is 'Equipment', allocate some attributes to Stamina first
+        if(chosenItem.itemType === 'Equipment'){
+            let stam = 'Stamina';
+            
+            // For example, allocate 30% of the remaining attributes to Stamina
+            let stamValue = Math.floor(remainingAttributes * 0.3);
+            generatedItem.secondaryAttributes[stam] = stamValue;
+            remainingAttributes -= stamValue;
+        }
     }
 
     // Initialize an empty object to hold rolled attributes
@@ -84,8 +94,11 @@ function generateItem(tries = 0) {
     }
 
     // Populate secondary attributes into generatedItem
+    // for (let [attribute, value] of Object.entries(rolledAttributes)) {
+    //     generatedItem.secondaryAttributes[attribute] = value;
+    // }
     for (let [attribute, value] of Object.entries(rolledAttributes)) {
-        generatedItem.secondaryAttributes[attribute] = value;
+        generatedItem.secondaryAttributes[attribute] = (generatedItem.secondaryAttributes[attribute] || 0) + value;
     }
 
     // Create base name from chosen item type and loot type
@@ -140,8 +153,7 @@ function rollForAttribute(attributeProbabilities) {
 }
 
 function generateItemName(baseName, itemType, stats) {
-    let matchingPrefixes = [];
-    let matchingSuffixes = [];
+    let matchingNames = [];
     let totalStats = 0;
 
     // Calculate the total stats for this item
@@ -149,7 +161,7 @@ function generateItemName(baseName, itemType, stats) {
         totalStats += value;
     }
 
-    // Find the best name match based on the stats
+    // Find name components based on stats
     for (let [name, [isSuffix, requiredStats, threshold]] of Object.entries(itemNames)) {
         let statSum = 0;
 
@@ -163,19 +175,19 @@ function generateItemName(baseName, itemType, stats) {
         }
 
         if (statSum / totalStats >= threshold) {
-            if (isSuffix) {
-                matchingSuffixes.push(name);
-            } else {
-                matchingPrefixes.push(name);
-            }
+            matchingNames.push({ name, isSuffix });
         }
     }
 
-    // Pick random prefix and suffix from matching ones
-    let prefix = matchingPrefixes.length > 0 ? matchingPrefixes[Math.floor(Math.random() * matchingPrefixes.length)] : '';
-    let suffix = matchingSuffixes.length > 0 ? matchingSuffixes[Math.floor(Math.random() * matchingSuffixes.length)] : '';
+    // Optionally add a "None" choice to allow for items with no prefix/suffix
+    matchingNames.push({ name: '', isSuffix: false });
 
-    return `${prefix ? prefix + ' ' : ''}${baseName} ${suffix}`.trim();
+    // Pick a random name component from the matching ones
+    let selected = matchingNames[Math.floor(Math.random() * matchingNames.length)];
+
+    return selected.isSuffix ? 
+           `${baseName} ${selected.name}`.trim() : 
+           `${selected.name} ${baseName}`.trim();
 }
 
 // // Example usage
