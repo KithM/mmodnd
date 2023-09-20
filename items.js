@@ -1,18 +1,21 @@
 function generateItem() {
     let inputLevel = parseInt(document.getElementById("itemLevel").value, 10);
-    let itemLevel = getRandomNumberBetween( Math.max(inputLevel-2, 1), Math.min(inputLevel+2, 100) ); //
+    let itemLevel = getRandomNumberBetween(Math.max(inputLevel - 2, 1), Math.min(inputLevel + 2, 100));
     let attributeTotal = Math.floor(itemLevel * 2.5);
 
     // Filter items based on level
-    let availableItems = items;//items.filter(item => item.level <= requiredLevel);
+    let availableItems = items; // items.filter(item => );
 
     let chosenItem = rollForItem(availableItems);
-    
+
     // Filter lootTypes based on both the chosenItem's itemType and level
-    let compatibleLootTypes = lootTypes.filter(lootType => 
+    let compatibleLootTypes = lootTypes.filter(lootType =>
         (!lootType.validTypes || lootType.validTypes.includes(chosenItem.itemType)) &&
-        (!lootType.level || lootType.level <= itemLevel)
+        (!lootType.level || lootType.level <= itemLevel) &&
+        (!chosenItem.invalidMaterials || !chosenItem.invalidMaterials.includes(lootType.name)) &&
+        (!chosenItem.onlyMaterials || chosenItem.onlyMaterials.includes(lootType.name))
     );
+
     let chosenType = rollForItem(compatibleLootTypes);
 
     if (!chosenType || !chosenItem) {
@@ -20,20 +23,20 @@ function generateItem() {
         return; // Stop execution of the function
     }
   
-    let resultString = `${chosenType.name} ${chosenItem.name}<br>Level ${itemLevel}<br>`;
+    let resultString = `<br>${chosenType.name} ${chosenItem.name}<br>Level ${itemLevel}<br>`;
     
     // Calculate and display damage for weapons
     if (chosenItem.minDamage && chosenItem.maxDamage) {
-      let minDamage = Math.floor(itemLevel * chosenItem.minDamage * chosenType.m);
-      let maxDamage = Math.floor(itemLevel * chosenItem.maxDamage * chosenType.m);
+      let minDamage = Math.floor(itemLevel * chosenItem.minDamage);//Math.floor(itemLevel * chosenItem.minDamage * chosenType.m);
+      let maxDamage = Math.floor(itemLevel * chosenItem.maxDamage);//Math.floor(itemLevel * chosenItem.maxDamage * chosenType.m);
       resultString += `${minDamage}-${maxDamage} Damage<br>`;
     }
   
-    // Calculate and display armor for wearables
-    else if (chosenItem.armorRating) {
-      let armorRating = Math.floor(itemLevel * chosenItem.armorRating * chosenType.m);
-      resultString += `Armor Rating: ${armorRating}<br>`;
-    }
+    // Calculate and display armor for equipment
+    // else if (chosenItem.armorRating) {
+    //   let armorRating = Math.floor(itemLevel * chosenItem.armorRating);
+    //   resultString += `Armor Rating: ${armorRating}<br>`;
+    // }
   
     // Roll for equipment slot if the item is an equipment
     if (chosenItem.slot) {
@@ -55,12 +58,6 @@ function generateItem() {
     }
     
     /// Roll for secondary attributes
-    let attributeProbabilities = {
-        'Stamina': 0.5,
-        'Critical Strike': 0.3,
-        'Leech': 0.2
-    };
-
     let availableSecondaryAttributes = secondaryAttributes;
     if (chosenItem.secondaryStats) {
         availableSecondaryAttributes = availableSecondaryAttributes.filter(attr => chosenItem.secondaryStats.includes(attr));
