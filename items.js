@@ -1,4 +1,9 @@
-function generateItem() {
+function generateItem(tries = 0) {
+    if (tries >= 10) {
+        console.error("Exceeded maximum retry attempts, chosenType or chosenItem is undefined");
+        return;
+    }
+    
     let inputLevel = parseInt(document.getElementById("itemLevel").value, 10);
     let itemLevel = getRandomNumberBetween(Math.max(inputLevel - 2, 1), Math.min(inputLevel + 2, 100));
     let attributeTotal = Math.floor(itemLevel * 2.5);
@@ -17,10 +22,9 @@ function generateItem() {
     );
 
     let chosenType = rollForItem(compatibleLootTypes);
-
     if (!chosenType || !chosenItem) {
-        console.error("chosenType or chosenItem is undefined");
-        return; // Stop execution of the function
+        generateItem(tries + 1);
+        return;
     }
   
     let resultString = `<br>${chosenType.name} ${chosenItem.name}<br>Level ${itemLevel}<br>`;
@@ -31,12 +35,6 @@ function generateItem() {
       let maxDamage = Math.floor(itemLevel * chosenItem.maxDamage);//Math.floor(itemLevel * chosenItem.maxDamage * chosenType.m);
       resultString += `${minDamage}-${maxDamage} Damage<br>`;
     }
-  
-    // Calculate and display armor for equipment
-    // else if (chosenItem.armorRating) {
-    //   let armorRating = Math.floor(itemLevel * chosenItem.armorRating);
-    //   resultString += `Armor Rating: ${armorRating}<br>`;
-    // }
   
     // Roll for equipment slot if the item is an equipment
     if (chosenItem.slot) {
