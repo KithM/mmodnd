@@ -59,7 +59,7 @@ function generateItem(tries = 0) {
             let stam = 'Stamina';
             
             // For example, allocate 30% of the remaining attributes to Stamina
-            let stamValue = Math.floor(remainingAttributes * 0.3);
+            let stamValue = Math.max(1, Math.floor(remainingAttributes * 0.3));
             generatedItem.secondaryAttributes[stam] = stamValue;
             remainingAttributes -= stamValue;
         }
@@ -82,6 +82,9 @@ function generateItem(tries = 0) {
         if (Math.random() < chanceForAdditionalAttribute) {
             let attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
             let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes) * statMultiplier;
+            
+            // Make sure value is at least 1
+            value = Math.max(1, value);
             
             remainingAttributes -= value;
             rolledAttributes[attribute] = (rolledAttributes[attribute] || 0) + value;
