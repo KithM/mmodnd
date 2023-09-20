@@ -14,7 +14,7 @@
         if (item) {
             // Add item quality
             let qualityColor;
-            switch(item.itemQuality) {
+            switch(item.itemQuality.name) {
                 case 'Old / Worn':
                     qualityColor = 'gray';
                     break;
@@ -38,7 +38,7 @@
             resultString += `<div style="border: 2px solid ${qualityColor}; padding: 10px; margin: 10px;">`;
 
             // Add item quality name
-            resultString += `<span style="color: ${qualityColor}; font-weight: bold;">${item.itemQuality}</span><br>`;
+            resultString += `<span style="color: ${qualityColor}; font-weight: bold;">${item.itemQuality.name}</span><br>`;
 
             // Add item name
             resultString += `<span style="font-size: 1.2em; font-weight: bold;">${item.name || 'Unnamed Item'}</span><br>`;
