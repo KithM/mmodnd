@@ -1,86 +1,69 @@
 function generateItem(tries = 0) {
     if (tries >= 10) {
         console.error("Exceeded maximum retry attempts, chosenType or chosenItem is undefined");
-        return;
+        return null;
     }
     
     let inputLevel = parseInt(document.getElementById("itemLevel").value, 10);
     let itemLevel = getRandomNumberBetween(Math.max(inputLevel - 2, 1), Math.min(inputLevel + 2, 100));
     let attributeTotal = Math.floor(itemLevel * 2.5);
-
-    // Filter items based on level
-    let availableItems = items; // items.filter(item => );
-
-    let chosenItem = rollForItem(availableItems);
-
-    // Filter lootTypes based on both the chosenItem's itemType and level
-    let compatibleLootTypes = lootTypes.filter(lootType =>
-        (!lootType.validTypes || lootType.validTypes.includes(chosenItem.itemType)) &&
-        (!lootType.level || lootType.level <= itemLevel) &&
-        (!chosenItem.invalidMaterials || !chosenItem.invalidMaterials.includes(lootType.name)) &&
-        (!chosenItem.onlyMaterials || chosenItem.onlyMaterials.includes(lootType.name))
-    );
-
-    let chosenType = rollForItem(compatibleLootTypes);
-    if (!chosenType || !chosenItem) {
-        generateItem(tries + 1);
-        return;
-    }
-  
-    let resultString = `<br>${chosenType.name} ${chosenItem.name}<br>Level ${itemLevel}<br>`;
-    
-    // Calculate and display damage for weapons
-    if (chosenItem.minDamage && chosenItem.maxDamage) {
-      let minDamage = Math.floor(itemLevel * chosenItem.minDamage);//Math.floor(itemLevel * chosenItem.minDamage * chosenType.m);
-      let maxDamage = Math.floor(itemLevel * chosenItem.maxDamage);//Math.floor(itemLevel * chosenItem.maxDamage * chosenType.m);
-      resultString += `${minDamage}-${maxDamage} Damage<br>`;
-    }
-  
-    // Roll for equipment slot if the item is an equipment
-    if (chosenItem.slot) {
-      let slot = chosenItem.slot;//chosenItem.slot[Math.floor(Math.random() * chosenItem.slot.length)];
-      resultString += `Slot: ${slot}<br>`;
-    }
-  
-    // Roll for primary attributes
     let remainingAttributes = attributeTotal;
-    let maxAttributes = 4; // Limit the total number of attributes to 4
-    let numberOfAttributes = 1; // 1 for the primary attribute
     let statMultiplier = 1; // Initialize stat multiplier
 
-    // Check if the item is two-handed and apply a multiplier
-    if (chosenItem.slot == 'Two-Handed') {
-        statMultiplier = 2;
+    let availableItems = items;
+    let chosenItem = rollForItem(availableItems);
+    let compatibleLootTypes = lootTypes.filter(/*... your filter logic here ...*/);
+    let chosenType = rollForItem(compatibleLootTypes);
+
+    if (!chosenType || !chosenItem) {
+        return generateItem(tries + 1);
     }
+
+    let minDamage, maxDamage, slot;
+
+    if (chosenItem.minDamage && chosenItem.maxDamage) {
+      minDamage = Math.floor(itemLevel * chosenItem.minDamage);
+      maxDamage = Math.floor(itemLevel * chosenItem.maxDamage);
+    }
+  
+    if (chosenItem.slot) {
+      slot = chosenItem.slot;
+    }
+
+    let generatedItem = {
+        level: itemLevel,
+        slot: slot || null,
+        primaryAttribute: null,
+        primaryValue: null,
+        secondaryAttributes: {},
+        minDamage: minDamage || null,
+        maxDamage: maxDamage || null,
+    };
 
     if(chosenItem.primaryStats){
         let primaryAttribute = chosenItem.primaryStats[Math.floor(Math.random() * chosenItem.primaryStats.length)];
-        let primaryValue = Math.floor(attributeTotal * 0.5) * statMultiplier; // You can change the 0.5 to adjust how much goes into primary stat
-        resultString += `+${primaryValue} ${primaryAttribute}<br>`;
-        
+        let primaryValue = Math.floor(attributeTotal * 0.5) * statMultiplier; 
+        generatedItem.primaryAttribute = primaryAttribute;
+        generatedItem.primaryValue = primaryValue;
         remainingAttributes -= primaryValue;
     }
-    
-    /// Roll for secondary attributes
+
+    // Initialize an empty object to hold rolled attributes
+    let rolledAttributes = {};
+
+    // Roll for secondary attributes
     let availableSecondaryAttributes = secondaryAttributes;
     if (chosenItem.secondaryStats) {
         availableSecondaryAttributes = availableSecondaryAttributes.filter(attr => chosenItem.secondaryStats.includes(attr));
     }
 
-    // Determine if this item should always have Stamina
-    let rolledAttributes = { };
-    let chanceForAdditionalAttribute = 0.75;
+    let maxAttributes = 4; // Limit the total number of attributes to 4
+    let numberOfAttributes = 1; // 1 for the primary attribute
+    let chanceForAdditionalAttribute = 0.75; // Chance to get an additional attribute
 
-    const itemsWithStamina = ['Equipment','Shield'];
-    if (itemsWithStamina.includes(chosenItem.name)) {
-        let staminaValue = Math.floor(itemLevel * 1.5) * statMultiplier;  // You can adjust this formula as needed
-        remainingAttributes -= staminaValue;
-        rolledAttributes['Stamina'] = staminaValue;
-    }
-  
     while (remainingAttributes > 0 && numberOfAttributes < maxAttributes) {
         if (Math.random() < chanceForAdditionalAttribute) {
-            let attribute = rollForAttribute(attributeProbabilities);
+            let attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
             let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes) * statMultiplier;
             
             remainingAttributes -= value;
@@ -93,11 +76,22 @@ function generateItem(tries = 0) {
         }
     }
 
+    // Populate secondary attributes into generatedItem
     for (let [attribute, value] of Object.entries(rolledAttributes)) {
-        resultString += `+${value} ${attribute}<br>`;
+        generatedItem.secondaryAttributes[attribute] = value;
     }
 
-    document.getElementById("result").innerHTML = resultString;
+    // Create base name from chosen item type and loot type
+    let baseName = `${chosenType.name} ${chosenItem.name}`;
+
+    // Create full item name
+    let statsToConsider = {...generatedItem.secondaryAttributes};
+    if (generatedItem.primaryAttribute && generatedItem.primaryValue) {
+        statsToConsider[generatedItem.primaryAttribute] = generatedItem.primaryValue;
+    }
+    generatedItem.name = generateItemName(baseName, chosenItem.itemType, statsToConsider);
+
+    return generatedItem;
 }
 
 function rollForItem(itemArray) {
@@ -137,5 +131,48 @@ function rollForAttribute(attributeProbabilities) {
 
     return null; // Fallback, should never happen if probabilities sum to 1
 }
+
+function generateItemName(baseName, itemType, stats) {
+    let prefix = '';
+    let suffix = '';
+    let totalStats = 0;
+
+    // Calculate the total stats for this item
+    for (let value of Object.values(stats)) {
+        totalStats += value;
+    }
+
+    // Find the best name match based on the stats
+    for (let [name, [isSuffix, requiredStats, threshold]] of Object.entries(itemNames)) {
+        let statSum = 0;
+
+        // Support both single stat and multiple stats
+        if (Array.isArray(requiredStats)) {
+            for (let stat of requiredStats) {
+                statSum += stats[stat] || 0;
+            }
+        } else {
+            statSum = stats[requiredStats] || 0;
+        }
+
+        if (statSum / totalStats >= threshold) {
+            if (isSuffix) {
+                suffix = name;
+            } else {
+                prefix = name;
+            }
+            break;  // Stop at the first match, or you can continue to find the best match
+        }
+    }
+
+    return `${prefix ? prefix + ' ' : ''}${baseName} ${suffix}`.trim();
+}
+
+// // Example usage
+// const baseName = 'Leather Harness';
+// const itemType = 'Belt';
+// const stats = { 'Stamina': 29 };
+
+// const generatedName = generateItemName(baseName, itemType, stats);
 
 //document.getElementById("result").innerHTML = resultString;

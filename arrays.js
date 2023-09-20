@@ -95,29 +95,6 @@ const lootTypes = [
     { name: `Platinum`,            enchants: metalenchants,    p: 0.07, level: 20},
     { name: `Obsidian`,            enchants: metalenchants,    p: 0.06, level: 20},
     { name: `Diamond`,             enchants: metalenchants,    p: 0.05, level: 25}
-
-    //,
-    // { name: `Caxium`,              enchants: metalenchants,    p: 0.34, m: 1.750,  level: 5 },
-    // { name: `Silver`,              enchants: metalenchants,    p: 0.33, m: 1.750,  level: 7},
-    // { name: `Imperial Caxium`,     enchants: metalenchants,    p: 0.33, m: 2.000,  level: 9 },
-    // { name: `Glass`,               enchants: fiberenchants,    p: 0.33, m: 2.500,  level: 10 },
-    // { name: `Acrylic`,             enchants: fiberenchants,    p: 0.31, m: 3.750,  level: 12 },
-    // { name: `Metallic`,            enchants: metalenchants,    p: 0.30, m: 5.000,  level: 13, },
-    // { name: `Seeker`,              enchants: fiberenchants,    p: 0.29, m: 7.500,  level: 15 },
-    // { name: `Warlord`,             enchants: metalenchants,    p: 0.27, m: 10.00,  level: 20 },
-    // { name: `Vampiric`,            enchants: fiberenchants,    p: 0.25, m: 12.50,  level: 20 },
-    // { name: `Crystal`,             enchants: platedenchants,   p: 0.22, m: 15.00,  level: 25 },
-    // { name: `Enchanted`,           enchants: fiberenchants,    p: 0.21, m: 18.00,  level: 25 },
-    // { name: `Platinum`,            enchants: platedenchants,   p: 0.20, m: 20.00,  level: 35 },
-    // { name: `Oladium`,             enchants: platedenchants,   p: 0.17, m: 27.00,  level: 40 },
-    // { name: `Dragon Plate`,        enchants: platedenchants,   p: 0.14, m: 30.00,  level: 50 },
-    // { name: `Master Dragon Plate`, enchants: platedenchants,   p: 0.12, m: 35.00,  level: 55, },
-    // { name: `Demonic`,             enchants: platedenchants,   p: 0.10, m: 40.00,  level: 55 },
-    // { name: `Demonic Warlord`,     enchants: platedenchants,   p: 0.08, m: 50.00,  level: 60 },
-    // { name: `Celestial`,           enchants: platedenchants,   p: 0.05, m: 55.00,  level: 65 },
-    // { name: `Ascension`,           enchants: platedenchants,   p: 0.03, m: 65.75,  level: 75 },
-    // { name: `Ancient`,             enchants: platedenchants,   p: 0.01, m: 75.00,  level: 85 },
-    // { name: `Diamond Plate`,       enchants: platedenchants,   p: 0.01, m: 75.00,  level: 90 }
 ];
 
 // Attributes
@@ -128,4 +105,28 @@ const attributeProbabilities = {
     'Stamina': 0.5,
     'Critical Strike': 0.3,
     'Regen': 0.2
+};
+
+// Item Names
+const itemNames = {
+    // Prefixes
+    'Hardened': [false, 'Stamina', 0.9],
+    'Wise': [false, 'Intellect', 0.8],
+    'Mighty': [false, 'Strength', 0.8],
+    'Swift': [false, 'Agility', 0.8],
+    'Tenacious': [false, ['Strength', 'Stamina'], 0.5],
+    'Vigorous': [false, ['Agility', 'Stamina'], 0.5],
+    'Arcane': [false, ['Intellect', 'Regen'], 0.5],
+    
+    // Suffixes
+    'of Judgment': [true, ['Intellect', 'Regen'], 0.5],
+    'of Endurance': [true, 'Stamina', 0.8],
+    'of Fortitude': [true, ['Stamina', 'Strength'], 0.4],
+    'of Alacrity': [true, ['Agility', 'Critical Strike'], 0.5],
+    'of the Bear': [true, 'Strength', 0.7],
+    'of the Owl': [true, 'Intellect', 0.7],
+    'of the Lynx': [true, 'Agility', 0.7],
+    'of Precision': [true, 'Critical Strike', 0.8],
+    'of Restoration': [true, 'Regen', 0.8],
+    'of Resilience': [true, ['Stamina', 'Regen'], 0.4]
 };
