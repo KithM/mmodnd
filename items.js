@@ -12,7 +12,14 @@ function generateItem(tries = 0) {
 
     let availableItems = items;
     let chosenItem = rollForItem(availableItems);
-    let compatibleLootTypes = lootTypes.filter(/*... your filter logic here ...*/);
+    
+    // Filter lootTypes based on both the chosenItem's itemType and level
+    let compatibleLootTypes = lootTypes.filter(lootType =>
+        (!lootType.validTypes || lootType.validTypes.includes(chosenItem.itemType)) &&
+        (!lootType.level || lootType.level <= itemLevel) &&
+        (!chosenItem.invalidMaterials || !chosenItem.invalidMaterials.includes(lootType.name)) &&
+        (!chosenItem.onlyMaterials || chosenItem.onlyMaterials.includes(lootType.name))
+    );
     let chosenType = rollForItem(compatibleLootTypes);
 
     if (!chosenType || !chosenItem) {
