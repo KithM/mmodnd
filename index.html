@@ -8,8 +8,34 @@
     <script src="items.js"></script>
     <script>
       function generate() {
-        generateItem();
-      }
+        let item = generateItem();
+        let resultString = '';
+
+        if (item) {
+            // Adding item name
+            resultString += `${item.name || 'Unnamed Item'}<br>`;
+            // Adding level
+            resultString += `Level ${item.level}<br>`;
+            
+            // If the item is a weapon, show damage range
+            if (item.minDamage && item.maxDamage) {
+                resultString += `${item.minDamage}-${item.maxDamage} Damage<br>`;
+            }
+
+            // Adding primary attribute if available
+            if (item.primaryAttribute && item.primaryValue) {
+                resultString += `+${item.primaryValue} ${item.primaryAttribute}<br>`;
+            }
+
+            // Adding secondary attributes
+            for (let [attribute, value] of Object.entries(item.secondaryAttributes)) {
+                resultString += `+${value} ${attribute}<br>`;
+            }
+
+            // Assign the formatted string to the HTML element
+            document.getElementById("result").innerHTML = resultString;
+        }
+    }
     </script>
   </head>
   <body>
