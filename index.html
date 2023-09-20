@@ -61,6 +61,9 @@
                 resultString += `+${value} ${attribute}<br>`;
             }
 
+            // Add item durability
+            resultString += `<span>${item.durability} / ${item.durability}</span><br>`;
+
             resultString += `</div>`;
             
             // Assign the formatted string to the HTML element

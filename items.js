@@ -35,6 +35,7 @@ function generateItem(tries = 0) {
     }
 
     let minDamage, maxDamage, slot;
+    let durability = Math.floor(10 * chosenQuality.multiplier);
 
     if (chosenItem.minDamage && chosenItem.maxDamage) {
       minDamage = Math.floor(itemLevel * chosenItem.minDamage);
@@ -58,7 +59,8 @@ function generateItem(tries = 0) {
         secondaryAttributes: {},
         minDamage: minDamage || null,
         maxDamage: maxDamage || null,
-        itemQuality: chosenQuality
+        itemQuality: chosenQuality,
+        durability: durability
     };
 
     // Apply quality multiplier to all attributes
