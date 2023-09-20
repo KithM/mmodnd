@@ -12,9 +12,38 @@
         let resultString = '';
 
         if (item) {
-            // Adding item name
-            resultString += `${item.name || 'Unnamed Item'}<br>`;
-            // Adding level
+            // Add item quality
+            let qualityColor;
+            switch(item.itemQuality) {
+                case 'Old / Worn':
+                    qualityColor = 'gray';
+                    break;
+                case 'Normal':
+                    qualityColor = 'black';
+                    break;
+                case 'Sharpened':
+                    qualityColor = 'blue';
+                    break;
+                case 'Masterwork':
+                    qualityColor = 'purple';
+                    break;
+                case 'Legendary':
+                    qualityColor = 'orange';
+                    break;
+                default:
+                    qualityColor = 'black';
+                    break;
+            }
+            
+            resultString += `<div style="border: 2px solid ${qualityColor}; padding: 10px; margin: 10px;">`;
+
+            // Add item quality name
+            resultString += `<span style="color: ${qualityColor}; font-weight: bold;">${item.itemQuality}</span><br>`;
+
+            // Add item name
+            resultString += `<span style="font-size: 1.2em; font-weight: bold;">${item.name || 'Unnamed Item'}</span><br>`;
+
+            // Add level
             resultString += `Level ${item.level}<br>`;
             
             // If the item is a weapon, show damage range
@@ -22,16 +51,18 @@
                 resultString += `${item.minDamage}-${item.maxDamage} Damage<br>`;
             }
 
-            // Adding primary attribute if available
+            // Add primary attribute if available
             if (item.primaryAttribute && item.primaryValue) {
                 resultString += `+${item.primaryValue} ${item.primaryAttribute}<br>`;
             }
 
-            // Adding secondary attributes
+            // Add secondary attributes
             for (let [attribute, value] of Object.entries(item.secondaryAttributes)) {
                 resultString += `+${value} ${attribute}<br>`;
             }
 
+            resultString += `</div>`;
+            
             // Assign the formatted string to the HTML element
             document.getElementById("result").innerHTML = resultString;
         }
