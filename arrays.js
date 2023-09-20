@@ -33,7 +33,9 @@ const items = [
     // Chest
     { name: 'Robe',             itemType: 'Equipment', slot: 'Chest', primaryStats: ['Intellect'], p: 0.30, onlyMaterials: ['Cloth','Silk'] },
     { name: 'Tunic',            itemType: 'Equipment', slot: 'Chest', primaryStats: ['Agility'], p: 0.30, onlyMaterials: ['Hide','Basic Leather','Leather'] },
-    { name: 'Chestpiece',       itemType: 'Equipment', slot: 'Chest', primaryStats: ['Strength'], p: 0.30, onlyMaterials: ['Iron','Steel','Steel Plate'] },
+    { name: 'Vest',             itemType: 'Equipment', slot: 'Chest', primaryStats: ['Intellect','Agility'], p: 0.20, onlyMaterials: ['Cloth','Silk','Hide','Basic Leather','Leather'] },
+    { name: 'Vest',             itemType: 'Equipment', slot: 'Chest', primaryStats: ['Agility','Strength'], p: 0.20, onlyMaterials: ['Basic Leather','Leather'] },
+    { name: 'Chestpiece',       itemType: 'Equipment', slot: 'Chest', primaryStats: ['Strength'], p: 0.15, onlyMaterials: ['Iron','Steel','Steel Plate'] },
 
     // Legs
     { name: 'Pants',            itemType: 'Equipment', slot: 'Legs', primaryStats: ['Intellect','Agility'], p: 0.30, onlyMaterials: ['Hide','Basic Leather','Leather'] },

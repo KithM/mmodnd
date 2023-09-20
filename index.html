@@ -60,9 +60,12 @@
             for (let [attribute, value] of Object.entries(item.secondaryAttributes)) {
                 resultString += `+${value} ${attribute}<br>`;
             }
+            
+            // Add item slot
+            resultString += `<span>${item.slot}</span><br>`;
 
             // Add item durability
-            resultString += `<span>${item.durability} / ${item.durability}</span><br>`;
+            resultString += `<span><b>Durability:</b> ${item.durability} / ${item.durability}</span><br>`;
 
             resultString += `</div>`;
             

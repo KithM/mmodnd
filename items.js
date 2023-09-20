@@ -94,9 +94,28 @@ function generateItem(tries = 0) {
         availableSecondaryAttributes = availableSecondaryAttributes.filter(attr => chosenItem.secondaryStats.includes(attr));
     }
 
-    let maxAttributes = 4; // Limit the total number of attributes to 4
+    let maxAttributes = 3; // Limit the total number of attributes
     let numberOfAttributes = 1; // 1 for the primary attribute
     let chanceForAdditionalAttribute = 0.75; // Chance to get an additional attribute
+
+    // Determine max attributes based on item quality
+    switch (chosenQuality.name) {
+        case 'Worn':
+            maxAttributes = 2;
+            break;
+        case 'Sharpened':
+            maxAttributes = 4;
+            break;
+        case 'Masterwork':
+            maxAttributes = 5;
+            break;
+        case 'Legendary':
+            maxAttributes = 6;
+            break;
+        default:
+            maxAttributes = 3;
+            break;
+    }
 
     while (remainingAttributes > 0 && numberOfAttributes < maxAttributes) {
         if (Math.random() < chanceForAdditionalAttribute) {
