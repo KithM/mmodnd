@@ -2,8 +2,8 @@
 const items = [
     // Weapons
     // Melee
-    { name: 'Dagger',           itemType: 'Melee', minDamage: 1, maxDamage: 3, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.35, invalidMaterials: ['Cloth','Hide','Basic Leather','Leather','Steel Plate'] },
-    { name: 'Shortsword',       itemType: 'Melee', minDamage: 2, maxDamage: 4, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.30, invalidMaterials: ['Cloth','Hide','Basic Leather','Leather','Steel Plate'] },
+    { name: 'Dagger',           itemType: 'Melee', minDamage: 1, maxDamage: 3, slot: 'One-Handed', primaryStats: ['Strength'], p: 0.35, invalidMaterials: ['Cloth','Hide','Basic Leather','Leather','Steel Plate'] },
+    { name: 'Shortsword',       itemType: 'Melee', minDamage: 2, maxDamage: 4, slot: 'One-Handed', primaryStats: ['Strength'], p: 0.30, invalidMaterials: ['Cloth','Hide','Basic Leather','Leather','Steel Plate'] },
     { name: 'Sword',            itemType: 'Melee', minDamage: 3, maxDamage: 5, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.25, invalidMaterials: ['Cloth','Hide','Basic Leather','Leather','Steel Plate'] },
     { name: 'Longsword',        itemType: 'Melee', minDamage: 4, maxDamage: 6, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.15, invalidMaterials: ['Cloth','Hide','Basic Leather','Leather','Steel Plate'] },
     { name: 'Greatsword',       itemType: 'Melee', minDamage: 2, maxDamage: 8, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.05, invalidMaterials: ['Cloth','Hide','Basic Leather','Leather','Steel Plate'] },
