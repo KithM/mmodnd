@@ -6,80 +6,101 @@
     <script src="math.js"></script>
     <script src="arrays.js"></script>
     <script src="items.js"></script>
+    <style>
+      /* Grid Layout */
+      #result {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+    </style>
     <script>
       function generate() {
-        let item = generateItem();
+        let numberOfItems = parseInt(document.getElementById("itemNumber").value, 10);
         let resultString = '';
-
-        if (item) {
-            // Add item quality
-            let qualityColor;
-            switch(item.itemQuality.name) {
-                case 'Common':
-                    qualityColor = 'black';
-                    break;
-                case 'Uncommon':
-                    qualityColor = 'green';
-                    break;
-                case 'Rare':
-                    qualityColor = 'blue';
-                    break;
-                case 'Epic':
-                    qualityColor = 'purple';
-                    break;
-                case 'Legendary':
-                    qualityColor = 'orange';
-                    break;
-                default:
-                    qualityColor = 'black';
-                    break;
-            }
+        
+        for (let i = 0; i < numberOfItems; i++) {
+            let item = generateItem();
             
-            resultString += `<div style="border: 2px solid ${qualityColor}; padding: 10px; margin: 10px; width: 300px;">`;
+            if (item) {
+                let item = generateItem();
+                let resultString = '';
 
-            // Add item quality name
-            resultString += `<span style="color: ${qualityColor}; font-weight: bold;">${item.itemQuality.name}</span><br>`;
+                let qualityColor;
+                switch(item.itemQuality.name) {
+                    case 'Common':
+                        qualityColor = 'black';
+                        break;
+                    case 'Uncommon':
+                        qualityColor = 'green';
+                        break;
+                    case 'Rare':
+                        qualityColor = 'blue';
+                        break;
+                    case 'Epic':
+                        qualityColor = 'purple';
+                        break;
+                    case 'Legendary':
+                        qualityColor = 'orange';
+                        break;
+                    default:
+                        qualityColor = 'black';
+                        break;
+                }
+                
+                resultString += `<div style="border: 2px solid ${qualityColor}; padding: 10px; margin: 10px; width: 300px;">`;
 
-            // Add item name
-            resultString += `<span style="font-size: 1.2em; font-weight: bold;">${item.name || 'Unnamed Item'}</span><br>`;
+                // Add item quality name
+                resultString += `<span style="color: ${qualityColor}; font-weight: bold;">${item.itemQuality.name}</span><br>`;
 
-            // Add level
-            resultString += `Level ${item.level}<br>`;
-            
-            // If the item is a weapon, show damage range
-            if (item.minDamage && item.maxDamage) {
-                resultString += `${item.minDamage}-${item.maxDamage} Damage<br>`;
+                // Add item name
+                resultString += `<span style="font-size: 1.2em; font-weight: bold;">${item.name || 'Unnamed Item'}</span><br>`;
+
+                // Add level
+                resultString += `Level ${item.level}<br>`;
+                
+                // If the item is a weapon, show damage range
+                if (item.minDamage && item.maxDamage) {
+                    resultString += `${item.minDamage}-${item.maxDamage} Damage<br>`;
+                }
+
+                // Add primary attribute if available
+                if (item.primaryAttribute && item.primaryValue) {
+                    resultString += `+${item.primaryValue} ${item.primaryAttribute}<br>`;
+                }
+
+                // Add secondary attributes
+                for (let [attribute, value] of Object.entries(item.secondaryAttributes)) {
+                    resultString += `+${value} ${attribute}<br>`;
+                }
+                
+                // Add item slot
+                resultString += `<span>${item.slot}</span><br>`;
+
+                // Add item durability
+                resultString += `<span><b>Durability:</b> ${item.durability} / ${item.durability}</span><br>`;
+                resultString += `</div>`;
+                
             }
 
-            // Add primary attribute if available
-            if (item.primaryAttribute && item.primaryValue) {
-                resultString += `+${item.primaryValue} ${item.primaryAttribute}<br>`;
+            // Add a break between items
+            if (i < numberOfItems - 1) {
+                resultString += "<br>";
             }
-
-            // Add secondary attributes
-            for (let [attribute, value] of Object.entries(item.secondaryAttributes)) {
-                resultString += `+${value} ${attribute}<br>`;
-            }
-            
-            // Add item slot
-            resultString += `<span>${item.slot}</span><br>`;
-
-            // Add item durability
-            resultString += `<span><b>Durability:</b> ${item.durability} / ${item.durability}</span><br>`;
-
-            resultString += `</div>`;
-            
-            // Assign the formatted string to the HTML element
-            document.getElementById("result").innerHTML = resultString;
         }
+        
+        document.getElementById("result").innerHTML = resultString;
     }
+
     </script>
   </head>
   <body>
     <h1>Advanced Item Generator</h1>
     <form>
       Enter Item Level: <input type="text" id="itemLevel">
-      <input type="button" value="Generate Item" onclick="generate()">
+      Number of Items: <input type="text" id="itemNumber">
+      <input type="button" value="Generate Items" onclick="generate()">
     </form>
     <div id="result"></div>
   </body>

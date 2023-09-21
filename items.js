@@ -64,7 +64,7 @@ function generateItem(tries = 0) {
 
     if(chosenItem.primaryStats){
         let primaryAttribute = chosenItem.primaryStats[Math.floor(Math.random() * chosenItem.primaryStats.length)];
-        let primaryValue = Math.floor(attributeTotal * 0.5) * statMultiplier; 
+        let primaryValue = Math.floor((0.4 + Math.random() * 0.2) * statMultiplier); //Math.floor(attributeTotal * 0.5) * statMultiplier; 
         generatedItem.primaryAttribute = primaryAttribute;
         generatedItem.primaryValue = primaryValue;
         remainingAttributes -= primaryValue;
@@ -73,8 +73,9 @@ function generateItem(tries = 0) {
         if(chosenItem.itemType === 'Equipment'){
             let stam = 'Stamina';
             
-            // For example, allocate 30% of the remaining attributes to Stamina
-            let stamValue = Math.max(1, Math.floor(remainingAttributes * 0.3));
+            let stamPercent = 0.2 + Math.random() * 0.2; // This will give a value between 0.2 and 0.4
+            let stamValue = Math.max(1, Math.floor(remainingAttributes * stamPercent));
+
             generatedItem.secondaryAttributes[stam] = stamValue;
             remainingAttributes -= stamValue;
         }
@@ -90,8 +91,7 @@ function generateItem(tries = 0) {
     }
 
     let maxAttributes = 3; // Limit the total number of attributes
-    let numberOfAttributes = 1; // 1 for the primary attribute
-    let chanceForAdditionalAttribute = 0.75; // Chance to get an additional attribute
+    let numberOfAttributes = 0; // 1 for the primary attribute
 
 
     // Determine max attributes based on item quality
