@@ -113,31 +113,13 @@ function generateItem(tries = 0) {
             break;
     }
 
-    // We'll add attributes until we reach the desired number of attributes or run out of remaining attributes.
-    // while (remainingAttributes > 0 && numberOfAttributes < maxAttributes) {
-    //     let attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
-    //     let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes) * statMultiplier;
-                
-    //     // Make sure value is at least 1
-    //     value = Math.max(1, value);
-    //     remainingAttributes -= value;
-
-    //     // If the attribute has already been chosen, loop until a new attribute is selected.
-    //     while(rolledAttributes[attribute]) {
-    //         attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
-    //     }
-
-    //     rolledAttributes[attribute] = (rolledAttributes[attribute] || 0) + value;
-    //     numberOfAttributes++;
-    // }
-
-    // for (let [attribute, value] of Object.entries(rolledAttributes)) {
-    //     generatedItem.secondaryAttributes[attribute] = (generatedItem.secondaryAttributes[attribute] || 0) + value;
-    // }
-
     // Randomly pick the desired number of unique attributes.
+    let iterations = 0;
+
     let pickedAttributes = [];
-    while (pickedAttributes.length < maxAttributes) {
+    while (pickedAttributes.length < maxAttributes && iterations < 100) {
+        iterations++;
+
         let attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
         if (!pickedAttributes.includes(attribute)) {
             pickedAttributes.push(attribute);
