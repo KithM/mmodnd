@@ -93,44 +93,42 @@ function generateItem(tries = 0) {
     let numberOfAttributes = 1; // 1 for the primary attribute
     let chanceForAdditionalAttribute = 0.75; // Chance to get an additional attribute
 
+
     // Determine max attributes based on item quality
     switch (chosenQuality.name) {
         case 'Common':
-            maxAttributes = 2;
+            maxAttributes = 1;  // Only primary stat
             break;
         case 'Uncommon':
-            maxAttributes = 3;
+            maxAttributes = 2;  // Primary + 1 Secondary
             break;
         case 'Rare':
-            maxAttributes = 4;
+            maxAttributes = 3;  // Primary + 2 Secondary
             break;
         case 'Epic':
-            maxAttributes = 5;
+            maxAttributes = 4;  // Primary + 3 Secondary
             break;
         case 'Legendary':
-            maxAttributes = 6;
-            break;
-        default:
-            maxAttributes = 3;
+            maxAttributes = 5;  // Primary + 4 Secondary
             break;
     }
 
+    // We'll add attributes until we reach the desired number of attributes or run out of remaining attributes.
     while (remainingAttributes > 0 && numberOfAttributes < maxAttributes) {
-        if (Math.random() < chanceForAdditionalAttribute) {
-            let attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
-            let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes) * statMultiplier;
-            
-            // Make sure value is at least 1
-            value = Math.max(1, value);
-            
-            remainingAttributes -= value;
-            rolledAttributes[attribute] = (rolledAttributes[attribute] || 0) + value;
+        let attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
+        let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes) * statMultiplier;
+                
+        // Make sure value is at least 1
+        value = Math.max(1, value);
+        remainingAttributes -= value;
 
-            numberOfAttributes++;
-            chanceForAdditionalAttribute *= 0.5; // Reduce the chance for another additional attribute
-        } else {
-            break; // Stop if we didn't roll successfully for an additional attribute
+        // If the attribute has already been chosen, loop until a new attribute is selected.
+        while(rolledAttributes[attribute]) {
+            attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
         }
+
+        rolledAttributes[attribute] = (rolledAttributes[attribute] || 0) + value;
+        numberOfAttributes++;
     }
 
     for (let [attribute, value] of Object.entries(rolledAttributes)) {
