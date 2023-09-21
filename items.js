@@ -5,12 +5,12 @@ function generateItem(tries = 0) {
     }
     // Decide if we're going for a premade or random item
     let premadeChance = 0.6 + Math.random() * 0.2; // Random value between 0.6 and 0.8 (60% to 80%)
-    
+
     if (Math.random() <= premadeChance) {
         // Get a random premade item
         return premadeItems[Math.floor(Math.random() * premadeItems.length)];
     }
-    
+
     let inputLevel = parseInt(document.getElementById("itemLevel").value, 10);
     let itemLevel = getRandomNumberBetween(Math.max(inputLevel - 2, 1), Math.min(inputLevel + 2, 100));
     let attributeTotal = Math.floor(itemLevel * 2.5);
@@ -19,7 +19,7 @@ function generateItem(tries = 0) {
 
     let availableItems = items;
     let chosenItem = rollForItem(availableItems);
-    
+
     // Filter lootTypes based on both the chosenItem's itemType and level
     let compatibleLootTypes = lootTypes.filter(lootType =>
         (!lootType.validTypes || lootType.validTypes.includes(chosenItem.itemType)) &&
@@ -37,7 +37,7 @@ function generateItem(tries = 0) {
     let applicableQualities = itemQualities.filter(q => q.applicableTo.includes(chosenItem.itemType));
     let chosenQuality = itemQualities[0];
 
-    if(applicableQualities != null && applicableQualities.length > 0){
+    if (applicableQualities != null && applicableQualities.length > 0) {
         chosenQuality = rollForItem(applicableQualities);
     }
     // Effective level
@@ -47,12 +47,12 @@ function generateItem(tries = 0) {
     let durability = Math.floor(10 * chosenQuality.multiplier);
 
     if (chosenItem.minDamage && chosenItem.maxDamage) {
-      minDamage = Math.floor(itemLevel * chosenItem.minDamage);
-      maxDamage = Math.floor(itemLevel * chosenItem.maxDamage);
+        minDamage = Math.floor(itemLevel * chosenItem.minDamage);
+        maxDamage = Math.floor(itemLevel * chosenItem.maxDamage);
     }
-  
+
     if (chosenItem.slot) {
-      slot = chosenItem.slot;
+        slot = chosenItem.slot;
     }
 
     let generatedItem = {
@@ -69,22 +69,22 @@ function generateItem(tries = 0) {
 
     // Apply quality multiplier to all attributes
     //attributeTotal = Math.floor(attributeTotal * chosenQuality.multiplier);
-    
+
     // Effective level
     attributeTotal = Math.floor(effectiveLevel * 2.5);
     remainingAttributes = attributeTotal;
 
-    if(chosenItem.primaryStats){
+    if (chosenItem.primaryStats) {
         let primaryAttribute = chosenItem.primaryStats[Math.floor(Math.random() * chosenItem.primaryStats.length)];
-        let primaryValue = Math.floor( (attributeTotal * (0.4 + Math.random() * 0.2)) ) * statMultiplier; //Math.floor(attributeTotal * 0.5) * statMultiplier; 
+        let primaryValue = Math.floor((attributeTotal * (0.4 + Math.random() * 0.2))) * statMultiplier; //Math.floor(attributeTotal * 0.5) * statMultiplier; 
         generatedItem.primaryAttribute = primaryAttribute;
         generatedItem.primaryValue = primaryValue;
         remainingAttributes -= primaryValue;
 
         // If itemType is 'Equipment', allocate some attributes to Stamina first
-        if(chosenItem.itemType === 'Equipment'){
+        if (chosenItem.itemType === 'Equipment') {
             let stam = 'Stamina';
-            
+
             let stamPercent = 0.2 + Math.random() * 0.2; // This will give a value between 0.2 and 0.4
             let stamValue = Math.max(1, Math.floor(remainingAttributes * stamPercent));
 
@@ -150,7 +150,7 @@ function generateItem(tries = 0) {
     let baseName = `${chosenType.name} ${chosenItem.name}`;
 
     // Create full item name
-    let statsToConsider = {...generatedItem.secondaryAttributes};
+    let statsToConsider = { ...generatedItem.secondaryAttributes };
     if (generatedItem.primaryAttribute && generatedItem.primaryValue) {
         statsToConsider[generatedItem.primaryAttribute] = generatedItem.primaryValue;
     }
@@ -230,9 +230,9 @@ function generateItemName(baseName, itemType, stats) {
     // Pick a random name component from the matching ones
     let selected = matchingNames[Math.floor(Math.random() * matchingNames.length)];
 
-    return selected.isSuffix ? 
-           `${baseName} ${selected.name}`.trim() : 
-           `${selected.name} ${baseName}`.trim();
+    return selected.isSuffix ?
+        `${baseName} ${selected.name}`.trim() :
+        `${selected.name} ${baseName}`.trim();
 }
 
 // // Example usage
