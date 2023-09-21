@@ -191,7 +191,7 @@ const premadeItems = [
     { name: 'Ragged Cloth', itemQuality: itemQualities[0], description: 'A torn piece of cloth.', type: 'Junk' },
     { name: 'Raw Hide', itemQuality: itemQualities[0], description: 'A torn piece of hide.', type: 'Junk' },
     { name: 'Ancient Scroll', itemQuality: itemQualities[0], description: 'A worn-out scroll with undecipherable writing.', type: 'Junk' },
-    { name: 'Candlestick', itemQuality: itemQualities[0], description: 'Can be lit to brighten a small area.', type: 'Junk' },
+    { name: 'Candlestick', itemQuality: itemQualities[0], description: 'Use: Can be lit to brighten a small area.', type: 'Junk' },
     { name: 'Human Eye', itemQuality: itemQualities[0], description: 'The eye of a human. Disturbing.', type: 'Junk' },
     { name: 'Iron Key Fragment', itemQuality: itemQualities[0], description: 'A broken key fragment.', type: 'Junk' },
     { name: 'Broken Arrow', itemQuality: itemQualities[0], description: 'The tip is missing.', type: 'Junk' },
@@ -204,10 +204,10 @@ const premadeItems = [
     { name: 'Dry Bread', itemQuality: itemQualities[0], description: 'Use: Restores 2 HP.', type: 'Consumable' },
     { name: 'Apple', itemQuality: itemQualities[0], description: 'Use: Restores 1 HP.', type: 'Consumable' },
     
-    { name: 'Minor Health Potion', itemQuality: itemQualities[0], description: 'Use: Restores 10 HP.', type: 'Consumable' },
-    { name: 'Health Potion', itemQuality: itemQualities[0], description: 'Use: Restores 25 HP.', type: 'Consumable' },
-    { name: 'Moderate Health Potion', itemQuality: itemQualities[1], description: 'Use: Restores 50 HP.', type: 'Consumable' },
-    { name: 'Major Health Potion', itemQuality: itemQualities[2], description: 'Use: Restores 250 HP.', type: 'Consumable' },
+    { name: 'Minor Health Potion', itemQuality: itemQualities[0], healing: 2.5, type: 'Consumable' },
+    { name: 'Health Potion', itemQuality: itemQualities[0], healing: 5, type: 'Consumable' },
+    { name: 'Moderate Health Potion', itemQuality: itemQualities[1], healing: 15, type: 'Consumable' },
+    { name: 'Major Health Potion', itemQuality: itemQualities[2], healing: 25, description: 'Use: Restores 250 HP.', type: 'Consumable' },
 
     // Crafting Reagents
     { name: 'Cloth', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant' },

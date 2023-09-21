@@ -8,7 +8,13 @@ function generateItem(tries = 0) {
 
     if (Math.random() <= premadeChance) {
         // Get a random premade item
-        return premadeItems[Math.floor(Math.random() * premadeItems.length)];
+        let chosenPremadeItem = premadeItems[Math.floor(Math.random() * premadeItems.length)];
+
+        // If the chosen item is a potion, adjust its properties based on level.
+        if (chosenPremadeItem.type === 'Consumable' && chosenPremadeItem.healing) {
+            return generatePotion(chosenPremadeItem);
+        }
+        return chosenPremadeItem;
     }
 
     let inputLevel = parseInt(document.getElementById("itemLevel").value, 10);
@@ -235,11 +241,13 @@ function generateItemName(baseName, itemType, stats) {
         `${selected.name} ${baseName}`.trim();
 }
 
-// // Example usage
-// const baseName = 'Leather Harness';
-// const itemType = 'Belt';
-// const stats = { 'Stamina': 29 };
-
-// const generatedName = generateItemName(baseName, itemType, stats);
-
-//document.getElementById("result").innerHTML = resultString;
+function generatePotion(item) {
+    let itemLevel = getRandomNumberBetween(1, 5);  // Assuming potions can be between level 1 and 5.
+    let healingValue = item.baseHealing * itemLevel;
+    
+    return {
+        ...item,
+        level: itemLevel,
+        description: `Use: Restores ${healingValue} HP.`
+    };
+}
