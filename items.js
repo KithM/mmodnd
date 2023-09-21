@@ -6,19 +6,20 @@ function generateItem(tries = 0) {
     // Decide if we're going for a premade or random item
     let premadeChance = 0.6 + Math.random() * 0.2; // Random value between 0.6 and 0.8 (60% to 80%)
 
+    let inputLevel = parseInt(document.getElementById("itemLevel").value, 10);
+    let itemLevel = getRandomNumberBetween(Math.max(inputLevel - 2, 1), Math.min(inputLevel + 2, 100));
+
     if (Math.random() <= premadeChance) {
         // Get a random premade item
         let chosenPremadeItem = premadeItems[Math.floor(Math.random() * premadeItems.length)];
 
         // If the chosen item is a potion, adjust its properties based on level.
         if (chosenPremadeItem.type === 'Consumable' && chosenPremadeItem.healing) {
-            return generatePotion(chosenPremadeItem);
+            return generatePotion(chosenPremadeItem, itemLevel);
         }
         return chosenPremadeItem;
     }
-
-    let inputLevel = parseInt(document.getElementById("itemLevel").value, 10);
-    let itemLevel = getRandomNumberBetween(Math.max(inputLevel - 2, 1), Math.min(inputLevel + 2, 100));
+    
     let attributeTotal = Math.floor(itemLevel * 2.5);
     let remainingAttributes = attributeTotal;
     let statMultiplier = 1; // Initialize stat multiplier
@@ -241,13 +242,13 @@ function generateItemName(baseName, itemType, stats) {
         `${selected.name} ${baseName}`.trim();
 }
 
-function generatePotion(item) {
-    let itemLevel = getRandomNumberBetween(1, 5);  // Assuming potions can be between level 1 and 5.
-    let healingValue = item.baseHealing * itemLevel;
+function generatePotion(item, lvl) {
+    //let itemLevel = getRandomNumberBetween(1, 5);  // Assuming potions can be between level 1 and 5.
+    let healingValue = item.healing * lvl;
     
     return {
         ...item,
-        level: itemLevel,
+        level: lvl,
         description: `Use: Restores ${healingValue} HP.`
     };
 }
