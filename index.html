@@ -15,16 +15,16 @@
             // Add item quality
             let qualityColor;
             switch(item.itemQuality.name) {
-                case 'Old / Worn':
-                    qualityColor = 'gray';
-                    break;
-                case 'Normal':
+                case 'Common':
                     qualityColor = 'black';
                     break;
-                case 'Sharpened':
+                case 'Uncommon':
+                    qualityColor = 'green';
+                    break;
+                case 'Rare':
                     qualityColor = 'blue';
                     break;
-                case 'Masterwork':
+                case 'Epic':
                     qualityColor = 'purple';
                     break;
                 case 'Legendary':

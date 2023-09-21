@@ -40,11 +40,6 @@ function generateItem(tries = 0) {
     if (chosenItem.minDamage && chosenItem.maxDamage) {
       minDamage = Math.floor(itemLevel * chosenItem.minDamage);
       maxDamage = Math.floor(itemLevel * chosenItem.maxDamage);
-
-      if(chosenQuality.name === 'Sharpened'){
-        minDamage = Math.floor(minDamage * chosenQuality.multiplier);
-        maxDamage = Math.floor(maxDamage * chosenQuality.multiplier);
-      }
     }
   
     if (chosenItem.slot) {
@@ -100,13 +95,16 @@ function generateItem(tries = 0) {
 
     // Determine max attributes based on item quality
     switch (chosenQuality.name) {
-        case 'Worn':
+        case 'Common':
             maxAttributes = 2;
             break;
-        case 'Sharpened':
+        case 'Uncommon':
+            maxAttributes = 3;
+            break;
+        case 'Rare':
             maxAttributes = 4;
             break;
-        case 'Masterwork':
+        case 'Epic':
             maxAttributes = 5;
             break;
         case 'Legendary':
@@ -135,10 +133,6 @@ function generateItem(tries = 0) {
         }
     }
 
-    // Populate secondary attributes into generatedItem
-    // for (let [attribute, value] of Object.entries(rolledAttributes)) {
-    //     generatedItem.secondaryAttributes[attribute] = value;
-    // }
     for (let [attribute, value] of Object.entries(rolledAttributes)) {
         generatedItem.secondaryAttributes[attribute] = (generatedItem.secondaryAttributes[attribute] || 0) + value;
     }
