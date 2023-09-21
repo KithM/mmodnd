@@ -62,6 +62,74 @@ const items = [
     
 ];
 
+const premadeItems = [
+    // Junk
+    { 
+        name: 'Ragged Cloth',
+        itemQuality: itemQualities[0],
+        description: 'A torn piece of cloth.',
+        type: 'Junk'
+    },
+    { 
+        name: 'Raw Hide',
+        itemQuality: itemQualities[0],
+        description: 'A torn piece of hide.',
+        type: 'Junk'
+    },
+    { 
+        name: 'Ancient Scroll',
+        itemQuality: itemQualities[0],
+        description: 'A worn-out scroll with undecipherable writing.',
+        type: 'Miscellaneous'
+    },
+    { 
+        name: 'Candlestick',
+        itemQuality: itemQualities[0],
+        description: 'Can be lit to brighten a small area.',
+        type: 'Miscellaneous'
+    },
+    { 
+        name: 'Human Eye',
+        itemQuality: itemQualities[0],
+        description: 'The eye of a human. Disturbing.',
+        type: 'Miscellaneous'
+    },
+
+    // Consumables
+    { 
+        name: 'Dry Bread',
+        itemQuality: itemQualities[0],
+        description: 'Use: Restores 2 HP',
+        type: 'Consumable'
+    },
+    { 
+        name: 'Apple',
+        itemQuality: itemQualities[0],
+        description: 'Use: Restores 1 HP',
+        type: 'Consumable'
+    },
+
+    // Crafting Reagents
+    { 
+        name: 'Button',
+        itemQuality: itemQualities[0],
+        description: 'Crafting Regeant (Tailoring)',
+        type: 'Regeant'
+    },
+    { 
+        name: 'Silk',
+        itemQuality: itemQualities[0],
+        description: 'Crafting Regeant (Tailoring)',
+        type: 'Regeant'
+    },
+    { 
+        name: 'Dye',
+        itemQuality: itemQualities[0],
+        description: 'Crafting Regeant (Tailoring)',
+        type: 'Regeant'
+    }
+];
+
 const clothenchants = [
     {p:1.00}
 ];

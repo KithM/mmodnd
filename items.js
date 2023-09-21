@@ -3,6 +3,13 @@ function generateItem(tries = 0) {
         console.error("Exceeded maximum retry attempts, chosenType or chosenItem is undefined");
         return null;
     }
+    // Decide if we're going for a premade or random item
+    let premadeChance = 0.6 + Math.random() * 0.2; // Random value between 0.6 and 0.8 (60% to 80%)
+    
+    if (Math.random() <= premadeChance) {
+        // Get a random premade item
+        return premadeItems[Math.floor(Math.random() * premadeItems.length)];
+    }
     
     let inputLevel = parseInt(document.getElementById("itemLevel").value, 10);
     let itemLevel = getRandomNumberBetween(Math.max(inputLevel - 2, 1), Math.min(inputLevel + 2, 100));
