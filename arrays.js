@@ -204,10 +204,10 @@ const premadeItems = [
     { name: 'Dry Bread', itemQuality: itemQualities[0], description: 'Use: Restores 2 HP.', type: 'Consumable' },
     { name: 'Apple', itemQuality: itemQualities[0], description: 'Use: Restores 1 HP.', type: 'Consumable' },
     
-    { name: 'Minor Health Potion', itemQuality: itemQualities[0], healing: 2.5, type: 'Consumable' },
-    { name: 'Health Potion', itemQuality: itemQualities[0], healing: 5, type: 'Consumable' },
-    { name: 'Moderate Health Potion', itemQuality: itemQualities[1], healing: 15, type: 'Consumable' },
-    { name: 'Major Health Potion', itemQuality: itemQualities[2], healing: 25, description: 'Use: Restores 250 HP.', type: 'Consumable' },
+    { name: 'Minor Health Potion', itemQuality: itemQualities[0], healing: 2, type: 'Consumable' },
+    { name: 'Health Potion', itemQuality: itemQualities[0], healing: 4, type: 'Consumable' },
+    { name: 'Moderate Health Potion', itemQuality: itemQualities[1], healing: 8, type: 'Consumable' },
+    { name: 'Major Health Potion', itemQuality: itemQualities[2], healing: 16, type: 'Consumable' },
 
     // Crafting Reagents
     { name: 'Cloth', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant' },
