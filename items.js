@@ -11,10 +11,10 @@ function generateItem(tries = 0) {
 
     if (Math.random() <= premadeChance) {
         // Get a random premade item
-        let chosenPremadeItem = premadeItems[Math.floor(Math.random() * premadeItems.length)];
+        let chosenPremadeItem = rollForItem(premadeItems);//premadeItems[Math.floor(Math.random() * premadeItems.length)];
 
         // If the chosen item is a potion, adjust its properties based on level.
-        if (chosenPremadeItem.type === 'Consumable' && chosenPremadeItem.healing) {
+        if (chosenPremadeItem.type === 'Consumable' && (chosenPremadeItem.healing || chosenPremadeItem.essence)) {
             return generatePotion(chosenPremadeItem, itemLevel);
         }
         return chosenPremadeItem;
@@ -51,7 +51,7 @@ function generateItem(tries = 0) {
     let effectiveLevel = itemLevel + (chosenQuality.multiplier - 1) * itemLevel;
 
     let minDamage, maxDamage, slot;
-    let durability = Math.floor(10 * chosenQuality.multiplier);
+    let durability = Math.floor(5 * chosenQuality.multiplier);
 
     if (chosenItem.minDamage && chosenItem.maxDamage) {
         minDamage = Math.floor(itemLevel * chosenItem.minDamage);
@@ -243,12 +243,26 @@ function generateItemName(baseName, itemType, stats) {
 }
 
 function generatePotion(item, lvl) {
-    //let itemLevel = getRandomNumberBetween(1, 5);  // Assuming potions can be between level 1 and 5.
-    let healingValue = item.healing * lvl;
+    let healingValue = 0;// = item.healing * lvl;
+    let essenceValue = 0;// = item.essence * lvl;
     
-    return {
-        ...item,
-        level: lvl,
-        description: `Use: Restores ${healingValue} HP.`
-    };
+    if(item.healing){
+        healingValue = item.healing * lvl;
+
+        return {
+            ...item,
+            level: lvl,
+            description: `Use: Restores ${healingValue} Health.`
+        };
+    } else if(item.essence){
+        essenceValue = item.essence * lvl;
+
+        return {
+            ...item,
+            level: lvl,
+            description: `Use: Restores ${essenceValue} Essence.`
+        };
+    }
+    
+    return null;
 }

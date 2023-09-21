@@ -188,35 +188,40 @@ const items = [
 
 const premadeItems = [
     // Junk
-    { name: 'Ragged Cloth', itemQuality: itemQualities[0], description: 'A torn piece of cloth.', type: 'Junk' },
-    { name: 'Raw Hide', itemQuality: itemQualities[0], description: 'A torn piece of hide.', type: 'Junk' },
-    { name: 'Ancient Scroll', itemQuality: itemQualities[0], description: 'A worn-out scroll with undecipherable writing.', type: 'Junk' },
-    { name: 'Candlestick', itemQuality: itemQualities[0], description: 'Use: Can be lit to brighten a small area.', type: 'Junk' },
-    { name: 'Human Eye', itemQuality: itemQualities[0], description: 'The eye of a human. Disturbing.', type: 'Junk' },
-    { name: 'Iron Key Fragment', itemQuality: itemQualities[0], description: 'A broken key fragment.', type: 'Junk' },
-    { name: 'Broken Arrow', itemQuality: itemQualities[0], description: 'The tip is missing.', type: 'Junk' },
-    { name: 'Torn Page', itemQuality: itemQualities[0], description: 'Maybe it was from a book.', type: 'Junk' },
-    { name: 'Cracked Bottle', itemQuality: itemQualities[0], description: 'Not good for holding liquids.', type: 'Junk' },
-    { name: 'Bent Spoon', itemQuality: itemQualities[0], description: 'Difficult to eat with.', type: 'Junk' },
-    { name: 'Dull Dagger', itemQuality: itemQualities[0], description: 'Not sharp at all.', type: 'Junk' },
+    { name: 'Ragged Cloth', itemQuality: itemQualities[0], description: 'A torn piece of cloth.', type: 'Junk', p: 0.7 },
+    { name: 'Raw Hide', itemQuality: itemQualities[0], description: 'A torn piece of hide.', type: 'Junk', p: 0.7 },
+    { name: 'Ancient Scroll', itemQuality: itemQualities[0], description: 'A worn-out scroll with undecipherable writing.', type: 'Junk', p: 0.7 },
+    { name: 'Candlestick', itemQuality: itemQualities[0], description: 'Use: Can be lit to brighten a small area.', type: 'Junk', p: 0.7 },
+    { name: 'Torn Page', itemQuality: itemQualities[0], description: 'Maybe it was from a book.', type: 'Junk', p: 0.7 },
+    { name: 'Cracked Bottle', itemQuality: itemQualities[0], description: 'Not good for holding liquids.', type: 'Junk', p: 0.7 },
+    { name: 'Bent Spoon', itemQuality: itemQualities[0], description: 'Difficult to eat with.', type: 'Junk', p: 0.7 },
+    { name: 'Dull Dagger', itemQuality: itemQualities[0], description: 'Not sharp at all.', type: 'Junk', p: 0.7 },
+    { name: 'Broken Arrow', itemQuality: itemQualities[0], description: 'The tip is missing.', type: 'Junk', p: 0.5 },
+    { name: 'Iron Key Fragment', itemQuality: itemQualities[0], description: 'A broken key fragment.', type: 'Junk', p: 0.3 },
+    { name: 'Human Eye', itemQuality: itemQualities[0], description: 'The eye of a human. Disturbing.', type: 'Junk', p: 0.2 },
 
     // Consumables
-    { name: 'Dry Bread', itemQuality: itemQualities[0], description: 'Use: Restores 2 HP.', type: 'Consumable' },
-    { name: 'Apple', itemQuality: itemQualities[0], description: 'Use: Restores 1 HP.', type: 'Consumable' },
+    { name: 'Dry Bread', itemQuality: itemQualities[0], description: 'Use: Restores 2 HP.', type: 'Consumable', p: 0.5 },
+    { name: 'Apple', itemQuality: itemQualities[0], description: 'Use: Restores 1 HP.', type: 'Consumable', p: 0.5 },
     
-    { name: 'Minor Health Potion', itemQuality: itemQualities[0], healing: 2, type: 'Consumable' },
-    { name: 'Health Potion', itemQuality: itemQualities[0], healing: 4, type: 'Consumable' },
-    { name: 'Moderate Health Potion', itemQuality: itemQualities[1], healing: 8, type: 'Consumable' },
-    { name: 'Major Health Potion', itemQuality: itemQualities[2], healing: 16, type: 'Consumable' },
+    { name: 'Minor Health Potion', itemQuality: itemQualities[0], healing: 2, type: 'Consumable', p: 0.2 },
+    { name: 'Health Potion', itemQuality: itemQualities[0], healing: 4, type: 'Consumable', p: 0.1 },
+    { name: 'Moderate Health Potion', itemQuality: itemQualities[1], healing: 8, type: 'Consumable', p: 0.08 },
+    { name: 'Major Health Potion', itemQuality: itemQualities[2], healing: 16, type: 'Consumable', p: 0.05 },
+
+    { name: 'Minor Essence Potion', itemQuality: itemQualities[0], essence: 1, type: 'Consumable', p: 0.2 },
+    { name: 'Essence Potion', itemQuality: itemQualities[0], essence: 2, type: 'Consumable', p: 0.1 },
+    { name: 'Moderate Essence Potion', itemQuality: itemQualities[1], essence: 3, type: 'Consumable', p: 0.08 },
+    { name: 'Major Essence Potion', itemQuality: itemQualities[2], essence: 4, type: 'Consumable', p: 0.05 },
 
     // Crafting Reagents
-    { name: 'Cloth', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant' },
-    { name: 'Wool', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant' },
-    { name: 'Silk', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant' },
-    { name: 'Leather', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant' },
-    { name: 'Button', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant' },
-    { name: 'Dye', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant' },
+    { name: 'Cloth', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant', p: 0.4 },
+    { name: 'Wool', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant', p: 0.4 },
+    { name: 'Leather', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant', p: 0.4 },
+    { name: 'Silk', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant', p: 0.3 },
+    { name: 'Button', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant', p: 0.2 },
+    { name: 'Dye', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant', p: 0.2 },
 
     // Profession Items
-    { name: 'Fishing Rod', itemQuality: itemQualities[0], description: 'Profession Item (Fishing).', type: 'Profession' }
+    { name: 'Fishing Rod', itemQuality: itemQualities[0], description: 'Profession Item (Fishing).', type: 'Profession', p: 0.2 }
 ];
