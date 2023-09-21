@@ -64,7 +64,7 @@ function generateItem(tries = 0) {
 
     if(chosenItem.primaryStats){
         let primaryAttribute = chosenItem.primaryStats[Math.floor(Math.random() * chosenItem.primaryStats.length)];
-        let primaryValue = Math.floor((0.4 + Math.random() * 0.2) * statMultiplier); //Math.floor(attributeTotal * 0.5) * statMultiplier; 
+        let primaryValue = Math.floor( (attributeTotal * (0.4 + Math.random() * 0.2)) ) * statMultiplier; //Math.floor(attributeTotal * 0.5) * statMultiplier; 
         generatedItem.primaryAttribute = primaryAttribute;
         generatedItem.primaryValue = primaryValue;
         remainingAttributes -= primaryValue;
