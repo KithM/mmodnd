@@ -91,7 +91,7 @@ function generateItem(tries = 0) {
     }
 
     let maxAttributes = 3; // Limit the total number of attributes
-    let numberOfAttributes = 0; // 1 for the primary attribute
+    //let numberOfAttributes = 0; // 1 for the primary attribute
 
 
     // Determine max attributes based on item quality
@@ -114,25 +114,42 @@ function generateItem(tries = 0) {
     }
 
     // We'll add attributes until we reach the desired number of attributes or run out of remaining attributes.
-    while (remainingAttributes > 0 && numberOfAttributes < maxAttributes) {
-        let attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
-        let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes) * statMultiplier;
+    // while (remainingAttributes > 0 && numberOfAttributes < maxAttributes) {
+    //     let attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
+    //     let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes) * statMultiplier;
                 
-        // Make sure value is at least 1
-        value = Math.max(1, value);
-        remainingAttributes -= value;
+    //     // Make sure value is at least 1
+    //     value = Math.max(1, value);
+    //     remainingAttributes -= value;
 
-        // If the attribute has already been chosen, loop until a new attribute is selected.
-        while(rolledAttributes[attribute]) {
-            attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
+    //     // If the attribute has already been chosen, loop until a new attribute is selected.
+    //     while(rolledAttributes[attribute]) {
+    //         attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
+    //     }
+
+    //     rolledAttributes[attribute] = (rolledAttributes[attribute] || 0) + value;
+    //     numberOfAttributes++;
+    // }
+
+    // for (let [attribute, value] of Object.entries(rolledAttributes)) {
+    //     generatedItem.secondaryAttributes[attribute] = (generatedItem.secondaryAttributes[attribute] || 0) + value;
+    // }
+
+    // Randomly pick the desired number of unique attributes.
+    let pickedAttributes = [];
+    while (pickedAttributes.length < maxAttributes) {
+        let attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
+        if (!pickedAttributes.includes(attribute)) {
+            pickedAttributes.push(attribute);
         }
-
-        rolledAttributes[attribute] = (rolledAttributes[attribute] || 0) + value;
-        numberOfAttributes++;
     }
 
-    for (let [attribute, value] of Object.entries(rolledAttributes)) {
-        generatedItem.secondaryAttributes[attribute] = (generatedItem.secondaryAttributes[attribute] || 0) + value;
+    // Distribute attribute points among the selected attributes.
+    for (let attribute of pickedAttributes) {
+        let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes);
+        value = Math.max(1, value);  // Ensure at least 1 point is assigned.
+        generatedItem.secondaryAttributes[attribute] = value;
+        remainingAttributes -= value;
     }
 
     // Create base name from chosen item type and loot type
