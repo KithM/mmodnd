@@ -8,6 +8,10 @@
 	<script src="arrays.js"></script>
 	<script src="items.js"></script>
 	<style>
+		* {
+			font-family: 'Calibri';
+		}
+		
 		/* Grid Layout */
 		#result {
 			display: flex;
@@ -49,12 +53,12 @@
 								break;
 						}
 
-						resultString += `<div style="border: 2px solid ${qualityColor}; padding: 10px; margin: 10px; width: 300px;">`;
+						resultString += `<div style="border: 2px solid ${qualityColor}; border-radius: 10px; padding: 10px; margin: 10px; width: 300px;">`;
 
 						// Add item quality name
 						resultString += `<span style="color: ${qualityColor}; font-weight: bold;">${item.itemQuality.name}</span><br>`;
 					} else {
-						resultString += `<div style="border: 2px solid black; padding: 10px; margin: 10px; width: 300px;">`;
+						resultString += `<div style="border: 2px solid black; border-radius: 10px; padding: 10px; margin: 10px; width: 300px;">`;
 					}
 
 					// Add item name
