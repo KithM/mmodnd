@@ -18,15 +18,12 @@
     <script>
       function generate() {
         let numberOfItems = parseInt(document.getElementById("itemNumber").value, 10);
-        let resultString = '';
+        let allResults = '';  // Global results string to accumulate all items
         
         for (let i = 0; i < numberOfItems; i++) {
             let item = generateItem();
             
             if (item) {
-                let item = generateItem();
-                let resultString = '';
-
                 let qualityColor;
                 switch(item.itemQuality.name) {
                     case 'Common':
@@ -49,6 +46,8 @@
                         break;
                 }
                 
+                let resultString = '';  // Reset the individual result string for this item
+
                 resultString += `<div style="border: 2px solid ${qualityColor}; padding: 10px; margin: 10px; width: 300px;">`;
 
                 // Add item quality name
@@ -59,7 +58,7 @@
 
                 // Add level
                 resultString += `Level ${item.level}<br>`;
-                
+
                 // If the item is a weapon, show damage range
                 if (item.minDamage && item.maxDamage) {
                     resultString += `${item.minDamage}-${item.maxDamage} Damage<br>`;
@@ -74,23 +73,20 @@
                 for (let [attribute, value] of Object.entries(item.secondaryAttributes)) {
                     resultString += `+${value} ${attribute}<br>`;
                 }
-                
+
                 // Add item slot
                 resultString += `<span>${item.slot}</span><br>`;
 
                 // Add item durability
                 resultString += `<span><b>Durability:</b> ${item.durability} / ${item.durability}</span><br>`;
+                
                 resultString += `</div>`;
                 
-            }
-
-            // Add a break between items
-            if (i < numberOfItems - 1) {
-                resultString += "<br>";
+                allResults += resultString;  // Accumulate the individual item result to the global results string
             }
         }
         
-        document.getElementById("result").innerHTML = resultString;
+        document.getElementById("result").innerHTML = allResults;
     }
 
     </script>
