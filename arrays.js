@@ -165,10 +165,9 @@ const itemNames = {
 };
 
 const itemQualities = [
-    { name: 'Common', multiplier: 0.75, p: 0.55, applicableTo: ['Weapon', 'Equipment'] }, //black
-
-    { name: 'Uncommon', multiplier: 1.0, p: 0.25, applicableTo: ['Weapon', 'Equipment'] }, //green
-    { name: 'Rare', multiplier: 1.5, p: 0.1, applicableTo: ['Weapon', 'Equipment'] }, //blue
-    { name: 'Epic', multiplier: 2.0, p: 0.08, applicableTo: ['Weapon', 'Equipment'] }, //purple
-    { name: 'Legendary', multiplier: 2.5, p: 0.02, applicableTo: ['Weapon', 'Equipment'] }, //orange
+    { name: 'Common',       multiplier: 1.00, p: 0.55, applicableTo: ['Weapon', 'Equipment'] }, //black
+    { name: 'Uncommon',     multiplier: 1.50, p: 0.25, applicableTo: ['Weapon', 'Equipment'] }, //green
+    { name: 'Rare',         multiplier: 2.00, p: 0.1, applicableTo: ['Weapon', 'Equipment'] }, //blue
+    { name: 'Epic',         multiplier: 3.25, p: 0.08, applicableTo: ['Weapon', 'Equipment'] }, //purple
+    { name: 'Legendary',    multiplier: 5.00, p: 0.02, applicableTo: ['Weapon', 'Equipment'] } //orange
 ];

@@ -33,6 +33,8 @@ function generateItem(tries = 0) {
     if(applicableQualities != null && applicableQualities.length > 0){
         chosenQuality = rollForItem(applicableQualities);
     }
+    // Effective level
+    let effectiveLevel = itemLevel + (chosenQuality.multiplier - 1) * itemLevel;
 
     let minDamage, maxDamage, slot;
     let durability = Math.floor(10 * chosenQuality.multiplier);
@@ -59,7 +61,10 @@ function generateItem(tries = 0) {
     };
 
     // Apply quality multiplier to all attributes
-    attributeTotal = Math.floor(attributeTotal * chosenQuality.multiplier);
+    //attributeTotal = Math.floor(attributeTotal * chosenQuality.multiplier);
+    
+    // Effective level
+    attributeTotal = Math.floor(effectiveLevel * 2.5);
     remainingAttributes = attributeTotal;
 
     if(chosenItem.primaryStats){
@@ -82,7 +87,7 @@ function generateItem(tries = 0) {
     }
 
     // Initialize an empty object to hold rolled attributes
-    let rolledAttributes = {};
+    //let rolledAttributes = {};
 
     // Roll for secondary attributes
     let availableSecondaryAttributes = secondaryAttributes;
