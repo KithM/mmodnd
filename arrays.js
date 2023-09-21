@@ -113,7 +113,7 @@ const items = [
     // Weapons
     // Melee
     { name: 'Dagger', itemType: 'Weapon', minDamage: 1, maxDamage: 3, slot: 'One-Handed', primaryStats: ['Strength'], p: 0.35, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
-    { name: 'Shortsword', itemType: 'Weapon', minDamage: 2, maxDamage: 4, slot: 'One-Handed', primaryStats: ['Strength'], p: 0.30, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
+    { name: 'Shortsword', itemType: 'Weapon', minDamage: 2, maxDamage: 4, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.30, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
     { name: 'Sword', itemType: 'Weapon', minDamage: 3, maxDamage: 5, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.25, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
     { name: 'Longsword', itemType: 'Weapon', minDamage: 4, maxDamage: 6, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.15, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
     { name: 'Greatsword', itemType: 'Weapon', minDamage: 5, maxDamage: 7, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.05, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
@@ -121,6 +121,8 @@ const items = [
     { name: 'Axe', itemType: 'Weapon', minDamage: 3, maxDamage: 5, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.25, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
     { name: 'Battleaxe', itemType: 'Weapon', minDamage: 4, maxDamage: 6, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.15, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
     { name: 'Greataxe', itemType: 'Weapon', minDamage: 5, maxDamage: 7, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.05, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
+
+    { name: 'Mace', itemType: 'Weapon', minDamage: 3, maxDamage: 5, slot: 'Main Hand', primaryStats: ['Strength','Intellect'], p: 0.20, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
 
     // Magic
     { name: 'Staff', itemType: 'Weapon', minDamage: 1, maxDamage: 2, slot: 'Two-Handed', primaryStats: ['Intellect'], p: 0.30, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
@@ -130,6 +132,7 @@ const items = [
     { name: 'Scepter', itemType: 'Weapon', slot: 'Off Hand', primaryStats: ['Intellect'], p: 0.10, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
 
     // Ranged
+    { name: 'Sling', itemType: 'Weapon', minDamage: 1, maxDamage: 3, slot: 'Main Hand', primaryStats: ['Agility'], p: 0.10, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
     { name: 'Shortbow', itemType: 'Weapon', minDamage: 2, maxDamage: 4, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.28, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
     { name: 'Longbow', itemType: 'Weapon', minDamage: 3, maxDamage: 5, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.22, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
     { name: 'Greatbow', itemType: 'Weapon', minDamage: 4, maxDamage: 6, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.07, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
@@ -191,17 +194,29 @@ const premadeItems = [
     { name: 'Candlestick', itemQuality: itemQualities[0], description: 'Can be lit to brighten a small area.', type: 'Junk' },
     { name: 'Human Eye', itemQuality: itemQualities[0], description: 'The eye of a human. Disturbing.', type: 'Junk' },
     { name: 'Iron Key Fragment', itemQuality: itemQualities[0], description: 'A broken key fragment.', type: 'Junk' },
+    { name: 'Broken Arrow', itemQuality: itemQualities[0], description: 'The tip is missing.', type: 'Junk' },
+    { name: 'Torn Page', itemQuality: itemQualities[0], description: 'Maybe it was from a book.', type: 'Junk' },
+    { name: 'Cracked Bottle', itemQuality: itemQualities[0], description: 'Not good for holding liquids.', type: 'Junk' },
+    { name: 'Bent Spoon', itemQuality: itemQualities[0], description: 'Difficult to eat with.', type: 'Junk' },
+    { name: 'Dull Dagger', itemQuality: itemQualities[0], description: 'Not sharp at all.', type: 'Junk' },
 
     // Consumables
-    { name: 'Dry Bread', itemQuality: itemQualities[0], description: 'Use: Restores 2 HP', type: 'Consumable' },
-    { name: 'Apple', itemQuality: itemQualities[0], description: 'Use: Restores 1 HP', type: 'Consumable' },
+    { name: 'Dry Bread', itemQuality: itemQualities[0], description: 'Use: Restores 2 HP.', type: 'Consumable' },
+    { name: 'Apple', itemQuality: itemQualities[0], description: 'Use: Restores 1 HP.', type: 'Consumable' },
+    
+    { name: 'Minor Health Potion', itemQuality: itemQualities[0], description: 'Use: Restores 10 HP.', type: 'Consumable' },
+    { name: 'Health Potion', itemQuality: itemQualities[0], description: 'Use: Restores 25 HP.', type: 'Consumable' },
+    { name: 'Moderate Health Potion', itemQuality: itemQualities[1], description: 'Use: Restores 50 HP.', type: 'Consumable' },
+    { name: 'Major Health Potion', itemQuality: itemQualities[2], description: 'Use: Restores 250 HP.', type: 'Consumable' },
 
     // Crafting Reagents
-    { name: 'Cloth', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring)', type: 'Regeant' },
-    { name: 'Wool', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring)', type: 'Regeant' },
-    { name: 'Silk', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring)', type: 'Regeant' },
-    { name: 'Leather', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring)', type: 'Regeant' },
+    { name: 'Cloth', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant' },
+    { name: 'Wool', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant' },
+    { name: 'Silk', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant' },
+    { name: 'Leather', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant' },
+    { name: 'Button', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant' },
+    { name: 'Dye', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant' },
 
-    { name: 'Button', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring)', type: 'Regeant' },
-    { name: 'Dye', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring)', type: 'Regeant' }
+    // Profession Items
+    { name: 'Fishing Rod', itemQuality: itemQualities[0], description: 'Profession Item (Fishing).', type: 'Profession' }
 ];
