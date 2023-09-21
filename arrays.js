@@ -125,9 +125,9 @@ const items = [
     { name: 'Mace', itemType: 'Weapon', minDamage: 3, maxDamage: 5, slot: 'Main Hand', primaryStats: ['Strength','Intellect'], p: 0.20, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
 
     // Magic
-    { name: 'Staff', itemType: 'Weapon', minDamage: 1, maxDamage: 2, slot: 'Two-Handed', primaryStats: ['Intellect'], p: 0.30, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
-    { name: 'Grandstaff', itemType: 'Weapon', minDamage: 2, maxDamage: 3, slot: 'Two-Handed', primaryStats: ['Intellect'], p: 0.08, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
-    { name: 'Wand', itemType: 'Weapon', minDamage: 1, maxDamage: 1, slot: 'Main Hand', primaryStats: ['Intellect'], p: 0.27, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
+    { name: 'Staff', itemType: 'Weapon', minDamage: 2, maxDamage: 4, slot: 'Two-Handed', primaryStats: ['Intellect'], p: 0.30, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
+    { name: 'Grandstaff', itemType: 'Weapon', minDamage: 4, maxDamage: 6, slot: 'Two-Handed', primaryStats: ['Intellect'], p: 0.08, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
+    { name: 'Wand', itemType: 'Weapon', minDamage: 1, maxDamage: 3, slot: 'Main Hand', primaryStats: ['Intellect'], p: 0.27, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
     { name: 'Orb', itemType: 'Weapon', slot: 'Off Hand', primaryStats: ['Intellect'], p: 0.10, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
     { name: 'Scepter', itemType: 'Weapon', slot: 'Off Hand', primaryStats: ['Intellect'], p: 0.10, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
 
@@ -139,8 +139,8 @@ const items = [
     { name: 'Crossbow', itemType: 'Weapon', minDamage: 5, maxDamage: 7, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.08, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
 
     // Shields    
-    { name: 'Shield', itemType: 'Equipment', slot: 'Off Hand', secondaryStats: ['Stamina'], p: 0.25, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather'] },
-    { name: 'Bulwark', itemType: 'Equipment', slot: 'Off Hand', secondaryStats: ['Stamina'], p: 0.05, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather'] },
+    { name: 'Shield', itemType: 'Equipment', slot: 'Off Hand', primaryStats: ['Strength'], secondaryStats: ['Stamina'], p: 0.25, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather'] },
+    { name: 'Bulwark', itemType: 'Equipment', slot: 'Off Hand', primaryStats: ['Strength'], secondaryStats: ['Stamina'], p: 0.05, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather'] },
 
     //// Equipment
     // Head
@@ -178,12 +178,12 @@ const items = [
 
     // Miscellaneous
     { name: 'Amulet', itemType: 'Neck', slot: 'Neck', primaryStats: ['Intellect', 'Strength', 'Agility'], p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] },
+    { name: 'Necklace', itemType: 'Neck', slot: 'Neck', primaryStats: ['Intellect', 'Strength', 'Agility'], p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] },
     { name: 'Ring', itemType: 'Finger', slot: 'Finger', primaryStats: ['Intellect', 'Strength', 'Agility'], p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] },
 
     { name: 'Amulet', itemType: 'Neck', slot: 'Neck', p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] },
+    { name: 'Necklace', itemType: 'Neck', slot: 'Neck', p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] },
     { name: 'Ring', itemType: 'Finger', slot: 'Finger', p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] },
-
-
 ];
 
 const premadeItems = [
