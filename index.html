@@ -24,35 +24,38 @@
       for (let i = 0; i < numberOfItems; i++) {
         let item = generateItem();
 
-        if (item && item.itemQuality) {
-          let qualityColor;
-          switch (item.itemQuality.name) {
-            case 'Common':
-              qualityColor = 'black';
-              break;
-            case 'Uncommon':
-              qualityColor = 'green';
-              break;
-            case 'Rare':
-              qualityColor = 'blue';
-              break;
-            case 'Epic':
-              qualityColor = 'purple';
-              break;
-            case 'Legendary':
-              qualityColor = 'orange';
-              break;
-            default:
-              qualityColor = 'black';
-              break;
-          }
-
+        if (item) {
           let resultString = '';  // Reset the individual result string for this item
 
-          resultString += `<div style="border: 2px solid ${qualityColor}; padding: 10px; margin: 10px; width: 300px;">`;
+          if (item.itemQuality) {
+            switch (item.itemQuality.name) {
+              case 'Common':
+                qualityColor = 'black';
+                break;
+              case 'Uncommon':
+                qualityColor = 'green';
+                break;
+              case 'Rare':
+                qualityColor = 'blue';
+                break;
+              case 'Epic':
+                qualityColor = 'purple';
+                break;
+              case 'Legendary':
+                qualityColor = 'orange';
+                break;
+              default:
+                qualityColor = 'black';
+                break;
+            }
 
-          // Add item quality name
-          resultString += `<span style="color: ${qualityColor}; font-weight: bold;">${item.itemQuality.name}</span><br>`;
+            resultString += `<div style="border: 2px solid ${qualityColor}; padding: 10px; margin: 10px; width: 300px;">`;
+
+            // Add item quality name
+            resultString += `<span style="color: ${qualityColor}; font-weight: bold;">${item.itemQuality.name}</span><br>`;
+          } else {
+            resultString += `<div style="border: 2px solid black; padding: 10px; margin: 10px; width: 300px;">`;
+          }
 
           // Add item name
           resultString += `<span style="font-size: 1.2em; font-weight: bold;">${item.name || 'Unnamed Item'}</span><br>`;
@@ -71,15 +74,21 @@
           }
 
           // Add secondary attributes
-          for (let [attribute, value] of Object.entries(item.secondaryAttributes)) {
-            resultString += `+${value} ${attribute}<br>`;
+          if (item.secondaryAttributes) {
+            for (let [attribute, value] of Object.entries(item.secondaryAttributes)) {
+              resultString += `+${value} ${attribute}<br>`;
+            }
           }
 
           // Add item slot
-          resultString += `<span>${item.slot}</span><br>`;
+          if (item.slot) {
+            resultString += `<span>${item.slot}</span><br>`;
+          }
 
-          // Add item durability
-          resultString += `<span><b>Durability:</b> ${item.durability} / ${item.durability}</span><br>`;
+          if (item.durability) {
+            // Add item durability
+            resultString += `<span><b>Durability:</b> ${item.durability} / ${item.durability}</span><br>`;
+          }
 
           // Add item description
           if (item.description) {
