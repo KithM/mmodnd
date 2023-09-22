@@ -116,8 +116,14 @@ function generateItem(tries = 0) {
         availableSecondaryAttributes = availableSecondaryAttributes.filter(attr => chosenItem.secondaryStats.includes(attr));
     }
 
+    console.log('Available Secondary Attributes:', availableSecondaryAttributes);
+    console.log('Max Attributes:', maxAttributes);
+
+    let iterations = 0;
     let pickedAttributes = [];
-    while (pickedAttributes.length < maxAttributes - 1) { // -1 because primary attribute counts as one
+    while (pickedAttributes.length < maxAttributes && iterations < 100) {
+        iterations++;
+    
         let attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
         if (!pickedAttributes.includes(attribute)) {
             pickedAttributes.push(attribute);
