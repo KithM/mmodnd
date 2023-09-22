@@ -141,10 +141,13 @@ function generateItem(tries = 0) {
     }
 
     // At this point, if there's any remainingAttributes (due to flooring), distribute them randomly
-    while (remainingAttributes > 0) {
+    iterations = 0;
+    while (remainingAttributes > 0 && iterations < 100 ) {
         let attribute = pickedAttributes[Math.floor(Math.random() * pickedAttributes.length)];
         generatedItem.secondaryAttributes[attribute]++;
         remainingAttributes--;
+        
+        console.log(`Attribute: ${attribute}. Value: ${generatedItem.secondaryAttributes[attribute]}`);
     }
 
     // END OF NEW!
