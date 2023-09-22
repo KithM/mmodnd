@@ -42,7 +42,7 @@ function generateItem(tries = 0) {
 
     // Filter item qualities based on chosenItem's itemType and get a random quality
     let applicableQualities = itemQualities.filter(q => 
-        q.applicableTo.includes(chosenItem.itemType) && effectiveLevel >= q.minLevel
+        q.applicableTo.includes(chosenItem.itemType) && itemLevel >= q.minLevel
     );
 
     let chosenQuality = itemQualities[0];  // Default to Common if none found
@@ -50,7 +50,7 @@ function generateItem(tries = 0) {
     if (applicableQualities != null && applicableQualities.length > 0) {
         chosenQuality = rollForItem(applicableQualities);
     }
-    
+
     // Effective level
     let effectiveLevel = itemLevel + (chosenQuality.multiplier - 1) * itemLevel;
 
@@ -58,8 +58,8 @@ function generateItem(tries = 0) {
     let durability = Math.floor(5 * chosenQuality.multiplier);
 
     if (chosenItem.minDamage && chosenItem.maxDamage) {
-        minDamage = Math.floor(itemLevel * chosenItem.minDamage);
-        maxDamage = Math.floor(itemLevel * chosenItem.maxDamage);
+        minDamage = Math.floor(effectiveLevel * chosenItem.minDamage); //itemLevel
+        maxDamage = Math.floor(effectiveLevel * chosenItem.maxDamage); //itemLevel
     }
 
     if (chosenItem.slot) {
