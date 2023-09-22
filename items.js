@@ -5,6 +5,30 @@ function generateItem(tries = 0) {
     }
     // Decide if we're going for a premade or random item
     let premadeChance = 0.6 + Math.random() * 0.2; // Random value between 0.6 and 0.8 (60% to 80%)
+    
+    // Get the selected source from the dropdown
+    const selectedSource = document.getElementById("itemSourceDropdown").value;
+
+    let itemQualities = [];  // This will hold the relevant array based on the source
+    switch (selectedSource) {
+        case 'All':
+            itemQualities = itemQualitiesAll;
+            break;
+        case 'Loot':
+            itemQualities = itemQualitiesLoot;
+            break;
+        case 'Chest':
+            itemQualities = itemQualitiesChest;
+            premadeChance = 0.4 + Math.random() * 0.2;
+            break;
+        case 'Boss':
+            itemQualities = itemQualitiesBoss;
+            premadeChance = 0.2 + Math.random() * 0.2;
+            break;
+        default:
+            console.error('Invalid source selected.');
+            return;
+    }
 
     let inputLevel = parseInt(document.getElementById("itemLevel").value, 10);
     let itemLevel = getRandomNumberBetween(Math.max(inputLevel - 2, 1), Math.min(inputLevel + 2, 100));
@@ -41,27 +65,6 @@ function generateItem(tries = 0) {
     }
 
     // NEW! item qualities
-    // Get the selected source from the dropdown
-    const selectedSource = document.getElementById("itemSourceDropdown").value;
-
-    let itemQualities = [];  // This will hold the relevant array based on the source
-    switch (selectedSource) {
-        case 'All':
-            itemQualities = itemQualitiesAll;
-            break;
-        case 'Loot':
-            itemQualities = itemQualitiesLoot;
-            break;
-        case 'Chest':
-            itemQualities = itemQualitiesChest;
-            break;
-        case 'Boss':
-            itemQualities = itemQualitiesBoss;
-            break;
-        default:
-            console.error('Invalid source selected.');
-            return;
-    }
 
     // Filter item qualities based on chosenItem's itemType and get a random quality
     let applicableQualities = itemQualities.filter(q => 
