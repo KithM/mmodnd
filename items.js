@@ -159,7 +159,7 @@ function generateItem(tries = 0) {
     }
     generatedItem.name = generateItemName(baseName, chosenItem.itemType, statsToConsider);
 
-    console.log(generateItem);
+    console.log(generatedItem);
 
     return generatedItem;
 }
