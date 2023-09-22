@@ -22,7 +22,7 @@ function generateItem(tries = 0) {
     
     let attributeTotal = Math.floor(itemLevel * 2.5);
     let remainingAttributes = attributeTotal;
-    let statMultiplier = 1; // Initialize stat multiplier
+    //let statMultiplier = 1; // Initialize stat multiplier
 
     let availableItems = items;
     let chosenItem = rollForItem(availableItems);
@@ -79,11 +79,20 @@ function generateItem(tries = 0) {
     attributeTotal = Math.floor(effectiveLevel * 2.5);
     remainingAttributes = attributeTotal;
 
+    let maxAttributes = 1; // Default to 1 attribute (Common)
+    switch (chosenQuality.name) {
+        case 'Common': maxAttributes = 1; break;
+        case 'Uncommon': maxAttributes = 2; break;
+        case 'Rare': maxAttributes = 3; break;
+        case 'Epic': maxAttributes = 4; break;
+        case 'Legendary': maxAttributes = 5; break;
+    }
+
     // If itemType is 'Equipment', allocate some attributes to Stamina first
     if (chosenItem.itemType === 'Equipment') {
         let stam = 'Stamina';
         let stamPercent = chosenType.baseStamina || 0.1; // Default to 0.1 if not defined
-        let stamValue = Math.floor(remainingAttributes * stamPercent);
+        let stamValue = Math.max(Math.floor(remainingAttributes * stamPercent), 1);
         
         generatedItem.secondaryAttributes[stam] = stamValue;
         remainingAttributes -= stamValue;
@@ -92,20 +101,10 @@ function generateItem(tries = 0) {
     // Assign primary stat
     if (chosenItem.primaryStats && remainingAttributes > 0) { 
         let primaryAttribute = chosenItem.primaryStats[Math.floor(Math.random() * chosenItem.primaryStats.length)];
-        let primaryValue = Math.floor(remainingAttributes * (0.4 + Math.random() * 0.2)); 
+        let primaryValue = Math.max(Math.floor(remainingAttributes * (0.4 + Math.random() * 0.2)), 1); 
         generatedItem.primaryAttribute = primaryAttribute;
         generatedItem.primaryValue = primaryValue;
         remainingAttributes -= primaryValue;
-    }
-
-    let maxAttributes = 1; // Default to 1 attribute (Common)
-
-    switch (chosenQuality.name) {
-        case 'Common': maxAttributes = 1; break;
-        case 'Uncommon': maxAttributes = 2; break;
-        case 'Rare': maxAttributes = 3; break;
-        case 'Epic': maxAttributes = 4; break;
-        case 'Legendary': maxAttributes = 5; break;
     }
 
     let availableSecondaryAttributes = secondaryAttributes;
@@ -125,13 +124,14 @@ function generateItem(tries = 0) {
         iterations++;
     
         let attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
-        if (!pickedAttributes.includes(attribute)) {
+        if (attribute && !pickedAttributes.includes(attribute)) {
             pickedAttributes.push(attribute);
         }
     }
     console.log('Picked attributes:', pickedAttributes);
 
     let avgValuePerAttribute = Math.floor(remainingAttributes / pickedAttributes.length);
+    console.log('Average attribute value:', avgValuePerAttribute);
 
     // Distribute remaining attributes among the selected attributes
     for (let attribute of pickedAttributes) {
@@ -146,7 +146,7 @@ function generateItem(tries = 0) {
         let attribute = pickedAttributes[Math.floor(Math.random() * pickedAttributes.length)];
         generatedItem.secondaryAttributes[attribute]++;
         remainingAttributes--;
-        
+
         console.log(`Attribute: ${attribute}. Value: ${generatedItem.secondaryAttributes[attribute]}`);
     }
 
