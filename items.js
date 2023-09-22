@@ -73,42 +73,8 @@ function generateItem(tries = 0) {
         itemQuality: chosenQuality,
         durability: durability
     };
+    // NEW!
 
-    // Apply quality multiplier to all attributes
-    //attributeTotal = Math.floor(attributeTotal * chosenQuality.multiplier);
-
-    ////////////////// TESTING AREA ////////////////// 
-    // // Effective level
-    // attributeTotal = Math.floor(effectiveLevel * 2.5);
-    // remainingAttributes = attributeTotal;
-
-    // if (chosenItem.primaryStats) {
-    //     let primaryAttribute = chosenItem.primaryStats[Math.floor(Math.random() * chosenItem.primaryStats.length)];
-    //     let primaryValue = Math.floor((attributeTotal * (0.4 + Math.random() * 0.2))) * statMultiplier; //Math.floor(attributeTotal * 0.5) * statMultiplier; 
-    //     generatedItem.primaryAttribute = primaryAttribute;
-    //     generatedItem.primaryValue = primaryValue;
-    //     remainingAttributes -= primaryValue;
-
-    //     // If itemType is 'Equipment', allocate some attributes to Stamina first
-    //     if (chosenItem.itemType === 'Equipment') {
-    //         // let stam = 'Stamina';
-
-    //         // let stamPercent = 0.2 + Math.random() * 0.2; // This will give a value between 0.2 and 0.4
-    //         // let stamValue = Math.max(1, Math.floor(remainingAttributes * stamPercent));
-
-    //         // generatedItem.secondaryAttributes[stam] = stamValue;
-    //         // remainingAttributes -= stamValue;
-            
-    //         let stam = 'Stamina';
-
-    //         // Instead of a random percent, we'll derive the stamina percentage from the baseStamina of the material
-    //         let baseStam = chosenType ? chosenType.baseStamina : 1; // If for some reason the material isn't found, default to 1.
-    //         let stamValue = baseStam * itemLevel; //Math.max(1, Math.floor(remainingAttributes * stamMultiplier));
-
-    //         generatedItem.secondaryAttributes[stam] = stamValue;
-    //         remainingAttributes -= stamValue;
-    //     }
-    // }
     // Effective level
     attributeTotal = Math.floor(effectiveLevel * 2.5);
     remainingAttributes = attributeTotal;
@@ -116,75 +82,62 @@ function generateItem(tries = 0) {
     // If itemType is 'Equipment', allocate some attributes to Stamina first
     if (chosenItem.itemType === 'Equipment') {
         let stam = 'Stamina';
-
-        // Instead of a random percent, we'll derive the stamina percentage from the baseStamina of the material
-        let stamPercent = chosenType ? chosenType.baseStamina : 1; // If for some reason the material isn't found, default to 1.
-        let stamValue = Math.max(1, Math.floor(remainingAttributes * stamPercent));//baseStam * itemLevel; //Math.max(1, Math.floor(remainingAttributes * stamMultiplier));
-
+        let stamPercent = chosenType.baseStamina || 0.1; // Default to 0.1 if not defined
+        let stamValue = Math.floor(remainingAttributes * stamPercent);
+        
         generatedItem.secondaryAttributes[stam] = stamValue;
         remainingAttributes -= stamValue;
     }
 
-    if (chosenItem.primaryStats && remainingAttributes > 0) { // Ensure we still have some attributes left after calculating Stamina
+    // Assign primary stat
+    if (chosenItem.primaryStats && remainingAttributes > 0) { 
         let primaryAttribute = chosenItem.primaryStats[Math.floor(Math.random() * chosenItem.primaryStats.length)];
-        let primaryValue = Math.floor((remainingAttributes * (0.4 + Math.random() * 0.2))) * statMultiplier; 
-
+        let primaryValue = Math.floor(remainingAttributes * (0.4 + Math.random() * 0.2)); 
         generatedItem.primaryAttribute = primaryAttribute;
         generatedItem.primaryValue = primaryValue;
         remainingAttributes -= primaryValue;
     }
-    ////////////////// TESTING AREA ////////////////// 
 
-    // Initialize an empty object to hold rolled attributes
-    //let rolledAttributes = {};
+    let maxAttributes = 1; // Default to 1 attribute (Common)
 
-    // Roll for secondary attributes
-    let availableSecondaryAttributes = secondaryAttributes;
+    switch (chosenQuality.name) {
+        case 'Common': maxAttributes = 1; break;
+        case 'Uncommon': maxAttributes = 2; break;
+        case 'Rare': maxAttributes = 3; break;
+        case 'Epic': maxAttributes = 4; break;
+        case 'Legendary': maxAttributes = 5; break;
+    }
+
+    let availableSecondaryAttributes = secondaryAttributes.filter(attr => attr !== "Stamina"); // Exclude Stamina since it's already assigned
     if (chosenItem.secondaryStats) {
         availableSecondaryAttributes = availableSecondaryAttributes.filter(attr => chosenItem.secondaryStats.includes(attr));
     }
 
-    let maxAttributes = 3; // Limit the total number of attributes
-
-    // Determine max attributes based on item quality
-    switch (chosenQuality.name) {
-        case 'Common':
-            maxAttributes = 1;  // Only primary stat
-            break;
-        case 'Uncommon':
-            maxAttributes = 2;  // Primary + 1 Secondary
-            break;
-        case 'Rare':
-            maxAttributes = 3;  // Primary + 2 Secondary
-            break;
-        case 'Epic':
-            maxAttributes = 4;  // Primary + 3 Secondary
-            break;
-        case 'Legendary':
-            maxAttributes = 5;  // Primary + 4 Secondary
-            break;
-    }
-
-    // Randomly pick the desired number of unique attributes.
-    let iterations = 0;
-
     let pickedAttributes = [];
-    while (pickedAttributes.length < maxAttributes && iterations < 100) {
-        iterations++;
-
+    while (pickedAttributes.length < maxAttributes - 1) { // -1 because primary attribute counts as one
         let attribute = availableSecondaryAttributes[Math.floor(Math.random() * availableSecondaryAttributes.length)];
         if (!pickedAttributes.includes(attribute)) {
             pickedAttributes.push(attribute);
         }
     }
 
-    // Distribute attribute points among the selected attributes.
+    let avgValuePerAttribute = Math.floor(remainingAttributes / pickedAttributes.length);
+
+    // Distribute remaining attributes among the selected attributes
     for (let attribute of pickedAttributes) {
-        let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes);
-        value = Math.max(1, value);  // Ensure at least 1 point is assigned.
+        let value = avgValuePerAttribute;
         generatedItem.secondaryAttributes[attribute] = value;
         remainingAttributes -= value;
     }
+
+    // At this point, if there's any remainingAttributes (due to flooring), distribute them randomly
+    while (remainingAttributes > 0) {
+        let attribute = pickedAttributes[Math.floor(Math.random() * pickedAttributes.length)];
+        generatedItem.secondaryAttributes[attribute]++;
+        remainingAttributes--;
+    }
+
+    // END OF NEW!
 
     // Create base name from chosen item type and loot type
     let baseName = `${chosenType.name} ${chosenItem.name}`;
