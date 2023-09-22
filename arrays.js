@@ -191,15 +191,24 @@ const premadeItems = [
     // Junk
     { name: 'Ragged Cloth', itemQuality: itemQualities[0], description: 'A torn piece of cloth.', type: 'Junk', p: 0.7 },
     { name: 'Raw Hide', itemQuality: itemQualities[0], description: 'A torn piece of hide.', type: 'Junk', p: 0.7 },
-    { name: 'Ancient Scroll', itemQuality: itemQualities[0], description: 'A worn-out scroll with undecipherable writing.', type: 'Junk', p: 0.7 },
-    { name: 'Candlestick', itemQuality: itemQualities[0], description: 'Use: Can be lit to brighten a small area.', type: 'Junk', p: 0.7 },
-    { name: 'Torn Page', itemQuality: itemQualities[0], description: 'Maybe it was from a book.', type: 'Junk', p: 0.7 },
+    { name: 'Ancient Scroll', itemQuality: itemQualities[0], description: 'A worn-out scroll with undecipherable writing.', type: 'Junk', p: 0.4 },
+    { name: 'Candlestick', itemQuality: itemQualities[0], description: 'Use: Can be lit to brighten a small area.', type: 'Junk', p: 0.5 },
+    { name: 'Torn Page', itemQuality: itemQualities[0], description: 'Maybe it was from a book.', type: 'Junk', p: 0.6 },
     { name: 'Cracked Bottle', itemQuality: itemQualities[0], description: 'Not good for holding liquids.', type: 'Junk', p: 0.7 },
-    { name: 'Bent Spoon', itemQuality: itemQualities[0], description: 'Difficult to eat with.', type: 'Junk', p: 0.7 },
-    { name: 'Dull Dagger', itemQuality: itemQualities[0], description: 'Not sharp at all.', type: 'Junk', p: 0.7 },
+    { name: 'Bent Spoon', itemQuality: itemQualities[0], description: 'Difficult to eat with.', type: 'Junk', p: 0.4 },
+    { name: 'Dull Dagger', itemQuality: itemQualities[0], description: 'Not sharp at all.', type: 'Junk', p: 0.5 },
     { name: 'Broken Arrow', itemQuality: itemQualities[0], description: 'The tip is missing.', type: 'Junk', p: 0.5 },
-    { name: 'Iron Key Fragment', itemQuality: itemQualities[0], description: 'A broken key fragment.', type: 'Junk', p: 0.3 },
     { name: 'Human Eye', itemQuality: itemQualities[0], description: 'The eye of a human. Disturbing.', type: 'Junk', p: 0.2 },
+    { name: 'Old Boot', itemQuality: itemQualities[0], description: 'It\'s seen better days.', type: 'Junk', p: 0.7 },
+    { name: 'Empty Flask', itemQuality: itemQualities[0], description: 'Once held a potion... or maybe just wine.', type: 'Junk', p: 0.5 },
+    { name: 'Fractured Gem', itemQuality: itemQualities[0], description: 'Only a glimmer of its former shine remains.', type: 'Junk', p: 0.3 },
+
+    // Weird Stuff
+    { name: 'Whispering Doll', itemQuality: itemQualities[0], description: 'A doll that seems to whisper when no one is looking.', type: 'Miscellaneous', p: 0.1 },
+    { name: 'Glowing Rock', itemQuality: itemQualities[0], description: 'A rock that emits a soft glow in the dark.', type: 'Miscellaneous', p: 0.3 },
+    { name: 'Timeless Hourglass', itemQuality: itemQualities[1], description: 'An hourglass that seems to never run out.', type: 'Miscellaneous', p: 0.05 },
+    { name: 'Endless Inkwell', itemQuality: itemQualities[1], description: 'An inkwell that never goes dry.', type: 'Miscellaneous', p: 0.2 },
+    { name: 'Iron Key Fragment', itemQuality: itemQualities[0], description: 'Use: Combine 4 iron key fragments to create an Iron Key.', type: 'Miscellaneous', p: 0.3 },
 
     // Backpacks
     { name: 'Small Sack', itemQuality: itemQualities[0], description: '8 Slots', type: 'Inventory', p: 0.4 },
@@ -233,7 +242,27 @@ const premadeItems = [
     { name: 'Silk', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant', p: 0.3 },
     { name: 'Button', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant', p: 0.2 },
     { name: 'Dye', itemQuality: itemQualities[0], description: 'Crafting Regeant (Tailoring).', type: 'Regeant', p: 0.2 },
+    
+    { name: 'Iron Ore', itemQuality: itemQualities[0], description: 'Crafting Regeant (Blacksmithing).', type: 'Regeant', p: 0.4 },
+    { name: 'Herbs', itemQuality: itemQualities[0], description: 'Crafting Regeant (Alchemy).', type: 'Regeant', p: 0.4 },
+    { name: 'Enchanted Dust', itemQuality: itemQualities[1], description: 'Crafting Regeant (Enchanting).', type: 'Regeant', p: 0.2 },
+    { name: 'Jewelcrafting Kit', itemQuality: itemQualities[1], description: 'Crafting Regeant (Jewelcrafting).', type: 'Regeant', p: 0.2 },
+    { name: 'Vellum', itemQuality: itemQualities[0], description: 'Crafting Regeant (Inscription).', type: 'Regeant', p: 0.3 },
+
+    // Quest Items
+    { name: 'Enchanted Quill', itemQuality: itemQualities[1], description: 'This quill seems to move on its own.', type: 'Quest', p: 0.1 },
+    { name: 'Mystic Rune', itemQuality: itemQualities[2], description: 'A rune with an otherworldly glow.', type: 'Quest', p: 0.05 },
+    { name: 'Torn Map', itemQuality: itemQualities[0], description: 'A map that leads to an unknown location.', type: 'Quest', p: 0.3 },
+    { name: 'Ornate Locket', itemQuality: itemQualities[1], description: 'A beautifully crafted locket, it seems important.', type: 'Quest', p: 0.1 },
+    { name: 'Sigil of the Ancient', itemQuality: itemQualities[2], description: 'A sigil bearing the mark of an ancient race.', type: 'Quest', p: 0.05 },
+    { name: 'Sealed Letter', itemQuality: itemQualities[0], description: 'A letter sealed with an unfamiliar emblem.', type: 'Quest', p: 0.3 },
 
     // Profession Items
-    { name: 'Fishing Rod', itemQuality: itemQualities[0], description: 'Profession Item (Fishing).', type: 'Profession', p: 0.2 }
+    { name: 'Fishing Rod', itemQuality: itemQualities[0], description: 'Profession Item (Fishing).', type: 'Profession', p: 0.2 },
+    { name: 'Smithing Hammer', itemQuality: itemQualities[0], description: 'Profession Item (Blacksmithing).', type: 'Profession', p: 0.2 },
+    { name: 'Alchemy Beaker', itemQuality: itemQualities[0], description: 'Profession Item (Alchemy).', type: 'Profession', p: 0.2 },
+    { name: 'Enchanting Rod', itemQuality: itemQualities[1], description: 'Profession Item (Enchanting).', type: 'Profession', p: 0.1 },
+
+    // Unique / Special Items
+    { name: 'Trapped Soul Gem', itemQuality: itemQualities[3], description: 'Use: Release the trapped soul within.', type: 'Miscellaneous', p: 0.03 }
 ];
