@@ -77,37 +77,63 @@ function generateItem(tries = 0) {
     // Apply quality multiplier to all attributes
     //attributeTotal = Math.floor(attributeTotal * chosenQuality.multiplier);
 
+    ////////////////// TESTING AREA ////////////////// 
+    // // Effective level
+    // attributeTotal = Math.floor(effectiveLevel * 2.5);
+    // remainingAttributes = attributeTotal;
+
+    // if (chosenItem.primaryStats) {
+    //     let primaryAttribute = chosenItem.primaryStats[Math.floor(Math.random() * chosenItem.primaryStats.length)];
+    //     let primaryValue = Math.floor((attributeTotal * (0.4 + Math.random() * 0.2))) * statMultiplier; //Math.floor(attributeTotal * 0.5) * statMultiplier; 
+    //     generatedItem.primaryAttribute = primaryAttribute;
+    //     generatedItem.primaryValue = primaryValue;
+    //     remainingAttributes -= primaryValue;
+
+    //     // If itemType is 'Equipment', allocate some attributes to Stamina first
+    //     if (chosenItem.itemType === 'Equipment') {
+    //         // let stam = 'Stamina';
+
+    //         // let stamPercent = 0.2 + Math.random() * 0.2; // This will give a value between 0.2 and 0.4
+    //         // let stamValue = Math.max(1, Math.floor(remainingAttributes * stamPercent));
+
+    //         // generatedItem.secondaryAttributes[stam] = stamValue;
+    //         // remainingAttributes -= stamValue;
+            
+    //         let stam = 'Stamina';
+
+    //         // Instead of a random percent, we'll derive the stamina percentage from the baseStamina of the material
+    //         let baseStam = chosenType ? chosenType.baseStamina : 1; // If for some reason the material isn't found, default to 1.
+    //         let stamValue = baseStam * itemLevel; //Math.max(1, Math.floor(remainingAttributes * stamMultiplier));
+
+    //         generatedItem.secondaryAttributes[stam] = stamValue;
+    //         remainingAttributes -= stamValue;
+    //     }
+    // }
     // Effective level
     attributeTotal = Math.floor(effectiveLevel * 2.5);
     remainingAttributes = attributeTotal;
 
-    if (chosenItem.primaryStats) {
+    // If itemType is 'Equipment', allocate some attributes to Stamina first
+    if (chosenItem.itemType === 'Equipment') {
+        let stam = 'Stamina';
+
+        // Instead of a random percent, we'll derive the stamina percentage from the baseStamina of the material
+        let baseStam = chosenType ? chosenType.baseStamina : 1; // If for some reason the material isn't found, default to 1.
+        let stamValue = baseStam * itemLevel; //Math.max(1, Math.floor(remainingAttributes * stamMultiplier));
+
+        generatedItem.secondaryAttributes[stam] = stamValue;
+        remainingAttributes -= stamValue;
+    }
+
+    if (chosenItem.primaryStats && remainingAttributes > 0) { // Ensure we still have some attributes left after calculating Stamina
         let primaryAttribute = chosenItem.primaryStats[Math.floor(Math.random() * chosenItem.primaryStats.length)];
-        let primaryValue = Math.floor((attributeTotal * (0.4 + Math.random() * 0.2))) * statMultiplier; //Math.floor(attributeTotal * 0.5) * statMultiplier; 
+        let primaryValue = Math.floor((remainingAttributes * (0.4 + Math.random() * 0.2))) * statMultiplier; 
+
         generatedItem.primaryAttribute = primaryAttribute;
         generatedItem.primaryValue = primaryValue;
         remainingAttributes -= primaryValue;
-
-        // If itemType is 'Equipment', allocate some attributes to Stamina first
-        if (chosenItem.itemType === 'Equipment') {
-            // let stam = 'Stamina';
-
-            // let stamPercent = 0.2 + Math.random() * 0.2; // This will give a value between 0.2 and 0.4
-            // let stamValue = Math.max(1, Math.floor(remainingAttributes * stamPercent));
-
-            // generatedItem.secondaryAttributes[stam] = stamValue;
-            // remainingAttributes -= stamValue;
-            
-            let stam = 'Stamina';
-
-            // Instead of a random percent, we'll derive the stamina percentage from the baseStamina of the material
-            let baseStam = chosenType ? chosenType.baseStamina : 1; // If for some reason the material isn't found, default to 1.
-            let stamValue = baseStam * itemLevel; //Math.max(1, Math.floor(remainingAttributes * stamMultiplier));
-
-            generatedItem.secondaryAttributes[stam] = stamValue;
-            remainingAttributes -= stamValue;
-        }
     }
+    ////////////////// TESTING AREA ////////////////// 
 
     // Initialize an empty object to hold rolled attributes
     //let rolledAttributes = {};
