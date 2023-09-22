@@ -153,6 +153,7 @@ function generateItem(tries = 0) {
     // Distribute remaining attributes among the selected attributes
     for (let attribute of pickedAttributes) {
         let value = avgValuePerAttribute;
+        value = Math.max(1, value);
         generatedItem.secondaryAttributes[attribute] = value;
         remainingAttributes -= value;
     }
