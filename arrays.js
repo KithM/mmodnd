@@ -111,12 +111,12 @@ const itemQualitiesAll = [
 const itemQualitiesLoot = [
     { name: 'Common', multiplier: 1.00, p: 0.60, minLevel: 0, applicableTo: ['Weapon', 'Equipment'] }, //black
     { name: 'Uncommon', multiplier: 1.50, p: 0.30, minLevel: 0, applicableTo: ['Weapon', 'Equipment'] }, //green
-    { name: 'Rare', multiplier: 2.00, p: 0.10, minLevel: 2, applicableTo: ['Weapon', 'Equipment'] }, //blue
+    { name: 'Rare', multiplier: 2.00, p: 0.10, minLevel: 2, applicableTo: ['Weapon', 'Equipment'] } //blue
 ];
 const itemQualitiesChest = [
     { name: 'Uncommon', multiplier: 1.50, p: 0.60, minLevel: 0, applicableTo: ['Weapon', 'Equipment'] }, //green
     { name: 'Rare', multiplier: 2.00, p: 0.30, minLevel: 2, applicableTo: ['Weapon', 'Equipment'] }, //blue
-    { name: 'Epic', multiplier: 3.25, p: 0.10, minLevel: 5, applicableTo: ['Weapon', 'Equipment'] }, //purple
+    { name: 'Epic', multiplier: 3.25, p: 0.10, minLevel: 5, applicableTo: ['Weapon', 'Equipment'] } //purple
 ];
 const itemQualitiesBoss = [
     { name: 'Uncommon', multiplier: 1.50, p: 0.55, minLevel: 0, applicableTo: ['Weapon', 'Equipment'] }, //green
@@ -200,7 +200,7 @@ const items = [
 
     { name: 'Amulet', itemType: 'Neck', slot: 'Neck', p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] },
     { name: 'Necklace', itemType: 'Neck', slot: 'Neck', p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] },
-    { name: 'Ring', itemType: 'Finger', slot: 'Ring', p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] },
+    { name: 'Ring', itemType: 'Finger', slot: 'Ring', p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] }
 ];
 
 const premadeItems = [
