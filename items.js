@@ -19,11 +19,11 @@ function generateItem(tries = 0) {
             break;
         case 'Chest':
             itemQualities = itemQualitiesChest;
-            premadeChance = 0.4 + Math.random() * 0.2;
+            premadeChance = 0.25;//0.4 + Math.random() * 0.2;
             break;
         case 'Boss':
             itemQualities = itemQualitiesBoss;
-            premadeChance = 0.2 + Math.random() * 0.2;
+            premadeChance = 0.05;//0.2 + Math.random() * 0.2;
             break;
         default:
             console.error('Invalid source selected.');
