@@ -120,6 +120,7 @@ function generateItem(tries = 0) {
             pickedAttributes.push(attribute);
         }
     }
+    console.log('Picked attributes:', pickedAttributes);
 
     let avgValuePerAttribute = Math.floor(remainingAttributes / pickedAttributes.length);
 
@@ -148,6 +149,8 @@ function generateItem(tries = 0) {
         statsToConsider[generatedItem.primaryAttribute] = generatedItem.primaryValue;
     }
     generatedItem.name = generateItemName(baseName, chosenItem.itemType, statsToConsider);
+
+    console.log(generateItem);
 
     return generatedItem;
 }
