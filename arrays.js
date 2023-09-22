@@ -112,31 +112,31 @@ const itemQualities = [
 const items = [
     // Weapons
     // Melee
-    { name: 'Dagger', itemType: 'Weapon', minDamage: 1, maxDamage: 3, slot: 'One-Handed', primaryStats: ['Strength'], p: 0.35, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
-    { name: 'Shortsword', itemType: 'Weapon', minDamage: 2, maxDamage: 4, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.30, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
-    { name: 'Sword', itemType: 'Weapon', minDamage: 3, maxDamage: 5, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.25, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
-    { name: 'Longsword', itemType: 'Weapon', minDamage: 4, maxDamage: 6, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.15, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
-    { name: 'Greatsword', itemType: 'Weapon', minDamage: 5, maxDamage: 7, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.05, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
+    { name: 'Dagger', itemType: 'Weapon', minDamage: 3, maxDamage: 6, slot: 'One-Handed', primaryStats: ['Strength'], p: 0.35, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
+    { name: 'Shortsword', itemType: 'Weapon', minDamage: 5, maxDamage: 8, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.30, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
+    { name: 'Sword', itemType: 'Weapon', minDamage: 6, maxDamage: 8, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.25, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
+    { name: 'Longsword', itemType: 'Weapon', minDamage: 5, maxDamage: 10, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.15, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
+    { name: 'Greatsword', itemType: 'Weapon', minDamage: 4, maxDamage: 12, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.05, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
 
-    { name: 'Axe', itemType: 'Weapon', minDamage: 3, maxDamage: 5, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.25, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
-    { name: 'Battleaxe', itemType: 'Weapon', minDamage: 4, maxDamage: 6, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.15, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
-    { name: 'Greataxe', itemType: 'Weapon', minDamage: 5, maxDamage: 7, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.05, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
+    { name: 'Axe', itemType: 'Weapon', minDamage: 6, maxDamage: 8, slot: 'Main Hand', primaryStats: ['Strength'], p: 0.25, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
+    { name: 'Battleaxe', itemType: 'Weapon', minDamage: 5, maxDamage: 10, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.15, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
+    { name: 'Greataxe', itemType: 'Weapon', minDamage: 4, maxDamage: 12, slot: 'Two-Handed', primaryStats: ['Strength'], p: 0.05, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
 
-    { name: 'Mace', itemType: 'Weapon', minDamage: 3, maxDamage: 5, slot: 'Main Hand', primaryStats: ['Strength','Intellect'], p: 0.20, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
+    { name: 'Mace', itemType: 'Weapon', minDamage: 5, maxDamage: 8, slot: 'Main Hand', primaryStats: ['Strength','Intellect'], p: 0.20, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
 
     // Magic
-    { name: 'Staff', itemType: 'Weapon', minDamage: 2, maxDamage: 4, slot: 'Two-Handed', primaryStats: ['Intellect'], p: 0.30, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
-    { name: 'Grandstaff', itemType: 'Weapon', minDamage: 4, maxDamage: 6, slot: 'Two-Handed', primaryStats: ['Intellect'], p: 0.08, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
-    { name: 'Wand', itemType: 'Weapon', minDamage: 1, maxDamage: 3, slot: 'Main Hand', primaryStats: ['Intellect'], p: 0.27, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
+    { name: 'Staff', itemType: 'Weapon', minDamage: 4, maxDamage: 12, slot: 'Two-Handed', primaryStats: ['Intellect'], p: 0.30, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
+    { name: 'Grandstaff', itemType: 'Weapon', minDamage: 3, maxDamage: 14, slot: 'Two-Handed', primaryStats: ['Intellect'], p: 0.08, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
+    { name: 'Wand', itemType: 'Weapon', minDamage: 6, maxDamage: 8, slot: 'Main Hand', primaryStats: ['Intellect'], p: 0.27, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
     { name: 'Orb', itemType: 'Weapon', slot: 'Off Hand', primaryStats: ['Intellect'], p: 0.10, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
     { name: 'Scepter', itemType: 'Weapon', slot: 'Off Hand', primaryStats: ['Intellect'], p: 0.10, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Iron', 'Steel', 'Steel Plate'] },
 
     // Ranged
-    { name: 'Sling', itemType: 'Weapon', minDamage: 1, maxDamage: 3, slot: 'Main Hand', primaryStats: ['Agility'], p: 0.10, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
-    { name: 'Shortbow', itemType: 'Weapon', minDamage: 2, maxDamage: 4, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.28, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
-    { name: 'Longbow', itemType: 'Weapon', minDamage: 3, maxDamage: 5, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.22, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
-    { name: 'Greatbow', itemType: 'Weapon', minDamage: 4, maxDamage: 6, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.07, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
-    { name: 'Crossbow', itemType: 'Weapon', minDamage: 5, maxDamage: 7, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.08, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
+    { name: 'Sling', itemType: 'Weapon', minDamage: 3, maxDamage: 5, slot: 'Main Hand', primaryStats: ['Agility'], p: 0.10, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
+    { name: 'Shortbow', itemType: 'Weapon', minDamage: 5, maxDamage: 8, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.28, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
+    { name: 'Longbow', itemType: 'Weapon', minDamage: 6, maxDamage: 8, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.22, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
+    { name: 'Greatbow', itemType: 'Weapon', minDamage: 5, maxDamage: 10, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.07, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
+    { name: 'Crossbow', itemType: 'Weapon', minDamage: 4, maxDamage: 12, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.08, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
 
     // Shields    
     { name: 'Shield', itemType: 'Equipment', slot: 'Off Hand', primaryStats: ['Strength'], secondaryStats: ['Stamina'], p: 0.25, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather'] },
@@ -166,10 +166,10 @@ const items = [
     { name: 'Gauntlets', itemType: 'Equipment', slot: 'Hands', primaryStats: ['Strength'], p: 0.20, onlyMaterials: ['Iron', 'Steel'] },
 
     // Belt
-    { name: 'Strap', itemType: 'Equipment', slot: 'Belt', p: 0.13, onlyMaterials: ['Hide', 'Basic Leather', 'Leather', 'Silk', 'Cloth'] },
-    { name: 'Belt', itemType: 'Equipment', slot: 'Belt', p: 0.13, onlyMaterials: ['Hide', 'Basic Leather', 'Leather', 'Silk', 'Cloth'] },
-    { name: 'Harness', itemType: 'Equipment', slot: 'Belt', p: 0.1, onlyMaterials: ['Hide', 'Basic Leather', 'Leather', 'Silk', 'Cloth'] },
-    { name: 'Girdle', itemType: 'Equipment', slot: 'Belt', p: 0.15, onlyMaterials: ['Leather', 'Iron', 'Steel', 'Steel Plate'] },
+    { name: 'Strap', itemType: 'Equipment', slot: 'Waist', p: 0.13, onlyMaterials: ['Hide', 'Basic Leather', 'Leather', 'Silk', 'Cloth'] },
+    { name: 'Belt', itemType: 'Equipment', slot: 'Waist', p: 0.13, onlyMaterials: ['Hide', 'Basic Leather', 'Leather', 'Silk', 'Cloth'] },
+    { name: 'Harness', itemType: 'Equipment', slot: 'Waist', p: 0.1, onlyMaterials: ['Hide', 'Basic Leather', 'Leather', 'Silk', 'Cloth'] },
+    { name: 'Girdle', itemType: 'Equipment', slot: 'Waist', p: 0.15, onlyMaterials: ['Leather', 'Iron', 'Steel', 'Steel Plate'] },
 
     // Feet
     { name: 'Sandals', itemType: 'Equipment', slot: 'Feet', primaryStats: ['Intellect'], p: 0.1, onlyMaterials: ['Hide', 'Basic Leather', 'Leather', 'Cloth'] },
@@ -179,11 +179,11 @@ const items = [
     // Miscellaneous
     { name: 'Amulet', itemType: 'Neck', slot: 'Neck', primaryStats: ['Intellect', 'Strength', 'Agility'], p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] },
     { name: 'Necklace', itemType: 'Neck', slot: 'Neck', primaryStats: ['Intellect', 'Strength', 'Agility'], p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] },
-    { name: 'Ring', itemType: 'Finger', slot: 'Finger', primaryStats: ['Intellect', 'Strength', 'Agility'], p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] },
+    { name: 'Ring', itemType: 'Finger', slot: 'Ring', primaryStats: ['Intellect', 'Strength', 'Agility'], p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] },
 
     { name: 'Amulet', itemType: 'Neck', slot: 'Neck', p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] },
     { name: 'Necklace', itemType: 'Neck', slot: 'Neck', p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] },
-    { name: 'Ring', itemType: 'Finger', slot: 'Finger', p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] },
+    { name: 'Ring', itemType: 'Finger', slot: 'Ring', p: 0.08, onlyMaterials: ['Copper', 'Brass', 'Bronze', 'Silver', 'Amethyst', 'Aquamarine', 'Quartz', 'Gold', 'Jade', 'Platinum', 'Obsidian', 'Diamond'] },
 ];
 
 const premadeItems = [
