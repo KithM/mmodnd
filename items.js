@@ -90,10 +90,19 @@ function generateItem(tries = 0) {
 
         // If itemType is 'Equipment', allocate some attributes to Stamina first
         if (chosenItem.itemType === 'Equipment') {
+            // let stam = 'Stamina';
+
+            // let stamPercent = 0.2 + Math.random() * 0.2; // This will give a value between 0.2 and 0.4
+            // let stamValue = Math.max(1, Math.floor(remainingAttributes * stamPercent));
+
+            // generatedItem.secondaryAttributes[stam] = stamValue;
+            // remainingAttributes -= stamValue;
+            
             let stam = 'Stamina';
 
-            let stamPercent = 0.2 + Math.random() * 0.2; // This will give a value between 0.2 and 0.4
-            let stamValue = Math.max(1, Math.floor(remainingAttributes * stamPercent));
+            // Instead of a random percent, we'll derive the stamina percentage from the baseStamina of the material
+            let stamMultiplier = chosenType ? chosenType.baseStamina : 1; // If for some reason the material isn't found, default to 1.
+            let stamValue = Math.max(1, Math.floor(remainingAttributes * stamMultiplier));
 
             generatedItem.secondaryAttributes[stam] = stamValue;
             remainingAttributes -= stamValue;
@@ -110,8 +119,6 @@ function generateItem(tries = 0) {
     }
 
     let maxAttributes = 3; // Limit the total number of attributes
-    //let numberOfAttributes = 0; // 1 for the primary attribute
-
 
     // Determine max attributes based on item quality
     switch (chosenQuality.name) {
