@@ -108,7 +108,10 @@ function generateItem(tries = 0) {
         case 'Legendary': maxAttributes = 5; break;
     }
 
-    let availableSecondaryAttributes = secondaryAttributes.filter(attr => attr !== "Stamina"); // Exclude Stamina since it's already assigned
+    let availableSecondaryAttributes = secondaryAttributes;
+    if (chosenItem.itemType === 'Equipment') {
+        availableSecondaryAttributes = secondaryAttributes.filter(attr => attr !== "Stamina"); // Exclude Stamina since it's already assigned
+    }
     if (chosenItem.secondaryStats) {
         availableSecondaryAttributes = availableSecondaryAttributes.filter(attr => chosenItem.secondaryStats.includes(attr));
     }
