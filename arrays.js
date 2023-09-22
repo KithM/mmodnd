@@ -101,11 +101,11 @@ const itemNames = {
 };
 
 const itemQualities = [
-    { name: 'Common', multiplier: 1.00, p: 0.55, applicableTo: ['Weapon', 'Equipment'] }, //black
-    { name: 'Uncommon', multiplier: 1.50, p: 0.25, applicableTo: ['Weapon', 'Equipment'] }, //green
-    { name: 'Rare', multiplier: 2.00, p: 0.1, applicableTo: ['Weapon', 'Equipment'] }, //blue
-    { name: 'Epic', multiplier: 3.25, p: 0.08, applicableTo: ['Weapon', 'Equipment'] }, //purple
-    { name: 'Legendary', multiplier: 5.00, p: 0.02, applicableTo: ['Weapon', 'Equipment'] } //orange
+    { name: 'Common', multiplier: 1.00, p: 0.55, minLevel: 0, applicableTo: ['Weapon', 'Equipment'] }, //black
+    { name: 'Uncommon', multiplier: 1.50, p: 0.25, minLevel: 0, applicableTo: ['Weapon', 'Equipment'] }, //green
+    { name: 'Rare', multiplier: 2.00, p: 0.1, minLevel: 2, applicableTo: ['Weapon', 'Equipment'] }, //blue
+    { name: 'Epic', multiplier: 3.25, p: 0.08, minLevel: 5, applicableTo: ['Weapon', 'Equipment'] }, //purple
+    { name: 'Legendary', multiplier: 5.00, p: 0.02, minLevel: 10, applicableTo: ['Weapon', 'Equipment'] } //orange
 ];
 
 // Sample items array with base min and max damage and item slot
