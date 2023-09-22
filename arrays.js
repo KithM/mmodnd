@@ -66,8 +66,9 @@ const itemNames = {
     'Nimble': [false, ['Agility', 'Critical Strike'], 0.9],
     'Restorative': [false, ['Stamina', 'Regen'], 0.9],
 
+    'Unstable': [false, ['Strength', 'Agility', 'Intellect', 'Regen', 'Stamina', 'Critical Strike'], 0.9],
     'Chromatic': [false, ['Strength', 'Agility', 'Intellect'], 0.9],
-    'Unstable': [false, ['Regen', 'Stamina', 'Critical Strike'], 0.9],
+    'Prismatic': [false, ['Regen', 'Stamina', 'Critical Strike'], 0.9],
 
     'Gladiator\'s': [false, ['Strength'], 0.9],
     'Hero\'s': [false, ['Strength'], 0.9],
@@ -139,8 +140,8 @@ const items = [
     { name: 'Crossbow', itemType: 'Weapon', minDamage: 4, maxDamage: 12, slot: 'Two-Handed', primaryStats: ['Agility'], p: 0.08, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather', 'Steel Plate'] },
 
     // Shields    
-    { name: 'Shield', itemType: 'Equipment', slot: 'Off Hand', primaryStats: ['Strength'], secondaryStats: ['Stamina'], p: 0.25, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather'] },
-    { name: 'Bulwark', itemType: 'Equipment', slot: 'Off Hand', primaryStats: ['Strength'], secondaryStats: ['Stamina'], p: 0.05, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather'] },
+    { name: 'Shield', itemType: 'Equipment', slot: 'Off Hand', primaryStats: ['Strength'], requiredSecondaryStats: ['Stamina'], p: 0.25, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather'] },
+    { name: 'Bulwark', itemType: 'Equipment', slot: 'Off Hand', primaryStats: ['Strength'], requiredSecondaryStats: ['Stamina'], p: 0.05, invalidMaterials: ['Mail', 'Cloth', 'Silk', 'Hide', 'Basic Leather', 'Leather'] },
 
     //// Equipment
     // Head

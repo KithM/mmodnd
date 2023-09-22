@@ -137,6 +137,19 @@ function generateItem(tries = 0) {
     let avgValuePerAttribute = Math.floor(remainingAttributes / pickedAttributes.length);
     console.log('Average attribute value:', avgValuePerAttribute);
 
+    // Assign required secondary stats first, if any
+    // Roll for secondary attributes
+    if (chosenItem.requiredSecondaryStats) {
+        for (let requiredStat of chosenItem.requiredSecondaryStats) {
+            let value = Math.min(Math.floor(Math.random() * remainingAttributes) + 1, remainingAttributes);
+            value = Math.max(1, value);  // Ensure at least 1 point is assigned.
+            generatedItem.secondaryAttributes[requiredStat] = value;
+            remainingAttributes -= value;
+        }
+        // Filter out the required stats from the list of available attributes
+        availableSecondaryAttributes = availableSecondaryAttributes.filter(attr => !chosenItem.requiredSecondaryStats.includes(attr));
+    }
+
     // Distribute remaining attributes among the selected attributes
     for (let attribute of pickedAttributes) {
         let value = avgValuePerAttribute;
