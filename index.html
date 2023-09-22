@@ -118,6 +118,12 @@
 	<form>
 		Enter Item Level: <input type="text" id="itemLevel">
 		Number of Items: <input type="text" id="itemNumber">
+		Source: <select id="itemSourceDropdown">
+			<option value="All">All</option>
+			<option value="Loot">Loot</option>
+			<option value="Chest">Chest</option>
+			<option value="Boss">Boss</option>
+		</select>
 		<input type="button" value="Generate Items" onclick="generate()">
 	</form>
 	<div id="result"></div>

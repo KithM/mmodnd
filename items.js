@@ -40,12 +40,35 @@ function generateItem(tries = 0) {
         return generateItem(tries + 1);
     }
 
+    // NEW! item qualities
+    // Get the selected source from the dropdown
+    const selectedSource = document.getElementById("itemSourceDropdown").value;
+
+    let itemQualities = [];  // This will hold the relevant array based on the source
+    switch (selectedSource) {
+        case 'All':
+            itemQualities = itemQualitiesAll;
+            break;
+        case 'Loot':
+            itemQualities = itemQualitiesLoot;
+            break;
+        case 'Chest':
+            itemQualities = itemQualitiesChest;
+            break;
+        case 'Boss':
+            itemQualities = itemQualitiesBoss;
+            break;
+        default:
+            console.error('Invalid source selected.');
+            return;
+    }
+
     // Filter item qualities based on chosenItem's itemType and get a random quality
     let applicableQualities = itemQualities.filter(q => 
         q.applicableTo.includes(chosenItem.itemType) && itemLevel >= q.minLevel
     );
 
-    let chosenQuality = itemQualities[0];  // Default to Common if none found
+    let chosenQuality = itemQualities[0];  // Default to the first in the list if none found
 
     if (applicableQualities != null && applicableQualities.length > 0) {
         chosenQuality = rollForItem(applicableQualities);

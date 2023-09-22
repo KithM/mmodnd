@@ -101,12 +101,28 @@ const itemNames = {
     'of Ferocity': [true, ['Agility', 'Strength'], 0.75]
 };
 
-const itemQualities = [
+const itemQualitiesAll = [
     { name: 'Common', multiplier: 1.00, p: 0.55, minLevel: 0, applicableTo: ['Weapon', 'Equipment'] }, //black
     { name: 'Uncommon', multiplier: 1.50, p: 0.25, minLevel: 0, applicableTo: ['Weapon', 'Equipment'] }, //green
     { name: 'Rare', multiplier: 2.00, p: 0.1, minLevel: 2, applicableTo: ['Weapon', 'Equipment'] }, //blue
     { name: 'Epic', multiplier: 3.25, p: 0.08, minLevel: 5, applicableTo: ['Weapon', 'Equipment'] }, //purple
     { name: 'Legendary', multiplier: 5.00, p: 0.02, minLevel: 10, applicableTo: ['Weapon', 'Equipment'] } //orange
+];
+const itemQualitiesLoot = [
+    { name: 'Common', multiplier: 1.00, p: 0.60, minLevel: 0, applicableTo: ['Weapon', 'Equipment'] }, //black
+    { name: 'Uncommon', multiplier: 1.50, p: 0.30, minLevel: 0, applicableTo: ['Weapon', 'Equipment'] }, //green
+    { name: 'Rare', multiplier: 2.00, p: 0.10, minLevel: 2, applicableTo: ['Weapon', 'Equipment'] }, //blue
+];
+const itemQualitiesChest = [
+    { name: 'Uncommon', multiplier: 1.50, p: 0.60, minLevel: 0, applicableTo: ['Weapon', 'Equipment'] }, //green
+    { name: 'Rare', multiplier: 2.00, p: 0.30, minLevel: 2, applicableTo: ['Weapon', 'Equipment'] }, //blue
+    { name: 'Epic', multiplier: 3.25, p: 0.10, minLevel: 5, applicableTo: ['Weapon', 'Equipment'] }, //purple
+];
+const itemQualitiesBoss = [
+    { name: 'Uncommon', multiplier: 1.50, p: 0.55, minLevel: 0, applicableTo: ['Weapon', 'Equipment'] }, //green
+    { name: 'Rare', multiplier: 2.00, p: 0.25, minLevel: 2, applicableTo: ['Weapon', 'Equipment'] }, //blue
+    { name: 'Epic', multiplier: 3.25, p: 0.15, minLevel: 5, applicableTo: ['Weapon', 'Equipment'] }, //purple
+    { name: 'Legendary', multiplier: 5.00, p: 0.05, minLevel: 10, applicableTo: ['Weapon', 'Equipment'] } //orange
 ];
 
 // Sample items array with base min and max damage and item slot
