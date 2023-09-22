@@ -118,8 +118,8 @@ function generateItem(tries = 0) {
         let stam = 'Stamina';
 
         // Instead of a random percent, we'll derive the stamina percentage from the baseStamina of the material
-        let baseStam = chosenType ? chosenType.baseStamina : 1; // If for some reason the material isn't found, default to 1.
-        let stamValue = baseStam * itemLevel; //Math.max(1, Math.floor(remainingAttributes * stamMultiplier));
+        let stamPercent = chosenType ? chosenType.baseStamina : 1; // If for some reason the material isn't found, default to 1.
+        let stamValue = Math.max(1, Math.floor(remainingAttributes * stamPercent));//baseStam * itemLevel; //Math.max(1, Math.floor(remainingAttributes * stamMultiplier));
 
         generatedItem.secondaryAttributes[stam] = stamValue;
         remainingAttributes -= stamValue;
