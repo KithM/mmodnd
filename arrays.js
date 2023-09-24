@@ -57,6 +57,9 @@ const rangedWeaponMaterials = [
 const magicWeaponMaterials = [
     'Wood', 'Bone', 'Mithril', 'Copper', 'Silver', 'Amethyst', 'Aquamarine', 'Moonstone', 'Quartz', 'Gold', 'Emerald', 'Jade', 'Platinum', 'Sapphire', 'Ruby', 'Obsidian', 'Diamond'
 ];
+const gemMaterials = [
+    'Copper', 'Bronze', 'Brass', 'Silver', 'Amethyst', 'Aquamarine', 'Moonstone', 'Quartz', 'Gold', 'Emerald', 'Jade', 'Platinum', 'Sapphire', 'Ruby', 'Obsidian', 'Diamond'
+];
 
 // Attributes
 const primaryAttributes = ['Strength', 'Intellect', 'Agility'];
@@ -210,13 +213,13 @@ const items = [
     { name: 'Boots', itemType: 'Equipment', slot: 'Feet', primaryStats: ['Agility', 'Strength'], p: 0.15, onlyMaterials: ['Leather', 'Iron', 'Steel', 'Steel Plate'] },
 
     // Miscellaneous
-    { name: 'Amulet', itemType: 'Neck', slot: 'Neck', primaryStats: ['Intellect', 'Strength', 'Agility'], p: 0.08, onlyMaterials: ['Copper', 'Bronze', 'Brass', 'Silver', 'Amethyst', 'Aquamarine', 'Moonstone', 'Quartz', 'Gold', 'Emerald', 'Jade', 'Platinum', 'Sapphire', 'Ruby', 'Obsidian', 'Diamond'] },
-    { name: 'Necklace', itemType: 'Neck', slot: 'Neck', primaryStats: ['Intellect', 'Strength', 'Agility'], p: 0.08, onlyMaterials: ['Copper', 'Bronze', 'Brass', 'Silver', 'Amethyst', 'Aquamarine', 'Moonstone', 'Quartz', 'Gold', 'Emerald', 'Jade', 'Platinum', 'Sapphire', 'Ruby', 'Obsidian', 'Diamond'] },
-    { name: 'Ring', itemType: 'Finger', slot: 'Ring', primaryStats: ['Intellect', 'Strength', 'Agility'], p: 0.08, onlyMaterials: ['Copper', 'Bronze', 'Brass', 'Silver', 'Amethyst', 'Aquamarine', 'Moonstone', 'Quartz', 'Gold', 'Emerald', 'Jade', 'Platinum', 'Sapphire', 'Ruby', 'Obsidian', 'Diamond'] },
+    { name: 'Amulet', itemType: 'Neck', slot: 'Neck', primaryStats: ['Intellect', 'Strength', 'Agility'], p: 0.08, onlyMaterials: gemMaterials },
+    { name: 'Necklace', itemType: 'Neck', slot: 'Neck', primaryStats: ['Intellect', 'Strength', 'Agility'], p: 0.08, onlyMaterials: gemMaterials },
+    { name: 'Ring', itemType: 'Finger', slot: 'Ring', primaryStats: ['Intellect', 'Strength', 'Agility'], p: 0.08, onlyMaterials: gemMaterials },
 
-    { name: 'Amulet', itemType: 'Neck', slot: 'Neck', p: 0.08, onlyMaterials: ['Copper', 'Bronze', 'Brass', 'Silver', 'Amethyst', 'Aquamarine', 'Moonstone', 'Quartz', 'Gold', 'Emerald', 'Jade', 'Platinum', 'Sapphire', 'Ruby', 'Obsidian', 'Diamond'] },
-    { name: 'Necklace', itemType: 'Neck', slot: 'Neck', p: 0.08, onlyMaterials: ['Copper', 'Bronze', 'Brass', 'Silver', 'Amethyst', 'Aquamarine', 'Moonstone', 'Quartz', 'Gold', 'Emerald', 'Jade', 'Platinum', 'Sapphire', 'Ruby', 'Obsidian', 'Diamond'] },
-    { name: 'Ring', itemType: 'Finger', slot: 'Ring', p: 0.08, onlyMaterials: ['Copper', 'Bronze', 'Brass', 'Silver', 'Amethyst', 'Aquamarine', 'Moonstone', 'Quartz', 'Gold', 'Emerald', 'Jade', 'Platinum', 'Sapphire', 'Ruby', 'Obsidian', 'Diamond'] }
+    { name: 'Amulet', itemType: 'Neck', slot: 'Neck', p: 0.08, onlyMaterials: gemMaterials },
+    { name: 'Necklace', itemType: 'Neck', slot: 'Neck', p: 0.08, onlyMaterials: gemMaterials },
+    { name: 'Ring', itemType: 'Finger', slot: 'Ring', p: 0.08, onlyMaterials: gemMaterials }
 ];
 
 const premadeItems = [
