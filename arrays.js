@@ -26,7 +26,7 @@ const lootTypes = [
     { name: `Steel`, enchants: metalenchants, p: 0.30, baseStamina: 0.4, level: 5 },
     { name: `Steel Plate`, enchants: metalenchants, p: 0.25, baseStamina: 0.5, level: 5 },
 
-    { name: `Bone`, enchants: metalenchants, p: 0.23, baseStamina: 0.25, level: 1 },
+    { name: `Bone`, enchants: metalenchants, p: 0.15, baseStamina: 0.25, level: 1 },
     { name: `Mithril`, enchants: metalenchants, p: 0.03, baseStamina: 0.6, level: 15 },
 
     // Ring & Amulet Materials
